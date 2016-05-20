@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+@import CareKit;
+@import ResearchKit;
 
 @interface AppDelegate ()
 
