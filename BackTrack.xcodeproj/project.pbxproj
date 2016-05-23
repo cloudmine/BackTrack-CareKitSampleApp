@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		9E230222AF550F36BD730506 /* Pods_BackTrackTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9C8B84302774DFBCFB945B3 /* Pods_BackTrackTests.framework */; };
 		B46F1EC41CEE46F200AB1972 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1EC31CEE46F200AB1972 /* main.m */; };
-		B46F1EC71CEE46F200AB1972 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1EC61CEE46F200AB1972 /* AppDelegate.m */; };
-		B46F1ECA1CEE46F200AB1972 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1EC91CEE46F200AB1972 /* ViewController.m */; };
+		B46F1EC71CEE46F200AB1972 /* BCMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1EC61CEE46F200AB1972 /* BCMAppDelegate.m */; };
+		B46F1ECA1CEE46F200AB1972 /* BCMRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1EC91CEE46F200AB1972 /* BCMRootViewController.m */; };
 		B46F1ECD1CEE46F200AB1972 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B46F1ECB1CEE46F200AB1972 /* Main.storyboard */; };
 		B46F1ECF1CEE46F200AB1972 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B46F1ECE1CEE46F200AB1972 /* Assets.xcassets */; };
 		B46F1ED21CEE46F200AB1972 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B46F1ED01CEE46F200AB1972 /* LaunchScreen.storyboard */; };
@@ -48,10 +48,10 @@
 		8B9B8235072039F9518B78C3 /* Pods-BackTrackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BackTrackTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BackTrackTests/Pods-BackTrackTests.release.xcconfig"; sourceTree = "<group>"; };
 		B46F1EBF1CEE46F200AB1972 /* BackTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BackTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B46F1EC31CEE46F200AB1972 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B46F1EC51CEE46F200AB1972 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		B46F1EC61CEE46F200AB1972 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B46F1EC81CEE46F200AB1972 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B46F1EC91CEE46F200AB1972 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B46F1EC51CEE46F200AB1972 /* BCMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BCMAppDelegate.h; sourceTree = "<group>"; };
+		B46F1EC61CEE46F200AB1972 /* BCMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BCMAppDelegate.m; sourceTree = "<group>"; };
+		B46F1EC81CEE46F200AB1972 /* BCMRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BCMRootViewController.h; sourceTree = "<group>"; };
+		B46F1EC91CEE46F200AB1972 /* BCMRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BCMRootViewController.m; sourceTree = "<group>"; };
 		B46F1ECC1CEE46F200AB1972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B46F1ECE1CEE46F200AB1972 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B46F1ED11CEE46F200AB1972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -149,10 +149,10 @@
 		B46F1EC11CEE46F200AB1972 /* BackTrack */ = {
 			isa = PBXGroup;
 			children = (
-				B46F1EC51CEE46F200AB1972 /* AppDelegate.h */,
-				B46F1EC61CEE46F200AB1972 /* AppDelegate.m */,
-				B46F1EC81CEE46F200AB1972 /* ViewController.h */,
-				B46F1EC91CEE46F200AB1972 /* ViewController.m */,
+				B46F1EC51CEE46F200AB1972 /* BCMAppDelegate.h */,
+				B46F1EC61CEE46F200AB1972 /* BCMAppDelegate.m */,
+				B46F1EC81CEE46F200AB1972 /* BCMRootViewController.h */,
+				B46F1EC91CEE46F200AB1972 /* BCMRootViewController.m */,
 				B46F1ECB1CEE46F200AB1972 /* Main.storyboard */,
 				B46F1ECE1CEE46F200AB1972 /* Assets.xcassets */,
 				B46F1ED01CEE46F200AB1972 /* LaunchScreen.storyboard */,
@@ -465,8 +465,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B46F1ECA1CEE46F200AB1972 /* ViewController.m in Sources */,
-				B46F1EC71CEE46F200AB1972 /* AppDelegate.m in Sources */,
+				B46F1ECA1CEE46F200AB1972 /* BCMRootViewController.m in Sources */,
+				B46F1EC71CEE46F200AB1972 /* BCMAppDelegate.m in Sources */,
 				B46F1EC41CEE46F200AB1972 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
