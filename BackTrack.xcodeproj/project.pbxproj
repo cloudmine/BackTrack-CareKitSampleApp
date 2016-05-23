@@ -230,7 +230,7 @@
 				B46F1F151CF38E6700AB1972 /* UIViewController+BCM.h */,
 				B46F1F161CF38EF800AB1972 /* UIViewController+BCM.m */,
 			);
-			name = Categories;
+			path = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
