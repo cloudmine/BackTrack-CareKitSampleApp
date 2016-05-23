@@ -14,7 +14,8 @@
     [super viewDidLoad];
 
     OCKCareCardViewController *careVC = [[OCKCareCardViewController alloc] initWithCarePlanStore:self.bcmTabBarController.carePlanStore];
-    self.viewControllers = @[careVC];
+
+    [self showViewController:careVC sender:nil];
 }
 
 @end

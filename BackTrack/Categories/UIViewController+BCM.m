@@ -5,7 +5,7 @@
 
 - (BCMMainTabController *)bcmTabBarController
 {
-    for (UIViewController *vc = self; nil != vc.parentViewController; vc = vc.parentViewController) {
+    for (UIViewController *vc = self; nil != vc; vc = vc.parentViewController) {
         if ([vc isKindOfClass:[BCMMainTabController class]]) {
             return (BCMMainTabController *)vc;
         }

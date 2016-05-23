@@ -14,7 +14,8 @@
     [super viewDidLoad];
 
     OCKSymptomTrackerViewController *symptomVC = [[OCKSymptomTrackerViewController alloc] initWithCarePlanStore:self.bcmTabBarController.carePlanStore];
-    self.viewControllers = @[symptomVC];
+
+    [self showViewController:symptomVC sender:nil];
 }
 
 @end
