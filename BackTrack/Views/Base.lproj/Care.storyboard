@@ -8,7 +8,7 @@
         <!--Care-->
         <scene sceneID="fzd-rj-Ppw">
             <objects>
-                <navigationController id="hlS-tX-2dn" sceneMemberID="viewController">
+                <navigationController id="hlS-tX-2dn" customClass="BCMCareNavController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Care" id="bTo-Xj-ZW3"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Uea-Ig-LT6">
