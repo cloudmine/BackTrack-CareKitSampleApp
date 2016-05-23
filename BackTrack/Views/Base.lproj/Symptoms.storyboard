@@ -8,7 +8,7 @@
         <!--Symptoms-->
         <scene sceneID="b0L-WQ-NA5">
             <objects>
-                <navigationController id="HUa-7f-1nb" sceneMemberID="viewController">
+                <navigationController id="HUa-7f-1nb" customClass="BMCSymptomNavController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Symptoms" id="znH-qQ-GHw"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fyZ-wq-zxR">

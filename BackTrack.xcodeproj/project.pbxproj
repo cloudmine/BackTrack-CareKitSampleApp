@@ -22,6 +22,7 @@
 		B46F1F0E1CF3838300AB1972 /* Symptoms.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B46F1F101CF3838300AB1972 /* Symptoms.storyboard */; };
 		B46F1F131CF38DCA00AB1972 /* BCMCareNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1F121CF38DCA00AB1972 /* BCMCareNavController.m */; };
 		B46F1F171CF38EF800AB1972 /* UIViewController+BCM.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1F161CF38EF800AB1972 /* UIViewController+BCM.m */; };
+		B46F1F1A1CF3942500AB1972 /* BMCSymptomNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1F191CF3942500AB1972 /* BMCSymptomNavController.m */; };
 		D23CC92EEA79E27646C7EAEF /* Pods_BackTrackUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11FC8268A05A02C691A0A02B /* Pods_BackTrackUITests.framework */; };
 		DA3B93E99DDEAD62A7EED6EB /* Pods_BackTrack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D16A2C00F8C679B1F25B6B8B /* Pods_BackTrack.framework */; };
 /* End PBXBuildFile section */
@@ -74,6 +75,8 @@
 		B46F1F121CF38DCA00AB1972 /* BCMCareNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMCareNavController.m; sourceTree = "<group>"; };
 		B46F1F151CF38E6700AB1972 /* UIViewController+BCM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BCM.h"; sourceTree = "<group>"; };
 		B46F1F161CF38EF800AB1972 /* UIViewController+BCM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BCM.m"; sourceTree = "<group>"; };
+		B46F1F181CF3942500AB1972 /* BMCSymptomNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCSymptomNavController.h; sourceTree = "<group>"; };
+		B46F1F191CF3942500AB1972 /* BMCSymptomNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCSymptomNavController.m; sourceTree = "<group>"; };
 		B9C8B84302774DFBCFB945B3 /* Pods_BackTrackTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BackTrackTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D16A2C00F8C679B1F25B6B8B /* Pods_BackTrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BackTrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6E4F592477F5445F0000F51 /* Pods-BackTrackTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BackTrackTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BackTrackTests/Pods-BackTrackTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -203,6 +206,8 @@
 				B46F1EC91CEE46F200AB1972 /* BCMMainTabController.m */,
 				B46F1F111CF38DCA00AB1972 /* BCMCareNavController.h */,
 				B46F1F121CF38DCA00AB1972 /* BCMCareNavController.m */,
+				B46F1F181CF3942500AB1972 /* BMCSymptomNavController.h */,
+				B46F1F191CF3942500AB1972 /* BMCSymptomNavController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -511,6 +516,7 @@
 				B46F1ECA1CEE46F200AB1972 /* BCMMainTabController.m in Sources */,
 				B46F1EC71CEE46F200AB1972 /* BCMAppDelegate.m in Sources */,
 				B46F1EC41CEE46F200AB1972 /* main.m in Sources */,
+				B46F1F1A1CF3942500AB1972 /* BMCSymptomNavController.m in Sources */,
 				B46F1F131CF38DCA00AB1972 /* BCMCareNavController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
