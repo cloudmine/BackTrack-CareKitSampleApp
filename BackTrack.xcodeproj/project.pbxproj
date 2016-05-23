@@ -150,8 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				B46F1EFA1CF37A5300AB1972 /* SupportingFiles */,
-				B46F1EC81CEE46F200AB1972 /* BCMRootViewController.h */,
-				B46F1EC91CEE46F200AB1972 /* BCMRootViewController.m */,
+				B46F1EFB1CF37B4F00AB1972 /* ViewControllers */,
 				B46F1ECB1CEE46F200AB1972 /* Main.storyboard */,
 				B46F1ECE1CEE46F200AB1972 /* Assets.xcassets */,
 				B46F1ED01CEE46F200AB1972 /* LaunchScreen.storyboard */,
@@ -186,6 +185,15 @@
 				B46F1EC31CEE46F200AB1972 /* main.m */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		B46F1EFB1CF37B4F00AB1972 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B46F1EC81CEE46F200AB1972 /* BCMRootViewController.h */,
+				B46F1EC91CEE46F200AB1972 /* BCMRootViewController.m */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
