@@ -149,25 +149,14 @@
 		B46F1EC11CEE46F200AB1972 /* BackTrack */ = {
 			isa = PBXGroup;
 			children = (
-				B46F1EC51CEE46F200AB1972 /* BCMAppDelegate.h */,
-				B46F1EC61CEE46F200AB1972 /* BCMAppDelegate.m */,
+				B46F1EFA1CF37A5300AB1972 /* SupportingFiles */,
 				B46F1EC81CEE46F200AB1972 /* BCMRootViewController.h */,
 				B46F1EC91CEE46F200AB1972 /* BCMRootViewController.m */,
 				B46F1ECB1CEE46F200AB1972 /* Main.storyboard */,
 				B46F1ECE1CEE46F200AB1972 /* Assets.xcassets */,
 				B46F1ED01CEE46F200AB1972 /* LaunchScreen.storyboard */,
-				B46F1ED31CEE46F200AB1972 /* Info.plist */,
-				B46F1EC21CEE46F200AB1972 /* Supporting Files */,
 			);
 			path = BackTrack;
-			sourceTree = "<group>";
-		};
-		B46F1EC21CEE46F200AB1972 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B46F1EC31CEE46F200AB1972 /* main.m */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		B46F1EDB1CEE46F200AB1972 /* BackTrackTests */ = {
@@ -186,6 +175,17 @@
 				B46F1EE91CEE46F200AB1972 /* Info.plist */,
 			);
 			path = BackTrackUITests;
+			sourceTree = "<group>";
+		};
+		B46F1EFA1CF37A5300AB1972 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				B46F1ED31CEE46F200AB1972 /* Info.plist */,
+				B46F1EC51CEE46F200AB1972 /* BCMAppDelegate.h */,
+				B46F1EC61CEE46F200AB1972 /* BCMAppDelegate.m */,
+				B46F1EC31CEE46F200AB1972 /* main.m */,
+			);
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -615,7 +615,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = BackTrack/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/BackTrack/SupportingFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cloudmineinc.BackTrack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -631,7 +631,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = BackTrack/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/BackTrack/SupportingFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cloudmineinc.BackTrack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
