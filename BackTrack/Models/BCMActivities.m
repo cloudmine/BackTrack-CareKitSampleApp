@@ -1,6 +1,7 @@
 #import "BCMActivities.h"
 
-static NSString *const ExerciseInterventionsGroupIdentifier = @"BCMExerciseInterventions";
+static NSString *const ExerciseInterventionsGroupIdentifier   = @"BCMExerciseInterventions";
+static NSString *const MedicationInterventionsGroupIdentifier = @"BCMExerciseInterventions";
 
 @implementation BCMActivities
 
@@ -8,7 +9,8 @@ static NSString *const ExerciseInterventionsGroupIdentifier = @"BCMExerciseInter
 
 + (NSArray<OCKCarePlanActivity *> *)activities
 {
-    return @[self.hamstringStretchIntervention, self.briskWalkIntervention];
+    return @[self.hamstringStretchIntervention, self.briskWalkIntervention,
+             self.warmCompressIntervention, self.painKillerIntervention];
 }
 
 #pragma mark Generators
@@ -39,6 +41,44 @@ static NSString *const ExerciseInterventionsGroupIdentifier = @"BCMExerciseInter
                                                       type:OCKCarePlanActivityTypeIntervention
                                                      title:NSLocalizedString(@"Brisk Walk", nil)
                                                       text:NSLocalizedString(@"15 minutes", nil)
+                                                 tintColor:nil
+                                              instructions:nil
+                                                  imageURL:nil
+                                                  schedule:schedule
+                                          resultResettable:YES
+                                                  userInfo:nil];
+}
+
++ (OCKCarePlanActivity *_Nonnull)warmCompressIntervention
+{
+    OCKCareSchedule *schedule = [OCKCareSchedule weeklyScheduleWithStartDate:self.todaysDateComponents
+                                                        occurrencesOnEachDay:@[@0, @1, @0, @1, @0, @1, @0]]; // Mon/Wed/Fri
+
+    return [[OCKCarePlanActivity alloc] initWithIdentifier:@"BMCWarmCompress"
+                                           groupIdentifier:MedicationInterventionsGroupIdentifier
+                                                      type:OCKCarePlanActivityTypeIntervention
+                                                     title:NSLocalizedString(@"Warm Compress", nil)
+                                                      text:nil
+                                                 tintColor:nil
+                                              instructions:nil
+                                                  imageURL:nil
+                                                  schedule:schedule
+                                          resultResettable:YES
+                                                  userInfo:nil];
+}
+
++ (OCKCarePlanActivity *_Nonnull)painKillerIntervention
+{
+    OCKCareSchedule *schedule = [OCKCareSchedule dailyScheduleWithStartDate:self.todaysDateComponents
+                                                          occurrencesPerDay:2
+                                                                 daysToSkip:1
+                                                                    endDate:nil];
+
+    return [[OCKCarePlanActivity alloc] initWithIdentifier:@"BCMPainKiller"
+                                           groupIdentifier:MedicationInterventionsGroupIdentifier
+                                                      type:OCKCarePlanActivityTypeIntervention
+                                                     title:NSLocalizedString(@"Ibuprofen", nil)
+                                                      text:NSLocalizedString(@"200 mg, Morning/Evening", nil)
                                                  tintColor:nil
                                               instructions:nil
                                                   imageURL:nil
