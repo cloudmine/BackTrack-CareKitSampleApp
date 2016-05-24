@@ -1,3 +1,0 @@
-github "ResearchKit/ResearchKit" "stable"
-git "file:///Users/bendi/Development/CareKit" "ident-fix"
-# github "carekit-apple/CareKit"
