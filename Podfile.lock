@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - CareKit (1.0.1)
   - CloudMine (1.7.11):
     - AFNetworking (~> 2.6.3)
     - CloudMine/no-arc (= 1.7.11)
@@ -28,14 +29,16 @@ PODS:
   - ResearchKit (1.3.1)
 
 DEPENDENCIES:
+  - CareKit
   - CloudMine (~> 1.7.11)
   - ResearchKit (~> 1.3.1)
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  CareKit: 08e840f45807c7771708b731649e082bdb6eea2d
   CloudMine: ee5b3643fb1a2f4603de6428aea1252ac928d98d
   ResearchKit: badba0340dd71d1cbab4789a0bf01b26022b8f94
 
-PODFILE CHECKSUM: 29098b38ed4513ec58eec885a8e875f598f28fc3
+PODFILE CHECKSUM: 479b3b6a8e3a5e2d913849686c6830e06db11165
 
 COCOAPODS: 1.0.0
