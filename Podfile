@@ -4,6 +4,7 @@ target 'BackTrack' do
   use_frameworks!
 
   pod "CloudMine", "~> 1.7.11"
+  pod "ResearchKit", "~> 1.3.1"
 
   target 'BackTrackTests' do
     inherit! :search_paths
