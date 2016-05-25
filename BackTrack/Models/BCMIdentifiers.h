@@ -20,6 +20,6 @@ static NSString *const _Nonnull BCMIdentifierObjectiveAssessmentsGroup  = @"BCMO
 /* Assessment Activities */
 static NSString *const _Nonnull BCMIdentifierAssessmentPainTrack   = @"BCMPainTrack";
 static NSString *const _Nonnull BCMIdentifierAssessmentMoodTrack   = @"BCMMoodTrack";
-static NSString *const _Nonnull BCMIdentifierAssessmentWeightTrack = @"BMCWeightTrack";
+static NSString *const _Nonnull BCMIdentifierAssessmentWeightTrack = @"BCMWeightTrack";
 
 #endif

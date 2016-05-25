@@ -9,6 +9,8 @@
         return [self painTrackTask];
     } else if ([BCMIdentifierAssessmentMoodTrack isEqualToString:assessmentId]) {
         return [self moodTrackTask];
+    } else if ([BCMIdentifierAssessmentWeightTrack isEqualToString:assessmentId]) {
+        return [self weightTrackTask];
     }
 
     return nil;
@@ -40,6 +42,21 @@
 
     return [[ORKOrderedTask alloc] initWithIdentifier:BCMIdentifierAssessmentMoodTrack
                                                 steps:@[moodQuestion]];
+}
+
++ (ORKOrderedTask *_Nonnull)weightTrackTask
+{
+    ORKNumericAnswerFormat *weightAnswer = [[ORKNumericAnswerFormat alloc] initWithStyle:ORKNumericAnswerStyleDecimal
+                                                                                    unit:NSLocalizedString(@"lbs", nil)
+                                                                                 minimum:@50
+                                                                                 maximum:@500];
+
+    ORKQuestionStep *weightQuestion = [ORKQuestionStep questionStepWithIdentifier:BCMIdentifierAssessmentWeightTrack
+                                                                            title:NSLocalizedString(@"Weight", nil)
+                                                                           answer:weightAnswer];
+    weightQuestion.optional = NO;
+
+    return [[ORKOrderedTask alloc] initWithIdentifier:BCMIdentifierAssessmentWeightTrack steps:@[weightQuestion]];
 }
 
 
