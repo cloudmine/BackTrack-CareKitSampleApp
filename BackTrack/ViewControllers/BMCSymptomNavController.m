@@ -9,6 +9,8 @@
 
 @interface BMCSymptomNavController ()<OCKSymptomTrackerViewControllerDelegate, ORKTaskViewControllerDelegate>
 
+@property (nonatomic, nonnull) OCKSymptomTrackerViewController *symptomViewController;
+
 @end
 
 @implementation BMCSymptomNavController
@@ -18,10 +20,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    OCKSymptomTrackerViewController *symptomVC = [[OCKSymptomTrackerViewController alloc] initWithCarePlanStore:self.bcmTabBarController.carePlanStore];
-    symptomVC.delegate = self;
-    [self showViewController:symptomVC sender:nil];
+    [self showViewController:self.symptomViewController sender:nil];
 }
 
 #pragma mark OCKSymptomTrackerViewControllerDelegate
@@ -48,7 +47,46 @@
 
 - (void)taskViewController:(ORKTaskViewController *)taskViewController didFinishWithReason:(ORKTaskViewControllerFinishReason)reason error:(NSError *)error
 {
+    if (reason != ORKTaskViewControllerFinishReasonCompleted) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        return;
+    }
+
+    OCKCarePlanEvent *event = self.symptomViewController.lastSelectedAssessmentEvent;
+    ORKTaskResult *taskResult = taskViewController.result;
+
+    NSAssert(nil != event &&
+              nil != taskResult &&
+              [event.activity.identifier isEqualToString:taskResult.identifier],
+             @"Expected care plan event and task result identifier to match. Got %@ and %@", event.activity.identifier, taskResult.identifier);
+
+    OCKCarePlanEventResult *result = [BCMTasks carePlanResultForTaskResult:taskResult];
+    if (nil == result) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        return;
+    }
+
+    [self.bcmTabBarController.carePlanStore updateEvent:event withResult:result state:OCKCarePlanEventStateCompleted completion:^(BOOL success, OCKCarePlanEvent * _Nullable event, NSError * _Nullable error) {
+        if (!success) {
+            NSLog(@"Failed to update event store: %@", error.localizedDescription);
+            return;
+        }
+    }];
+
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark Getters-Setters
+
+- (OCKSymptomTrackerViewController *)symptomViewController
+{
+    if (nil == _symptomViewController) {
+        _symptomViewController = [[OCKSymptomTrackerViewController alloc] initWithCarePlanStore:self.bcmTabBarController.carePlanStore];
+        _symptomViewController.delegate = self;
+    }
+
+    return _symptomViewController;
+}
+
 
 @end

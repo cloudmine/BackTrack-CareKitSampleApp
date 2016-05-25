@@ -3,6 +3,8 @@
 
 @implementation BCMTasks
 
+#pragma mark Public
+
 + (ORKOrderedTask *_Nullable)taskForAssessmentIdentifier:(NSString *_Nonnull)assessmentId
 {
     if ([BCMIdentifierAssessmentPainTrack isEqualToString:assessmentId]) {
@@ -15,6 +17,35 @@
 
     return nil;
 }
+
++ (OCKCarePlanEventResult *_Nullable)carePlanResultForTaskResult:(ORKTaskResult *_Nonnull)taskResult
+{
+    NSAssert([taskResult.firstResult isKindOfClass:[ORKStepResult class]], @"Expected ORKStepResult, got: %@", taskResult.firstResult.class);
+    ORKStepResult *stepResult = (ORKStepResult *)taskResult.firstResult;
+
+    if ([BCMIdentifierAssessmentPainTrack isEqualToString:taskResult.identifier] ||
+        [BCMIdentifierAssessmentMoodTrack isEqualToString:taskResult.identifier]) {
+
+        return [self scaleTaskResult:stepResult];
+    }
+
+    return nil;
+}
+
+#pragma mark Helpers
+
++ (OCKCarePlanEventResult *_Nonnull)scaleTaskResult:(ORKStepResult *_Nonnull)stepResult
+{
+    NSAssert([stepResult.firstResult isKindOfClass:[ORKScaleQuestionResult class]], @"Expected a scale questy result, got: %@", stepResult.firstResult.class);
+    ORKScaleQuestionResult *scaleResult = (ORKScaleQuestionResult *)stepResult.firstResult;
+
+
+    return [[OCKCarePlanEventResult alloc] initWithValueString:scaleResult.scaleAnswer.stringValue
+                                                    unitString:NSLocalizedString(@"out of 10", nil)
+                                                      userInfo:nil];
+}
+
+
 
 #pragma mark Generators
 
