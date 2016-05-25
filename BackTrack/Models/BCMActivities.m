@@ -6,8 +6,6 @@
 
 @implementation BCMActivities
 
-#pragma mark Public
-
 + (NSArray<OCKCarePlanActivity *> *)activities
 {
     return @[self.hamstringStretchIntervention, self.briskWalkIntervention,
@@ -15,8 +13,6 @@
              self.painTrackAssessment, self.moodTrackAssessment,
              self.weightTrackAssessment];
 }
-
-#pragma mark Generators
 
 + (OCKCarePlanActivity *_Nonnull)hamstringStretchIntervention
 {
