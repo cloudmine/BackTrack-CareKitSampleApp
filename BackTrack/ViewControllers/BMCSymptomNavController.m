@@ -3,6 +3,7 @@
 #import "BCMMainTabController.h"
 #import "UIViewController+BCM.h"
 #import "BCMTasks.h"
+#import "OCKCarePlanEvent+BCM.h"
 #import <ResearchKit/ResearchKit.h>
 #import <CareKit/CareKit.h>
 
@@ -28,8 +29,12 @@
 - (void)symptomTrackerViewController:(OCKSymptomTrackerViewController *)viewController didSelectRowWithAssessmentEvent:(OCKCarePlanEvent *)assessmentEvent
 {
     NSLog(@"Selected Assessment: %@", assessmentEvent.activity.identifier);
-    ORKOrderedTask *task = [BCMTasks taskForAssessmentIdentifier:assessmentEvent.activity.identifier];
 
+    if (![assessmentEvent isAvailable]) {
+        return;
+    }
+
+    ORKOrderedTask *task = [BCMTasks taskForAssessmentIdentifier:assessmentEvent.activity.identifier];
     if (nil == task) {
         return;
     }

@@ -120,7 +120,7 @@
                                               instructions:nil
                                                   imageURL:nil
                                                   schedule:schedule
-                                          resultResettable:YES
+                                          resultResettable:NO
                                                   userInfo:nil];
 }
 
