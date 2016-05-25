@@ -1,9 +1,8 @@
 #import "BCMActivities.h"
+#import "BCMIdentifiers.h"
 
-static NSString *const ExerciseInterventionsGroupIdentifier   = @"BCMExerciseInterventions";
-static NSString *const MedicationInterventionsGroupIdentifier = @"BCMMedicationInterventions";
-static NSString *const SubjectiveAssessmentsGroupIdentifier   = @"BCMSubjectiveAssessments";
-static NSString *const ObjectiveAssessmentsGroupIdentifier    = @"BCMObjectiveAssessments";
+
+
 
 @implementation BCMActivities
 
@@ -23,8 +22,8 @@ static NSString *const ObjectiveAssessmentsGroupIdentifier    = @"BCMObjectiveAs
 {
     OCKCareSchedule *schedule = [OCKCareSchedule dailyScheduleWithStartDate:self.todaysDateComponents occurrencesPerDay:3];
 
-    return [[OCKCarePlanActivity alloc] initWithIdentifier:@"BCMHamstringStretch"
-                                           groupIdentifier:ExerciseInterventionsGroupIdentifier
+    return [[OCKCarePlanActivity alloc] initWithIdentifier:BCMIdentifierInterventionHamstringStretch
+                                           groupIdentifier:BCMIdentifierExerciseInterventionsGroup
                                                       type:OCKCarePlanActivityTypeIntervention
                                                      title:NSLocalizedString(@"Hamstring Stretch", nil)
                                                       text:NSLocalizedString(@"5 minutes", nil)
@@ -40,8 +39,8 @@ static NSString *const ObjectiveAssessmentsGroupIdentifier    = @"BCMObjectiveAs
 {
     OCKCareSchedule *schedule = [OCKCareSchedule dailyScheduleWithStartDate:self.todaysDateComponents occurrencesPerDay:1];
 
-    return [[OCKCarePlanActivity alloc] initWithIdentifier:@"BCMBriskWalk"
-                                           groupIdentifier:ExerciseInterventionsGroupIdentifier
+    return [[OCKCarePlanActivity alloc] initWithIdentifier:BCMIdentifierInterventionBriskWalk
+                                           groupIdentifier:BCMIdentifierExerciseInterventionsGroup
                                                       type:OCKCarePlanActivityTypeIntervention
                                                      title:NSLocalizedString(@"Brisk Walk", nil)
                                                       text:NSLocalizedString(@"15 minutes", nil)
@@ -58,8 +57,8 @@ static NSString *const ObjectiveAssessmentsGroupIdentifier    = @"BCMObjectiveAs
     OCKCareSchedule *schedule = [OCKCareSchedule weeklyScheduleWithStartDate:self.todaysDateComponents
                                                         occurrencesOnEachDay:@[@0, @1, @0, @1, @0, @1, @0]]; // Mon/Wed/Fri
 
-    return [[OCKCarePlanActivity alloc] initWithIdentifier:@"BMCWarmCompress"
-                                           groupIdentifier:MedicationInterventionsGroupIdentifier
+    return [[OCKCarePlanActivity alloc] initWithIdentifier:BCMIdentifierInterventionWarmCompress
+                                           groupIdentifier:BCMIdentifierMedicationInterventionsGroup
                                                       type:OCKCarePlanActivityTypeIntervention
                                                      title:NSLocalizedString(@"Warm Compress", nil)
                                                       text:NSLocalizedString(@"Morning", nil)
@@ -78,8 +77,8 @@ static NSString *const ObjectiveAssessmentsGroupIdentifier    = @"BCMObjectiveAs
                                                                  daysToSkip:1
                                                                     endDate:nil];
 
-    return [[OCKCarePlanActivity alloc] initWithIdentifier:@"BCMPainKiller"
-                                           groupIdentifier:MedicationInterventionsGroupIdentifier
+    return [[OCKCarePlanActivity alloc] initWithIdentifier:BCMIdentifierInterventionPainKiller
+                                           groupIdentifier:BCMIdentifierMedicationInterventionsGroup
                                                       type:OCKCarePlanActivityTypeIntervention
                                                      title:NSLocalizedString(@"Ibuprofen", nil)
                                                       text:NSLocalizedString(@"200 mg, Morning/Evening", nil)
@@ -95,8 +94,8 @@ static NSString *const ObjectiveAssessmentsGroupIdentifier    = @"BCMObjectiveAs
 {
     OCKCareSchedule *schedule = [OCKCareSchedule dailyScheduleWithStartDate:self.todaysDateComponents occurrencesPerDay:1];
 
-    return [[OCKCarePlanActivity alloc] initWithIdentifier:@"BCMPainTrack"
-                                           groupIdentifier:SubjectiveAssessmentsGroupIdentifier
+    return [[OCKCarePlanActivity alloc] initWithIdentifier:BCMIdentifierAssessmentPainTrack
+                                           groupIdentifier:BCMIdentifierSubjectiveAssessmentsGroup
                                                       type:OCKCarePlanActivityTypeAssessment
                                                      title:NSLocalizedString(@"Pain", nil)
                                                       text:NSLocalizedString(@"Lower Back", nil)
@@ -112,8 +111,8 @@ static NSString *const ObjectiveAssessmentsGroupIdentifier    = @"BCMObjectiveAs
 {
     OCKCareSchedule *schedule = [OCKCareSchedule dailyScheduleWithStartDate:self.todaysDateComponents occurrencesPerDay:1];
 
-    return [[OCKCarePlanActivity alloc] initWithIdentifier:@"BCMMoodTrack"
-                                           groupIdentifier:SubjectiveAssessmentsGroupIdentifier
+    return [[OCKCarePlanActivity alloc] initWithIdentifier:BCMIdentifierAssessmentMoodTrack
+                                           groupIdentifier:BCMIdentifierSubjectiveAssessmentsGroup
                                                       type:OCKCarePlanActivityTypeAssessment
                                                      title:NSLocalizedString(@"Mood", nil)
                                                       text:nil
@@ -129,8 +128,8 @@ static NSString *const ObjectiveAssessmentsGroupIdentifier    = @"BCMObjectiveAs
 {
     OCKCareSchedule *schedule = [OCKCareSchedule dailyScheduleWithStartDate:self.todaysDateComponents occurrencesPerDay:1];
 
-    return [[OCKCarePlanActivity alloc] initWithIdentifier:@"BCMWeightTrack"
-                                           groupIdentifier:ObjectiveAssessmentsGroupIdentifier
+    return [[OCKCarePlanActivity alloc] initWithIdentifier:BCMIdentifierAssessmentWeightTrack
+                                           groupIdentifier:BCMIdentifierObjectiveAssessmentsGroup
                                                       type:OCKCarePlanActivityTypeAssessment
                                                      title:NSLocalizedString(@"Weight", nil)
                                                       text:NSLocalizedString(@"Early Morning", nil)
