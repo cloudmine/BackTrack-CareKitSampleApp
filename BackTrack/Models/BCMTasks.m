@@ -7,6 +7,8 @@
 {
     if ([BCMIdentifierAssessmentPainTrack isEqualToString:assessmentId]) {
         return [self painTrackTask];
+    } else if ([BCMIdentifierAssessmentMoodTrack isEqualToString:assessmentId]) {
+        return [self moodTrackTask];
     }
 
     return nil;
@@ -25,6 +27,19 @@
 
     return [[ORKOrderedTask alloc] initWithIdentifier:BCMIdentifierAssessmentPainTrack
                                                 steps:@[painQuestion]];
+}
+
++ (ORKOrderedTask *_Nonnull)moodTrackTask
+{
+    ORKScaleAnswerFormat *moodScale = [[ORKScaleAnswerFormat alloc] initWithMaximumValue:10 minimumValue:1 defaultValue:5 step:1];
+    ORKQuestionStep *moodQuestion = [ORKQuestionStep questionStepWithIdentifier:BCMIdentifierAssessmentMoodTrack
+                                                                          title:NSLocalizedString(@"How was your mood today?", nil)
+                                                                           text:NSLocalizedString(@"Where 1 is very poor and 10 very good", nil)
+                                                                         answer:moodScale];
+    moodQuestion.optional = NO;
+
+    return [[ORKOrderedTask alloc] initWithIdentifier:BCMIdentifierAssessmentMoodTrack
+                                                steps:@[moodQuestion]];
 }
 
 
