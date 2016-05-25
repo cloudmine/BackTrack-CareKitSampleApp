@@ -6,7 +6,7 @@
 #import <ResearchKit/ResearchKit.h>
 #import <CareKit/CareKit.h>
 
-@interface BMCSymptomNavController ()<OCKSymptomTrackerViewControllerDelegate>
+@interface BMCSymptomNavController ()<OCKSymptomTrackerViewControllerDelegate, ORKTaskViewControllerDelegate>
 
 @end
 
@@ -35,7 +35,15 @@
     }
 
     ORKTaskViewController *taskViewController = [[ORKTaskViewController alloc] initWithTask:task taskRunUUID:nil];
+    taskViewController.delegate = self;
     [self presentViewController:taskViewController animated:YES completion:nil];
+}
+
+#pragma mark ORKTaskViewControllerDelegate
+
+- (void)taskViewController:(ORKTaskViewController *)taskViewController didFinishWithReason:(ORKTaskViewControllerFinishReason)reason error:(NSError *)error
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

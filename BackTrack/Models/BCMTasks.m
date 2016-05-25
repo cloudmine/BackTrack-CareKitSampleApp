@@ -21,6 +21,7 @@
                                                                           title:NSLocalizedString(@"How was your lower back pain today?", nil)
                                                                            text:NSLocalizedString(@"Where 1 is no pain and 10 is the worst pain imaginable", nil)
                                                                          answer:painScale];
+    painQuestion.optional = NO;
 
     return [[ORKOrderedTask alloc] initWithIdentifier:BCMIdentifierAssessmentPainTrack
                                                 steps:@[painQuestion]];
