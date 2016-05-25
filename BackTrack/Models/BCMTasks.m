@@ -26,7 +26,10 @@
     if ([BCMIdentifierAssessmentPainTrack isEqualToString:taskResult.identifier] ||
         [BCMIdentifierAssessmentMoodTrack isEqualToString:taskResult.identifier]) {
 
-        return [self scaleTaskResult:stepResult];
+        return [self carePlanResultForScaleStepResult:stepResult];
+    } else if ([BCMIdentifierAssessmentWeightTrack isEqualToString:taskResult.identifier]) {
+
+        return [self carePlanResultForNumericStepResult:stepResult];
     }
 
     return nil;
@@ -34,9 +37,9 @@
 
 #pragma mark Helpers
 
-+ (OCKCarePlanEventResult *_Nonnull)scaleTaskResult:(ORKStepResult *_Nonnull)stepResult
++ (OCKCarePlanEventResult *_Nonnull)carePlanResultForScaleStepResult:(ORKStepResult *_Nonnull)stepResult
 {
-    NSAssert([stepResult.firstResult isKindOfClass:[ORKScaleQuestionResult class]], @"Expected a scale questy result, got: %@", stepResult.firstResult.class);
+    NSAssert([stepResult.firstResult isKindOfClass:[ORKScaleQuestionResult class]], @"Expected a scale question result, got: %@", stepResult.firstResult.class);
     ORKScaleQuestionResult *scaleResult = (ORKScaleQuestionResult *)stepResult.firstResult;
 
 
@@ -45,7 +48,15 @@
                                                       userInfo:nil];
 }
 
++ (OCKCarePlanEventResult *_Nonnull)carePlanResultForNumericStepResult:(ORKStepResult *_Nonnull)stepResult
+{
+    NSAssert([stepResult.firstResult isKindOfClass:[ORKNumericQuestionResult class]], @"Expected a numeric question result, got: %@", stepResult.firstResult.class);
+    ORKNumericQuestionResult *numericResult = (ORKNumericQuestionResult *)stepResult.firstResult;
 
+    return [[OCKCarePlanEventResult alloc] initWithValueString:numericResult.numericAnswer.stringValue
+                                                    unitString:numericResult.unit
+                                                      userInfo:nil];
+}
 
 #pragma mark Generators
 

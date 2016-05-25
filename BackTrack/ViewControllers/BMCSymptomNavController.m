@@ -47,8 +47,9 @@
 
 - (void)taskViewController:(ORKTaskViewController *)taskViewController didFinishWithReason:(ORKTaskViewControllerFinishReason)reason error:(NSError *)error
 {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
     if (reason != ORKTaskViewControllerFinishReasonCompleted) {
-        [self dismissViewControllerAnimated:YES completion:nil];
         return;
     }
 
@@ -60,20 +61,8 @@
               [event.activity.identifier isEqualToString:taskResult.identifier],
              @"Expected care plan event and task result identifier to match. Got %@ and %@", event.activity.identifier, taskResult.identifier);
 
-    OCKCarePlanEventResult *result = [BCMTasks carePlanResultForTaskResult:taskResult];
-    if (nil == result) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-        return;
-    }
-
-    [self.bcmTabBarController.carePlanStore updateEvent:event withResult:result state:OCKCarePlanEventStateCompleted completion:^(BOOL success, OCKCarePlanEvent * _Nullable event, NSError * _Nullable error) {
-        if (!success) {
-            NSLog(@"Failed to update event store: %@", error.localizedDescription);
-            return;
-        }
-    }];
-
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self completeEvent:event
+             withResult:[BCMTasks carePlanResultForTaskResult:taskResult]];
 }
 
 #pragma mark Getters-Setters
@@ -88,5 +77,20 @@
     return _symptomViewController;
 }
 
+#pragma mark Helpers
+
+- (void)completeEvent:(OCKCarePlanEvent *_Nonnull)event withResult:(OCKCarePlanEventResult *_Nullable)result
+{
+    if (nil == result) {
+        return;
+    }
+
+    [self.bcmTabBarController.carePlanStore updateEvent:event withResult:result state:OCKCarePlanEventStateCompleted completion:^(BOOL success, OCKCarePlanEvent * _Nullable event, NSError * _Nullable error) {
+        if (!success) {
+            NSLog(@"Failed to update event store: %@", error.localizedDescription);
+            return;
+        }
+    }];
+}
 
 @end
