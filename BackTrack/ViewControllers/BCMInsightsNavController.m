@@ -22,7 +22,9 @@ typedef void(^BCMHamstringCountCompletion)(NSInteger hamstringCount);
     [self showViewController:self.insightsVC sender:nil];
 
     [BCMInsightBuilder fetchInsightsFromStore:self.bcmTabBarController.carePlanStore withCompletion:^(NSArray<OCKInsightItem *> * _Nonnull items) {
-        self.insightsVC.items = items;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.insightsVC.items = items;
+        });
     }];
 }
 

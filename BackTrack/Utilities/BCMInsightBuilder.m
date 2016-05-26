@@ -9,6 +9,8 @@ typedef void(^BCMHamstringCountCompletion)(NSInteger hamstringCount);
 
 + (void)fetchInsightsFromStore:(OCKCarePlanStore *_Nonnull)store withCompletion:(_Nonnull BCMBuildInsightsCompletion)block
 {
+    NSMutableArray<OCKInsightItem *> *allItems = [NSMutableArray new];
+
     [self fetchHamstringCountFromStore:store withCompletion:^(NSInteger hamstringCount) {
         NSString *message = [NSString localizedStringWithFormat:@"You've completed %li hamstring stretches over the past week", hamstringCount];
 
@@ -16,8 +18,13 @@ typedef void(^BCMHamstringCountCompletion)(NSInteger hamstringCount);
                                                                             text:message
                                                                        tintColor:nil
                                                                      messageType:OCKMessageItemTypeAlert];
-        block(@[hamstringMessage]);
-        //[self fetchPain];
+        [allItems addObject:hamstringMessage];
+
+        [self fetchPainFromStore:store withCompletion:^(NSArray<OCKInsightItem *> * _Nonnull items) {
+            [allItems addObjectsFromArray:items];
+
+            block([allItems copy]);
+        }];
     }];
 }
 
@@ -40,7 +47,7 @@ typedef void(^BCMHamstringCountCompletion)(NSInteger hamstringCount);
                                                               }];
 }
 
-+ (void)fetchPainFromStore:(OCKCarePlanStore *_Nonnull)store;
++ (void)fetchPainFromStore:(OCKCarePlanStore *_Nonnull)store withCompletion:(_Nonnull BCMBuildInsightsCompletion)block
 {
     NSMutableArray <NSNumber *>*painValues = [NSMutableArray new];
     NSMutableArray <NSString *>*painLabels = [NSMutableArray new];
@@ -81,6 +88,7 @@ typedef void(^BCMHamstringCountCompletion)(NSInteger hamstringCount);
                                                          axisTitles:[axisLabels copy]
                                                       axisSubtitles:nil
                                                          dataSeries:@[painSeries]];
+         block(@[barChart]);
      }];
 }
 
