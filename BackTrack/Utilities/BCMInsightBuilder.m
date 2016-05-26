@@ -2,6 +2,9 @@
 #import "BCMActivities.h"
 #import "NSDateComponents+BCM.h"
 
+typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArray <NSString *> *_Nullable axisLabels,
+                                          NSArray <NSString *> *_Nullable axisSubs, NSError *_Nullable error);
+
 @implementation BCMInsightBuilder
 
 #pragma mark Public
@@ -50,14 +53,39 @@
 
 + (void)fetchPainFromStore:(OCKCarePlanStore *_Nonnull)store withCompletion:(_Nonnull BCMBuildInsightsCompletion)block
 {
-    NSMutableArray <NSNumber *>*painValues = [NSMutableArray new];
-    NSMutableArray <NSString *>*painLabels = [NSMutableArray new];
-    NSMutableArray <NSString *>*axisLabels = [NSMutableArray new];
+    [self fetchDailySeriesForActivity:BCMActivities.painTrackAssessment
+                            fromStore:store
+                       withCompletion:^(OCKBarSeries * _Nullable series, NSArray<NSString *> * _Nullable axisLabels,
+                                        NSArray<NSString *> * _Nullable axisSubs, NSError * _Nullable error)
+    {
+        if (nil != error) {
+            NSLog(@"Error fetching insight data: %@", error.localizedDescription);
+            return;
+        }
 
-    [store enumerateEventsOfActivity:BCMActivities.painTrackAssessment
-                                                            startDate:[NSDateComponents weekAgoComponents]
-                                                              endDate:[NSDateComponents tomorrowComponents]
-                                                              handler:^(OCKCarePlanEvent * _Nullable event, BOOL * _Nonnull stop)
+        OCKBarChart *barChart = [[OCKBarChart alloc] initWithTitle:NSLocalizedString(@"Pain Chart", nil)
+                                                              text:nil
+                                                         tintColor:nil
+                                                        axisTitles:axisLabels
+                                                     axisSubtitles:nil
+                                                        dataSeries:@[series]];
+        block(@[barChart]);
+    }];
+}
+
++ (void)fetchDailySeriesForActivity:(OCKCarePlanActivity *_Nonnull)activity
+                          fromStore:(OCKCarePlanStore *_Nonnull)store
+                     withCompletion:(_Nonnull BCMInsightValuesCompletion)block
+{
+    NSMutableArray <NSNumber *>*values = [NSMutableArray new];
+    NSMutableArray <NSString *>*labels = [NSMutableArray new];
+    NSMutableArray <NSString *>*axisLabels = [NSMutableArray new];
+    NSMutableArray <NSString *>*axisSubs = [NSMutableArray new];
+
+    [store enumerateEventsOfActivity:activity
+                           startDate:[NSDateComponents weekAgoComponents]
+                             endDate:[NSDateComponents tomorrowComponents]
+                             handler:^(OCKCarePlanEvent * _Nullable event, BOOL * _Nonnull stop)
      {
          NSDateFormatter *dayFormatter = [NSDateFormatter new];
          dayFormatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"Md" options:0 locale:dayFormatter.locale];
@@ -65,31 +93,29 @@
          [axisLabels addObject:dayString];
 
          if (event.state != OCKCarePlanEventStateCompleted) {
-             [painValues addObject:@0];
-             [painLabels addObject:@"N/A"];
+             [values addObject:@0];
+             [labels addObject:@"N/A"];
              return;
          }
 
          NSNumberFormatter *numForatter = [NSNumberFormatter new];
          numForatter.numberStyle = NSNumberFormatterDecimalStyle;
-         NSNumber *weight = [numForatter numberFromString:event.result.valueString];
+         NSNumber *aValue = [numForatter numberFromString:event.result.valueString];
 
-         [painValues addObject:weight];
-         [painLabels addObject:event.result.valueString];
+         [values addObject:aValue];
+         [labels addObject:event.result.valueString];
 
      } completion:^(BOOL completed, NSError * _Nullable error) {
-         OCKBarSeries *painSeries = [[OCKBarSeries alloc] initWithTitle:@"Pain"
-                                                                 values:[painValues copy]
-                                                            valueLabels:[painLabels copy]
+         if (!completed) {
+             block(nil, nil, nil, error);
+             return;
+         }
+
+         OCKBarSeries *series = [[OCKBarSeries alloc] initWithTitle:@"Pain"
+                                                                 values:[values copy]
+                                                            valueLabels:[labels copy]
                                                               tintColor:nil];
-         
-         OCKBarChart *barChart = [[OCKBarChart alloc] initWithTitle:@"Pain Chart"
-                                                               text:nil
-                                                          tintColor:nil
-                                                         axisTitles:[axisLabels copy]
-                                                      axisSubtitles:nil
-                                                         dataSeries:@[painSeries]];
-         block(@[barChart]);
+         block(series, [axisLabels copy], [axisSubs copy], nil);
      }];
 }
 
