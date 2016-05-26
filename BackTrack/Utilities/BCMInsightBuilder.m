@@ -81,7 +81,7 @@ typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArra
                                                                   text:NSLocalizedString(@"", nil)
                                                              tintColor:nil
                                                             axisTitles:axisLabels
-                                                         axisSubtitles:nil
+                                                         axisSubtitles:axisSubs
                                                             dataSeries:@[painSeries, moodSeries]];
             block(@[barChart]);
         }];
@@ -99,15 +99,22 @@ typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArra
     NSMutableArray <NSString *>*axisLabels = [NSMutableArray new];
     NSMutableArray <NSString *>*axisSubs = [NSMutableArray new];
 
+    NSDateFormatter *dayFormatter = [NSDateFormatter new];
+    dayFormatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"Md" options:0 locale:dayFormatter.locale];
+    NSDateFormatter *nameFormatter = [NSDateFormatter new];
+    nameFormatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"E" options:0 locale:dayFormatter.locale];
+
+
     [store enumerateEventsOfActivity:activity
                            startDate:[NSDateComponents weekAgoComponents]
                              endDate:[NSDateComponents tomorrowComponents]
                              handler:^(OCKCarePlanEvent * _Nullable event, BOOL * _Nonnull stop)
      {
-         NSDateFormatter *dayFormatter = [NSDateFormatter new];
-         dayFormatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"Md" options:0 locale:dayFormatter.locale];
+
          NSString *dayString = [dayFormatter stringFromDate:[[NSCalendar currentCalendar] dateFromComponents:event.date]];
          [axisLabels addObject:dayString];
+         NSString *nameString = [nameFormatter stringFromDate:[[NSCalendar currentCalendar] dateFromComponents:event.date]];
+         [axisSubs addObject:nameString];
 
          if (event.state != OCKCarePlanEventStateCompleted) {
              [values addObject:@0];
