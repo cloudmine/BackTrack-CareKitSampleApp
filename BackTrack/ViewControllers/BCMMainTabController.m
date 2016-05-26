@@ -2,7 +2,9 @@
 #import "BCMFirstStartTracker.h"
 #import "BCMActivities.h"
 
-@interface BCMMainTabController ()
+NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
+
+@interface BCMMainTabController ()<OCKCarePlanStoreDelegate>
 
 @property (nonatomic, readwrite, nonnull) OCKCarePlanStore *carePlanStore;
 
@@ -18,6 +20,7 @@
     if (nil ==  self) return nil;
 
     self.carePlanStore = [[OCKCarePlanStore alloc] initWithPersistenceDirectoryURL:BCMMainTabController.persistenceDirectory];
+    self.carePlanStore.delegate = self;
 
     if (BCMFirstStartTracker.isFirstStart) {
         [self addActivities];
@@ -33,7 +36,24 @@
     NSLog(@"Hello");
 }
 
+#pragma mark OCKCarePlanStoreDelegate
+
+- (void)carePlanStore:(OCKCarePlanStore *)store didReceiveUpdateOfEvent:(OCKCarePlanEvent *)event
+{
+    [self postStoreUpdateNotification];
+}
+
+- (void)carePlanStoreActivityListDidChange:(OCKCarePlanStore *)store
+{
+    [self postStoreUpdateNotification];
+}
+
 #pragma mark Private
+
+- (void)postStoreUpdateNotification
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:BCMStoreDidUpdateNotification object:self];
+}
 
 + (NSURL *)persistenceDirectory
 {

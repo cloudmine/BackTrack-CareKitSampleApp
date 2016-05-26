@@ -18,13 +18,17 @@
     [super viewDidLoad];
 
     [self showViewController:self.insightsVC sender:nil];
+    [self fetchAndUpdateInsights];
 
-    [BCMInsightBuilder fetchInsightsFromStore:self.bcmTabBarController.carePlanStore withCompletion:^(NSArray<OCKInsightItem *> * _Nonnull items) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.insightsVC.items = items;
-        });
-    }];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchAndUpdateInsights) name:BCMStoreDidUpdateNotification object:nil];
 }
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:BCMStoreDidUpdateNotification object:nil];
+}
+
+#pragma mark Getter-Setters
 
 -  (OCKInsightsViewController *)insightsVC
 {
@@ -35,6 +39,17 @@
     }
 
     return _insightsVC;
+}
+
+#pragma mark Private
+
+- (void)fetchAndUpdateInsights
+{
+    [BCMInsightBuilder fetchInsightsFromStore:self.bcmTabBarController.carePlanStore withCompletion:^(NSArray<OCKInsightItem *> * _Nonnull items) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.insightsVC.items = items;
+        });
+    }];
 }
 
 @end
