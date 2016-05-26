@@ -51,12 +51,14 @@ typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArra
     }];
 }
 
+// This assumes that data comes out in order, consistently. Neither of these assumptions is documented as guarenteed
+// so this isn't really safe.
 + (void)fetchChartInsightsFromStore:(OCKCarePlanStore *_Nonnull)store withCompletion:(_Nonnull BCMBuildInsightsCompletion)block
 {
     [self fetchDailySeriesForActivity:BCMActivities.painTrackAssessment
                             fromStore:store
                             withTitle:NSLocalizedString(@"Pain", nil)
-                            tintColor:nil
+                            tintColor:[UIColor redColor]
                         andCompletion:^(OCKBarSeries * _Nullable painSeries, NSArray<NSString *> * _Nullable axisLabels,
                                         NSArray<NSString *> * _Nullable axisSubs, NSError * _Nullable painError)
     {
@@ -68,7 +70,7 @@ typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArra
         [self fetchDailySeriesForActivity:BCMActivities.moodTrackAssessment
                                 fromStore:store
                                 withTitle:NSLocalizedString(@"Mood", nil)
-                                tintColor:[UIColor redColor]
+                                tintColor:nil
                             andCompletion:^(OCKBarSeries * _Nullable moodSeries, NSArray<NSString *> * _Nullable _axisLables,
                                             NSArray<NSString *> * _Nullable _axisSubs, NSError * _Nullable moodError)
         {
