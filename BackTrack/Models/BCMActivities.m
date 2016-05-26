@@ -1,8 +1,6 @@
 #import "BCMActivities.h"
 #import "BCMIdentifiers.h"
-
-
-
+#import "NSDateComponents+BCM.h"
 
 @implementation BCMActivities
 
@@ -16,7 +14,7 @@
 
 + (OCKCarePlanActivity *_Nonnull)hamstringStretchIntervention
 {
-    OCKCareSchedule *schedule = [OCKCareSchedule dailyScheduleWithStartDate:self.todaysDateComponents occurrencesPerDay:3];
+    OCKCareSchedule *schedule = [OCKCareSchedule dailyScheduleWithStartDate:[NSDateComponents weekAgoComponents] occurrencesPerDay:3];
 
     return [[OCKCarePlanActivity alloc] initWithIdentifier:BCMIdentifierInterventionHamstringStretch
                                            groupIdentifier:BCMIdentifierExerciseInterventionsGroup
@@ -33,7 +31,7 @@
 
 + (OCKCarePlanActivity *_Nonnull)briskWalkIntervention
 {
-    OCKCareSchedule *schedule = [OCKCareSchedule dailyScheduleWithStartDate:self.todaysDateComponents occurrencesPerDay:1];
+    OCKCareSchedule *schedule = [OCKCareSchedule dailyScheduleWithStartDate:[NSDateComponents weekAgoComponents] occurrencesPerDay:1];
 
     return [[OCKCarePlanActivity alloc] initWithIdentifier:BCMIdentifierInterventionBriskWalk
                                            groupIdentifier:BCMIdentifierExerciseInterventionsGroup
@@ -50,7 +48,7 @@
 
 + (OCKCarePlanActivity *_Nonnull)warmCompressIntervention
 {
-    OCKCareSchedule *schedule = [OCKCareSchedule weeklyScheduleWithStartDate:self.todaysDateComponents
+    OCKCareSchedule *schedule = [OCKCareSchedule weeklyScheduleWithStartDate:[NSDateComponents weekAgoComponents]
                                                         occurrencesOnEachDay:@[@0, @1, @0, @1, @0, @1, @0]]; // Mon/Wed/Fri
 
     return [[OCKCarePlanActivity alloc] initWithIdentifier:BCMIdentifierInterventionWarmCompress
@@ -68,7 +66,7 @@
 
 + (OCKCarePlanActivity *_Nonnull)painKillerIntervention
 {
-    OCKCareSchedule *schedule = [OCKCareSchedule dailyScheduleWithStartDate:self.todaysDateComponents
+    OCKCareSchedule *schedule = [OCKCareSchedule dailyScheduleWithStartDate:[NSDateComponents weekAgoComponents]
                                                           occurrencesPerDay:2
                                                                  daysToSkip:1
                                                                     endDate:nil];
@@ -88,7 +86,7 @@
 
 + (OCKCarePlanActivity *_Nonnull)painTrackAssessment
 {
-    OCKCareSchedule *schedule = [OCKCareSchedule dailyScheduleWithStartDate:self.todaysDateComponents occurrencesPerDay:1];
+    OCKCareSchedule *schedule = [OCKCareSchedule dailyScheduleWithStartDate:[NSDateComponents weekAgoComponents] occurrencesPerDay:1];
 
     return [[OCKCarePlanActivity alloc] initWithIdentifier:BCMIdentifierAssessmentPainTrack
                                            groupIdentifier:BCMIdentifierSubjectiveAssessmentsGroup
@@ -105,7 +103,7 @@
 
 + (OCKCarePlanActivity *_Nonnull)moodTrackAssessment
 {
-    OCKCareSchedule *schedule = [OCKCareSchedule dailyScheduleWithStartDate:self.todaysDateComponents occurrencesPerDay:1];
+    OCKCareSchedule *schedule = [OCKCareSchedule dailyScheduleWithStartDate:[NSDateComponents weekAgoComponents] occurrencesPerDay:1];
 
     return [[OCKCarePlanActivity alloc] initWithIdentifier:BCMIdentifierAssessmentMoodTrack
                                            groupIdentifier:BCMIdentifierSubjectiveAssessmentsGroup
@@ -122,7 +120,7 @@
 
 + (OCKCarePlanActivity *_Nonnull)weightTrackAssessment
 {
-    OCKCareSchedule *schedule = [OCKCareSchedule dailyScheduleWithStartDate:self.todaysDateComponents occurrencesPerDay:1];
+    OCKCareSchedule *schedule = [OCKCareSchedule dailyScheduleWithStartDate:[NSDateComponents weekAgoComponents] occurrencesPerDay:1];
 
     return [[OCKCarePlanActivity alloc] initWithIdentifier:BCMIdentifierAssessmentWeightTrack
                                            groupIdentifier:BCMIdentifierObjectiveAssessmentsGroup
@@ -135,13 +133,6 @@
                                                   schedule:schedule
                                           resultResettable:YES
                                                   userInfo:nil];
-}
-
-#pragma mark Helpers
-
-+ (NSDateComponents *_Nonnull)todaysDateComponents
-{
-    return [[NSCalendar currentCalendar] componentsInTimeZone:[NSTimeZone defaultTimeZone] fromDate:[NSDate new]];
 }
 
 @end

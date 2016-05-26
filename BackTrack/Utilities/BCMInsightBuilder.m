@@ -41,7 +41,7 @@ typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArra
         hamstringCount += 1;
 
     } completion:^(BOOL completed, NSError * _Nullable error) {
-        NSString *message = [NSString localizedStringWithFormat:@"You've completed %li hamstring stretches over the past week", hamstringCount];
+        NSString *message = [NSString localizedStringWithFormat:@"You've completed %li hamstring stretches over the past week", (long)hamstringCount];
 
         OCKMessageItem *hamstringMessage = [[OCKMessageItem alloc] initWithTitle:NSLocalizedString(@"Hamstring Stretches", nil)
                                                                             text:message
