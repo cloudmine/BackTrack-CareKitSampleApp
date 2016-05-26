@@ -17,8 +17,8 @@ typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArra
 
         [allItems addObjectsFromArray:hamstringItems];
 
-        [self fetchPainFromStore:store withCompletion:^(NSArray<OCKInsightItem *> * _Nonnull painItems) {
-            [allItems addObjectsFromArray:painItems];
+        [self fetchChartInsightsFromStore:store withCompletion:^(NSArray<OCKInsightItem *> * _Nonnull chartItems) {
+            [allItems addObjectsFromArray:chartItems];
 
             block([allItems copy]);
         }];
@@ -51,31 +51,48 @@ typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArra
     }];
 }
 
-+ (void)fetchPainFromStore:(OCKCarePlanStore *_Nonnull)store withCompletion:(_Nonnull BCMBuildInsightsCompletion)block
++ (void)fetchChartInsightsFromStore:(OCKCarePlanStore *_Nonnull)store withCompletion:(_Nonnull BCMBuildInsightsCompletion)block
 {
     [self fetchDailySeriesForActivity:BCMActivities.painTrackAssessment
                             fromStore:store
-                       withCompletion:^(OCKBarSeries * _Nullable series, NSArray<NSString *> * _Nullable axisLabels,
-                                        NSArray<NSString *> * _Nullable axisSubs, NSError * _Nullable error)
+                            withTitle:NSLocalizedString(@"Pain", nil)
+                            tintColor:nil
+                        andCompletion:^(OCKBarSeries * _Nullable painSeries, NSArray<NSString *> * _Nullable axisLabels,
+                                        NSArray<NSString *> * _Nullable axisSubs, NSError * _Nullable painError)
     {
-        if (nil != error) {
-            NSLog(@"Error fetching insight data: %@", error.localizedDescription);
+        if (nil != painError) {
+            NSLog(@"Error fetching pain insight data: %@", painError.localizedDescription);
             return;
         }
 
-        OCKBarChart *barChart = [[OCKBarChart alloc] initWithTitle:NSLocalizedString(@"Pain Chart", nil)
-                                                              text:nil
-                                                         tintColor:nil
-                                                        axisTitles:axisLabels
-                                                     axisSubtitles:nil
-                                                        dataSeries:@[series]];
-        block(@[barChart]);
+        [self fetchDailySeriesForActivity:BCMActivities.moodTrackAssessment
+                                fromStore:store
+                                withTitle:NSLocalizedString(@"Mood", nil)
+                                tintColor:[UIColor redColor]
+                            andCompletion:^(OCKBarSeries * _Nullable moodSeries, NSArray<NSString *> * _Nullable _axisLables,
+                                            NSArray<NSString *> * _Nullable _axisSubs, NSError * _Nullable moodError)
+        {
+            if (nil != moodError) {
+                NSLog(@"Error fetching weight insight data: %@", moodError.localizedDescription);
+                return;
+            }
+
+            OCKBarChart *barChart = [[OCKBarChart alloc] initWithTitle:NSLocalizedString(@"Pain vs. Mood", nil)
+                                                                  text:NSLocalizedString(@"", nil)
+                                                             tintColor:nil
+                                                            axisTitles:axisLabels
+                                                         axisSubtitles:nil
+                                                            dataSeries:@[painSeries, moodSeries]];
+            block(@[barChart]);
+        }];
     }];
 }
 
 + (void)fetchDailySeriesForActivity:(OCKCarePlanActivity *_Nonnull)activity
                           fromStore:(OCKCarePlanStore *_Nonnull)store
-                     withCompletion:(_Nonnull BCMInsightValuesCompletion)block
+                          withTitle:(NSString *_Nonnull)title
+                          tintColor:(UIColor *_Nullable)color
+                      andCompletion:(_Nonnull BCMInsightValuesCompletion)block
 {
     NSMutableArray <NSNumber *>*values = [NSMutableArray new];
     NSMutableArray <NSString *>*labels = [NSMutableArray new];
@@ -111,10 +128,10 @@ typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArra
              return;
          }
 
-         OCKBarSeries *series = [[OCKBarSeries alloc] initWithTitle:@"Pain"
+         OCKBarSeries *series = [[OCKBarSeries alloc] initWithTitle:title
                                                                  values:[values copy]
                                                             valueLabels:[labels copy]
-                                                              tintColor:nil];
+                                                              tintColor:color];
          block(series, [axisLabels copy], [axisSubs copy], nil);
      }];
 }
