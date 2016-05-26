@@ -27,6 +27,7 @@
 		B4F0F5E11CF552F3004E8A1B /* OCKCarePlanEvent+BCM.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0F5E01CF552F3004E8A1B /* OCKCarePlanEvent+BCM.m */; };
 		B4F0F5E41CF63F29004E8A1B /* BCMInsightsNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0F5E31CF63F29004E8A1B /* BCMInsightsNavController.m */; };
 		B4F0F5E61CF64016004E8A1B /* Insights.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4F0F5E51CF64016004E8A1B /* Insights.storyboard */; };
+		B4F0F5E91CF7654E004E8A1B /* BCMInsightBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0F5E81CF7654D004E8A1B /* BCMInsightBuilder.m */; };
 		D23CC92EEA79E27646C7EAEF /* Pods_BackTrackUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11FC8268A05A02C691A0A02B /* Pods_BackTrackUITests.framework */; };
 		DA3B93E99DDEAD62A7EED6EB /* Pods_BackTrack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D16A2C00F8C679B1F25B6B8B /* Pods_BackTrack.framework */; };
 /* End PBXBuildFile section */
@@ -91,6 +92,8 @@
 		B4F0F5E21CF63F29004E8A1B /* BCMInsightsNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMInsightsNavController.h; sourceTree = "<group>"; };
 		B4F0F5E31CF63F29004E8A1B /* BCMInsightsNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMInsightsNavController.m; sourceTree = "<group>"; };
 		B4F0F5E51CF64016004E8A1B /* Insights.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Insights.storyboard; sourceTree = "<group>"; };
+		B4F0F5E71CF7654D004E8A1B /* BCMInsightBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMInsightBuilder.h; sourceTree = "<group>"; };
+		B4F0F5E81CF7654D004E8A1B /* BCMInsightBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMInsightBuilder.m; sourceTree = "<group>"; };
 		B9C8B84302774DFBCFB945B3 /* Pods_BackTrackTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BackTrackTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D16A2C00F8C679B1F25B6B8B /* Pods_BackTrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BackTrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6E4F592477F5445F0000F51 /* Pods-BackTrackTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BackTrackTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BackTrackTests/Pods-BackTrackTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -255,6 +258,8 @@
 			children = (
 				B46F1F1C1CF395A200AB1972 /* BCMFirstStartTracker.h */,
 				B46F1F1D1CF395A200AB1972 /* BCMFirstStartTracker.m */,
+				B4F0F5E71CF7654D004E8A1B /* BCMInsightBuilder.h */,
+				B4F0F5E81CF7654D004E8A1B /* BCMInsightBuilder.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -540,6 +545,7 @@
 				B46F1F221CF397CB00AB1972 /* BCMActivities.m in Sources */,
 				B46F1F1E1CF395A200AB1972 /* BCMFirstStartTracker.m in Sources */,
 				B4F0F5E11CF552F3004E8A1B /* OCKCarePlanEvent+BCM.m in Sources */,
+				B4F0F5E91CF7654E004E8A1B /* BCMInsightBuilder.m in Sources */,
 				B46F1ECA1CEE46F200AB1972 /* BCMMainTabController.m in Sources */,
 				B46F1EC71CEE46F200AB1972 /* BCMAppDelegate.m in Sources */,
 				B46F1F281CF540E800AB1972 /* BCMTasks.m in Sources */,
