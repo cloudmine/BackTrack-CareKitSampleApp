@@ -1,7 +1,6 @@
 #import "BCMInsightBuilder.h"
 #import "BCMActivities.h"
-
-typedef void(^BCMHamstringCountCompletion)(NSInteger hamstringCount);
+#import "NSDateComponents+BCM.h"
 
 @implementation BCMInsightBuilder
 
@@ -11,40 +10,42 @@ typedef void(^BCMHamstringCountCompletion)(NSInteger hamstringCount);
 {
     NSMutableArray<OCKInsightItem *> *allItems = [NSMutableArray new];
 
-    [self fetchHamstringCountFromStore:store withCompletion:^(NSInteger hamstringCount) {
-        NSString *message = [NSString localizedStringWithFormat:@"You've completed %li hamstring stretches over the past week", hamstringCount];
+    [self fetchHamstringCountFromStore:store withCompletion:^(NSArray<OCKInsightItem *> * _Nonnull hamstringItems) {
 
-        OCKMessageItem *hamstringMessage = [[OCKMessageItem alloc] initWithTitle:NSLocalizedString(@"Hamstring Stretches", nil)
-                                                                            text:message
-                                                                       tintColor:nil
-                                                                     messageType:OCKMessageItemTypeAlert];
-        [allItems addObject:hamstringMessage];
+        [allItems addObjectsFromArray:hamstringItems];
 
-        [self fetchPainFromStore:store withCompletion:^(NSArray<OCKInsightItem *> * _Nonnull items) {
-            [allItems addObjectsFromArray:items];
+        [self fetchPainFromStore:store withCompletion:^(NSArray<OCKInsightItem *> * _Nonnull painItems) {
+            [allItems addObjectsFromArray:painItems];
 
             block([allItems copy]);
         }];
     }];
 }
 
-+ (void)fetchHamstringCountFromStore:(OCKCarePlanStore *_Nonnull)store withCompletion:(BCMHamstringCountCompletion)block
++ (void)fetchHamstringCountFromStore:(OCKCarePlanStore *_Nonnull)store withCompletion:(_Nonnull BCMBuildInsightsCompletion)block
 {
     __block NSInteger hamstringCount = 0;
 
     [store enumerateEventsOfActivity:BCMActivities.hamstringStretchIntervention
-                                                            startDate:[self weekAgo]
-                                                              endDate:[[NSDateComponents alloc] initWithDate:[NSDate new] calendar:[NSCalendar currentCalendar]]
-                                                              handler:^(OCKCarePlanEvent * _Nullable event, BOOL * _Nonnull stop) {
-                                                                  if (event.state != OCKCarePlanEventStateCompleted) {
-                                                                      return;
-                                                                  }
-                                                                  
-                                                                  hamstringCount += 1;
-                                                                  
-                                                              } completion:^(BOOL completed, NSError * _Nullable error) {
-                                                                  block(hamstringCount);
-                                                              }];
+                                                            startDate:[NSDateComponents weekAgoComponents]
+                                                              endDate:[NSDateComponents tomorrowComponents]
+                                                              handler:^(OCKCarePlanEvent * _Nullable event, BOOL * _Nonnull stop)
+    {
+        if (event.state != OCKCarePlanEventStateCompleted) {
+          return;
+        }
+
+        hamstringCount += 1;
+
+    } completion:^(BOOL completed, NSError * _Nullable error) {
+        NSString *message = [NSString localizedStringWithFormat:@"You've completed %li hamstring stretches over the past week", hamstringCount];
+
+        OCKMessageItem *hamstringMessage = [[OCKMessageItem alloc] initWithTitle:NSLocalizedString(@"Hamstring Stretches", nil)
+                                                                            text:message
+                                                                       tintColor:nil
+                                                                     messageType:OCKMessageItemTypeAlert];
+        block(@[hamstringMessage]);
+    }];
 }
 
 + (void)fetchPainFromStore:(OCKCarePlanStore *_Nonnull)store withCompletion:(_Nonnull BCMBuildInsightsCompletion)block
@@ -54,8 +55,8 @@ typedef void(^BCMHamstringCountCompletion)(NSInteger hamstringCount);
     NSMutableArray <NSString *>*axisLabels = [NSMutableArray new];
 
     [store enumerateEventsOfActivity:BCMActivities.painTrackAssessment
-                                                            startDate:[self weekAgo]
-                                                              endDate:[self tomorrow]
+                                                            startDate:[NSDateComponents weekAgoComponents]
+                                                              endDate:[NSDateComponents tomorrowComponents]
                                                               handler:^(OCKCarePlanEvent * _Nullable event, BOOL * _Nonnull stop)
      {
          NSDateFormatter *dayFormatter = [NSDateFormatter new];
@@ -91,18 +92,5 @@ typedef void(^BCMHamstringCountCompletion)(NSInteger hamstringCount);
          block(@[barChart]);
      }];
 }
-
-+ (NSDateComponents *_Nonnull)weekAgo
-{
-    NSDate *weekAgoIsh = [NSDate dateWithTimeIntervalSinceNow:-7*24*60*60];
-    return [[NSDateComponents alloc] initWithDate:weekAgoIsh calendar:[NSCalendar currentCalendar]];
-}
-
-+ (NSDateComponents *_Nonnull)tomorrow
-{
-    NSDate *yesterday = [NSDate dateWithTimeIntervalSinceNow:24*60*60];
-    return [[NSDateComponents alloc] initWithDate:yesterday calendar:[NSCalendar currentCalendar]];
-}
-
 
 @end

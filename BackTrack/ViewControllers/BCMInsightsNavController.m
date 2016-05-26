@@ -5,8 +5,6 @@
 #import "BCMActivities.h"
 #import "BCMInsightBuilder.h"
 
-typedef void(^BCMHamstringCountCompletion)(NSInteger hamstringCount);
-
 @interface BCMInsightsNavController ()
 @property (nonatomic, nonnull) OCKInsightsViewController *insightsVC;
 @end
