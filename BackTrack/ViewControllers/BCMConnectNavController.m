@@ -14,6 +14,7 @@
     [super viewDidLoad];
 
     OCKConnectViewController *connectViewController = [[OCKConnectViewController alloc] initWithContacts:BCMConnectNavController.contacts];
+    connectViewController.navigationItem.title = NSLocalizedString(@"Connect", nil);
     [self showViewController:connectViewController sender:nil];
 }
 

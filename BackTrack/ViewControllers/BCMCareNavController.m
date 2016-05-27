@@ -13,9 +13,9 @@
 {
     [super viewDidLoad];
 
-    OCKCareCardViewController *careVC = [[OCKCareCardViewController alloc] initWithCarePlanStore:self.bcmTabBarController.carePlanStore];
-
-    [self showViewController:careVC sender:nil];
+    OCKCareCardViewController *careViewController = [[OCKCareCardViewController alloc] initWithCarePlanStore:self.bcmTabBarController.carePlanStore];
+    careViewController.navigationItem.title = NSLocalizedString(@"Care Plan", nil);
+    [self showViewController:careViewController sender:nil];
 }
 
 @end

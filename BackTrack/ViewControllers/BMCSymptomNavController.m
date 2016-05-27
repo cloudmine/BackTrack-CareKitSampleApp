@@ -22,6 +22,7 @@
 {
     [super viewDidLoad];
     self.symptomViewController.progressRingTintColor = [UIColor bcmBlueColor];
+    self.symptomViewController.navigationItem.title = NSLocalizedString(@"Symptom Tracker", nil);
     [self showViewController:self.symptomViewController sender:nil];
 }
 
