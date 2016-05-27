@@ -77,7 +77,7 @@
                                                       type:OCKCarePlanActivityTypeIntervention
                                                      title:NSLocalizedString(@"Ibuprofen", nil)
                                                       text:NSLocalizedString(@"200 mg, Morning/Evening", nil)
-                                                 tintColor:nil
+                                                 tintColor:[UIColor bcmPainColor]
                                               instructions:nil
                                                   imageURL:nil
                                                   schedule:schedule
@@ -94,7 +94,7 @@
                                                       type:OCKCarePlanActivityTypeAssessment
                                                      title:NSLocalizedString(@"Pain", nil)
                                                       text:NSLocalizedString(@"Lower Back", nil)
-                                                 tintColor:nil
+                                                 tintColor:[UIColor bcmPainColor]
                                               instructions:nil
                                                   imageURL:nil
                                                   schedule:schedule
@@ -111,7 +111,7 @@
                                                       type:OCKCarePlanActivityTypeAssessment
                                                      title:NSLocalizedString(@"Mood", nil)
                                                       text:nil
-                                                 tintColor:nil
+                                                 tintColor:[UIColor bcmMoodColor]
                                               instructions:nil
                                                   imageURL:nil
                                                   schedule:schedule
@@ -128,7 +128,7 @@
                                                       type:OCKCarePlanActivityTypeAssessment
                                                      title:NSLocalizedString(@"Weight", nil)
                                                       text:NSLocalizedString(@"Early Morning", nil)
-                                                 tintColor:nil
+                                                 tintColor:[UIColor bcmBlueColor]
                                               instructions:nil
                                                   imageURL:nil
                                                   schedule:schedule

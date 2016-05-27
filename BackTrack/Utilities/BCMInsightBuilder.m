@@ -1,5 +1,6 @@
 #import "BCMInsightBuilder.h"
 #import "BCMActivities.h"
+#import "UIColor+BCM.h"
 #import "NSDateComponents+BCM.h"
 
 typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArray <NSString *> *_Nullable axisLabels,
@@ -45,7 +46,7 @@ typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArra
 
         OCKMessageItem *hamstringMessage = [[OCKMessageItem alloc] initWithTitle:NSLocalizedString(@"Hamstring Stretches", nil)
                                                                             text:message
-                                                                       tintColor:nil
+                                                                       tintColor:[UIColor bcmBlueColor]
                                                                      messageType:OCKMessageItemTypeAlert];
         block(@[hamstringMessage]);
     }];
@@ -58,7 +59,7 @@ typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArra
     [self fetchDailySeriesForActivity:BCMActivities.painTrackAssessment
                             fromStore:store
                             withTitle:NSLocalizedString(@"Pain", nil)
-                            tintColor:[UIColor redColor]
+                            tintColor:[UIColor bcmPainColor]
                         andCompletion:^(OCKBarSeries * _Nullable painSeries, NSArray<NSString *> * _Nullable axisLabels,
                                         NSArray<NSString *> * _Nullable axisSubs, NSError * _Nullable painError)
     {
@@ -70,7 +71,7 @@ typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArra
         [self fetchDailySeriesForActivity:BCMActivities.moodTrackAssessment
                                 fromStore:store
                                 withTitle:NSLocalizedString(@"Mood", nil)
-                                tintColor:nil
+                                tintColor:[UIColor bcmMoodColor]
                             andCompletion:^(OCKBarSeries * _Nullable moodSeries, NSArray<NSString *> * _Nullable _axisLables,
                                             NSArray<NSString *> * _Nullable _axisSubs, NSError * _Nullable moodError)
         {
@@ -80,7 +81,7 @@ typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArra
             }
 
             OCKBarChart *barChart = [[OCKBarChart alloc] initWithTitle:NSLocalizedString(@"Pain vs. Mood", nil)
-                                                                  text:NSLocalizedString(@"", nil)
+                                                                  text:NSLocalizedString(@"Observe possible correlations between your pain and mood.", nil)
                                                              tintColor:nil
                                                             axisTitles:axisLabels
                                                          axisSubtitles:axisSubs
