@@ -29,6 +29,7 @@
 		B4F0F5E61CF64016004E8A1B /* Insights.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4F0F5E51CF64016004E8A1B /* Insights.storyboard */; };
 		B4F0F5E91CF7654E004E8A1B /* BCMInsightBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0F5E81CF7654D004E8A1B /* BCMInsightBuilder.m */; };
 		B4F0F5EC1CF769F9004E8A1B /* NSDateComponents+BCM.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0F5EB1CF769F9004E8A1B /* NSDateComponents+BCM.m */; };
+		B4F0F5EF1CF8C1BF004E8A1B /* Connect.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4F0F5F11CF8C1BF004E8A1B /* Connect.storyboard */; };
 		D23CC92EEA79E27646C7EAEF /* Pods_BackTrackUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11FC8268A05A02C691A0A02B /* Pods_BackTrackUITests.framework */; };
 		DA3B93E99DDEAD62A7EED6EB /* Pods_BackTrack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D16A2C00F8C679B1F25B6B8B /* Pods_BackTrack.framework */; };
 /* End PBXBuildFile section */
@@ -97,6 +98,7 @@
 		B4F0F5E81CF7654D004E8A1B /* BCMInsightBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMInsightBuilder.m; sourceTree = "<group>"; };
 		B4F0F5EA1CF769F9004E8A1B /* NSDateComponents+BCM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateComponents+BCM.h"; sourceTree = "<group>"; };
 		B4F0F5EB1CF769F9004E8A1B /* NSDateComponents+BCM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateComponents+BCM.m"; sourceTree = "<group>"; };
+		B4F0F5F01CF8C1BF004E8A1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Connect.storyboard; sourceTree = "<group>"; };
 		B9C8B84302774DFBCFB945B3 /* Pods_BackTrackTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BackTrackTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D16A2C00F8C679B1F25B6B8B /* Pods_BackTrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BackTrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6E4F592477F5445F0000F51 /* Pods-BackTrackTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BackTrackTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BackTrackTests/Pods-BackTrackTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				B46F1F0B1CF381FB00AB1972 /* Care.storyboard */,
 				B46F1F101CF3838300AB1972 /* Symptoms.storyboard */,
 				B4F0F5E51CF64016004E8A1B /* Insights.storyboard */,
+				B4F0F5F11CF8C1BF004E8A1B /* Connect.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B46F1F0E1CF3838300AB1972 /* Symptoms.storyboard in Resources */,
+				B4F0F5EF1CF8C1BF004E8A1B /* Connect.storyboard in Resources */,
 				B4F0F5E61CF64016004E8A1B /* Insights.storyboard in Resources */,
 				B46F1F041CF37DD200AB1972 /* LaunchScreen.storyboard in Resources */,
 				B46F1F091CF381FB00AB1972 /* Care.storyboard in Resources */,
@@ -623,6 +627,14 @@
 				B46F1F0F1CF3838300AB1972 /* Base */,
 			);
 			name = Symptoms.storyboard;
+			sourceTree = "<group>";
+		};
+		B4F0F5F11CF8C1BF004E8A1B /* Connect.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4F0F5F01CF8C1BF004E8A1B /* Base */,
+			);
+			name = Connect.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
