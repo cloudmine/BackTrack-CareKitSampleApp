@@ -17,13 +17,16 @@
 {
     OCKCareSchedule *schedule = [OCKCareSchedule dailyScheduleWithStartDate:[NSDateComponents weekAgoComponents] occurrencesPerDay:3];
 
+    NSString *instructions = NSLocalizedString(@"With your feet spread shoulder width apart, gently bend at the waist reaching toward"
+                                                "your feet until you feel tension. Stop and hold for 10-16 seconds.", nil);
+
     return [[OCKCarePlanActivity alloc] initWithIdentifier:BCMIdentifierInterventionHamstringStretch
                                            groupIdentifier:BCMIdentifierExerciseInterventionsGroup
                                                       type:OCKCarePlanActivityTypeIntervention
                                                      title:NSLocalizedString(@"Hamstring Stretch", nil)
                                                       text:NSLocalizedString(@"5 minutes", nil)
                                                  tintColor:[UIColor bcmBlueColor]
-                                              instructions:nil
+                                              instructions:instructions
                                                   imageURL:nil
                                                   schedule:schedule
                                           resultResettable:YES
@@ -34,13 +37,16 @@
 {
     OCKCareSchedule *schedule = [OCKCareSchedule dailyScheduleWithStartDate:[NSDateComponents weekAgoComponents] occurrencesPerDay:1];
 
+    NSString *instructions = NSLocalizedString(@"Walk for fifteen minutes at a pace above a leisurely stroll. "
+                                                "Be sure to maintain good posture during the walk.", nil);
+
     return [[OCKCarePlanActivity alloc] initWithIdentifier:BCMIdentifierInterventionBriskWalk
                                            groupIdentifier:BCMIdentifierExerciseInterventionsGroup
                                                       type:OCKCarePlanActivityTypeIntervention
                                                      title:NSLocalizedString(@"Brisk Walk", nil)
                                                       text:NSLocalizedString(@"15 minutes", nil)
                                                  tintColor:[UIColor bcmGreenColor]
-                                              instructions:nil
+                                              instructions:instructions
                                                   imageURL:nil
                                                   schedule:schedule
                                           resultResettable:YES
@@ -52,13 +58,16 @@
     OCKCareSchedule *schedule = [OCKCareSchedule weeklyScheduleWithStartDate:[NSDateComponents weekAgoComponents]
                                                         occurrencesOnEachDay:@[@0, @1, @0, @1, @0, @1, @0]]; // Mon/Wed/Fri
 
+    NSString *instructions = NSLocalizedString(@"Soak a towel in warm to hot water and drain. Laying on your stomach, "
+                                                "place the folded towel on your lower back for 5-10 minutes", nil);
+
     return [[OCKCarePlanActivity alloc] initWithIdentifier:BCMIdentifierInterventionWarmCompress
                                            groupIdentifier:BCMIdentifierMedicationInterventionsGroup
                                                       type:OCKCarePlanActivityTypeIntervention
                                                      title:NSLocalizedString(@"Warm Compress", nil)
                                                       text:NSLocalizedString(@"Morning", nil)
                                                  tintColor:[UIColor bcmPurpleColor]
-                                              instructions:nil
+                                              instructions:instructions
                                                   imageURL:nil
                                                   schedule:schedule
                                           resultResettable:YES
@@ -71,6 +80,9 @@
                                                           occurrencesPerDay:2
                                                                  daysToSkip:1
                                                                     endDate:nil];
+    NSString *instructions = NSLocalizedString(@"Take a 200 mg dose of Ibuprofen two times a day, "
+                                                "once in the morning and another in the evening.", nil);
+
 
     return [[OCKCarePlanActivity alloc] initWithIdentifier:BCMIdentifierInterventionPainKiller
                                            groupIdentifier:BCMIdentifierMedicationInterventionsGroup
@@ -78,7 +90,7 @@
                                                      title:NSLocalizedString(@"Ibuprofen", nil)
                                                       text:NSLocalizedString(@"200 mg, Morning/Evening", nil)
                                                  tintColor:[UIColor bcmPainColor]
-                                              instructions:nil
+                                              instructions:instructions
                                                   imageURL:nil
                                                   schedule:schedule
                                           resultResettable:YES
