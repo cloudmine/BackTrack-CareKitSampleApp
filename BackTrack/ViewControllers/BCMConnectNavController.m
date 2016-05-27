@@ -7,12 +7,66 @@
 
 @implementation BCMConnectNavController
 
+#pragma mark Lifecycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"Hello Connect");
 
-    OCKConnectViewController *connectViewController = [[OCKConnectViewController alloc] initWithContacts:nil];
+    OCKConnectViewController *connectViewController = [[OCKConnectViewController alloc] initWithContacts:BCMConnectNavController.contacts];
     [self showViewController:connectViewController sender:nil];
+}
+
+# pragma mark Generators
+
++ (NSArray <OCKContact *> *_Nonnull)contacts
+{
+    return @[self.cloudMineContact, self.doctorContact, self.physicalTherapistContact];
+}
+
++ (OCKContact *_Nonnull)cloudMineContact
+{
+    CNPhoneNumber *phone = [CNPhoneNumber phoneNumberWithStringValue:@"(855) 662-7722"];
+
+    return [[OCKContact alloc] initWithContactType:OCKContactTypePersonal
+                                              name:@"CloudMine"
+                                          relation:@"Connected Care Partner"
+                                         tintColor:nil
+                                       phoneNumber:phone
+                                     messageNumber:phone
+                                      emailAddress:@"support@cloudmineinc.com"
+                                          monogram:@"CM"
+                                             image:nil];
+
+}
+
++ (OCKContact *_Nonnull)doctorContact
+{
+    CNPhoneNumber *phone = [CNPhoneNumber phoneNumberWithStringValue:@"(555) 555-5555"];
+
+    return [[OCKContact alloc] initWithContactType:OCKContactTypeCareTeam
+                                              name:@"Dr. Jane Smith"
+                                          relation:@"Orthopedist"
+                                         tintColor:nil
+                                       phoneNumber:phone
+                                     messageNumber:phone
+                                      emailAddress:@"jane@fakebackdoctor.com"
+                                          monogram:@"JS"
+                                             image:nil];
+}
+
++ (OCKContact *_Nonnull)physicalTherapistContact
+{
+    CNPhoneNumber *phone = [CNPhoneNumber phoneNumberWithStringValue:@"(555) 555-1234"];
+
+    return [[OCKContact alloc] initWithContactType:OCKContactTypeCareTeam
+                                              name:@"John Doe"
+                                          relation:@"Physical Therapist"
+                                         tintColor:nil
+                                       phoneNumber:phone
+                                     messageNumber:phone
+                                      emailAddress:@"John@notreallyapt.com"
+                                          monogram:@"JD"
+                                             image:nil];
 }
 @end
