@@ -9,7 +9,7 @@
         <scene sceneID="vaI-CH-0WY">
             <objects>
                 <navigationController id="5BE-8W-pji" customClass="BCMInsightsNavController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Insights" id="kUH-kd-08G"/>
+                    <tabBarItem key="tabBarItem" title="Insights" image="InsightsIcon" selectedImage="InsightsIconFilled" id="kUH-kd-08G"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4oX-2T-62s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -21,4 +21,8 @@
             <point key="canvasLocation" x="49" y="436"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="InsightsIcon" width="30" height="30"/>
+        <image name="InsightsIconFilled" width="30" height="30"/>
+    </resources>
 </document>
