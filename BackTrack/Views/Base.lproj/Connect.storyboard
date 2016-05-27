@@ -8,7 +8,7 @@
         <!--Connect-->
         <scene sceneID="bG6-l9-Pty">
             <objects>
-                <navigationController id="lZq-pi-742" sceneMemberID="viewController">
+                <navigationController id="lZq-pi-742" customClass="BCMConnectNavController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Connect" id="XAG-Kv-ym6"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1sX-mb-wj4">
