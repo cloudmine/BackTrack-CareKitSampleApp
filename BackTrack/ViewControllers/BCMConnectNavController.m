@@ -1,4 +1,5 @@
 #import "BCMConnectNavController.h"
+#import "UIColor+BCM.h"
 #import <CareKit/CareKit.h>
 
 @interface BCMConnectNavController ()
@@ -12,6 +13,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.navigationBar.tintColor = [UIColor bcmBlueColor];
 
     OCKConnectViewController *connectViewController = [[OCKConnectViewController alloc] initWithContacts:BCMConnectNavController.contacts];
     connectViewController.navigationItem.title = NSLocalizedString(@"Connect", nil);
@@ -32,7 +35,7 @@
     return [[OCKContact alloc] initWithContactType:OCKContactTypePersonal
                                               name:@"CloudMine"
                                           relation:@"Connected Care Partner"
-                                         tintColor:nil
+                                         tintColor:[UIColor bcmBlueColor]
                                        phoneNumber:phone
                                      messageNumber:phone
                                       emailAddress:@"support@cloudmineinc.com"
@@ -48,7 +51,7 @@
     return [[OCKContact alloc] initWithContactType:OCKContactTypeCareTeam
                                               name:@"Dr. Jane Smith"
                                           relation:@"Orthopedist"
-                                         tintColor:nil
+                                         tintColor:[UIColor bcmGreenColor]
                                        phoneNumber:phone
                                      messageNumber:phone
                                       emailAddress:@"jane@fakebackdoctor.com"
@@ -63,7 +66,7 @@
     return [[OCKContact alloc] initWithContactType:OCKContactTypeCareTeam
                                               name:@"John Doe"
                                           relation:@"Physical Therapist"
-                                         tintColor:nil
+                                         tintColor:[UIColor bcmPurpleColor]
                                        phoneNumber:phone
                                      messageNumber:phone
                                       emailAddress:@"John@notreallyapt.com"

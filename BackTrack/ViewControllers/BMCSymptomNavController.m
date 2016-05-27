@@ -43,6 +43,7 @@
 
     ORKTaskViewController *taskViewController = [[ORKTaskViewController alloc] initWithTask:task taskRunUUID:nil];
     taskViewController.delegate = self;
+    taskViewController.view.tintColor = [UIColor bcmBlueColor];
     [self presentViewController:taskViewController animated:YES completion:nil];
 }
 
