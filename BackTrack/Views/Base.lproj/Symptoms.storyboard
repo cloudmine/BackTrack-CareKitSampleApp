@@ -9,7 +9,7 @@
         <scene sceneID="b0L-WQ-NA5">
             <objects>
                 <navigationController id="HUa-7f-1nb" customClass="BMCSymptomNavController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Symptoms" id="znH-qQ-GHw"/>
+                    <tabBarItem key="tabBarItem" title="Symptoms" image="SymptomsIcon" selectedImage="SymptomsIconFilled" id="znH-qQ-GHw"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fyZ-wq-zxR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -21,4 +21,8 @@
             <point key="canvasLocation" x="-106" y="453"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="SymptomsIcon" width="30" height="30"/>
+        <image name="SymptomsIconFilled" width="30" height="30"/>
+    </resources>
 </document>
