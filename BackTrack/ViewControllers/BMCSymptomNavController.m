@@ -4,6 +4,7 @@
 #import "UIViewController+BCM.h"
 #import "BCMTasks.h"
 #import "OCKCarePlanEvent+BCM.h"
+#import "UIColor+BCM.h"
 #import <ResearchKit/ResearchKit.h>
 #import <CareKit/CareKit.h>
 
@@ -20,6 +21,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.symptomViewController.progressRingTintColor = [UIColor bcmBlueColor];
     [self showViewController:self.symptomViewController sender:nil];
 }
 

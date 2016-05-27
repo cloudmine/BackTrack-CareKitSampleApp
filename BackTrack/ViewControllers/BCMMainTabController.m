@@ -1,6 +1,7 @@
 #import "BCMMainTabController.h"
 #import "BCMFirstStartTracker.h"
 #import "BCMActivities.h"
+#import "UIColor+BCM.h"
 
 NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
 
@@ -33,7 +34,7 @@ NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"Hello");
+    self.tabBar.tintColor = [UIColor bcmBlueColor];
 }
 
 #pragma mark OCKCarePlanStoreDelegate

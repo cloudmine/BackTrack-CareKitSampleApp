@@ -1,6 +1,7 @@
 #import "BCMActivities.h"
 #import "BCMIdentifiers.h"
 #import "NSDateComponents+BCM.h"
+#import "UIColor+BCM.h"
 
 @implementation BCMActivities
 
@@ -21,7 +22,7 @@
                                                       type:OCKCarePlanActivityTypeIntervention
                                                      title:NSLocalizedString(@"Hamstring Stretch", nil)
                                                       text:NSLocalizedString(@"5 minutes", nil)
-                                                 tintColor:nil
+                                                 tintColor:[UIColor bcmBlueColor]
                                               instructions:nil
                                                   imageURL:nil
                                                   schedule:schedule
@@ -38,7 +39,7 @@
                                                       type:OCKCarePlanActivityTypeIntervention
                                                      title:NSLocalizedString(@"Brisk Walk", nil)
                                                       text:NSLocalizedString(@"15 minutes", nil)
-                                                 tintColor:nil
+                                                 tintColor:[UIColor bcmGreenColor]
                                               instructions:nil
                                                   imageURL:nil
                                                   schedule:schedule
@@ -56,7 +57,7 @@
                                                       type:OCKCarePlanActivityTypeIntervention
                                                      title:NSLocalizedString(@"Warm Compress", nil)
                                                       text:NSLocalizedString(@"Morning", nil)
-                                                 tintColor:nil
+                                                 tintColor:[UIColor bcmPurpleColor]
                                               instructions:nil
                                                   imageURL:nil
                                                   schedule:schedule
