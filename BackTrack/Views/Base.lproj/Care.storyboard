@@ -9,7 +9,7 @@
         <scene sceneID="fzd-rj-Ppw">
             <objects>
                 <navigationController id="hlS-tX-2dn" customClass="BCMCareNavController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Care" id="bTo-Xj-ZW3"/>
+                    <tabBarItem key="tabBarItem" title="Care" image="CareIcon" selectedImage="CareIconFilled" id="bTo-Xj-ZW3"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Uea-Ig-LT6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -21,4 +21,8 @@
             <point key="canvasLocation" x="21" y="407"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CareIcon" width="30" height="30"/>
+        <image name="CareIconFilled" width="30" height="30"/>
+    </resources>
 </document>
