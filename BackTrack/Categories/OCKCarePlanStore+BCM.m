@@ -27,4 +27,13 @@
     }];
 }
 
+- (void)bcm_fetchActivitiesWithCompletion:(_Nullable BCMCarePlanActivityFetchCompletion)block
+{
+    [[CMStore defaultStore] allUserObjectsOfClass:[BCMActivityList class] additionalOptions:nil callback:^(CMObjectFetchResponse *response) {
+        // TODO: Error checking/handling
+        BCMActivityList *activityList = response.objects.firstObject;
+        block(activityList.activities, nil);
+    }];
+}
+
 @end

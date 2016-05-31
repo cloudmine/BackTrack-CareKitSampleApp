@@ -26,7 +26,16 @@ NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
     self.carePlanStore.delegate = self;
 
     if (BCMFirstStartTracker.isFirstStart) {
-        [self addActivities];
+        [self.carePlanStore bcm_fetchActivitiesWithCompletion:^(NSArray<OCKCarePlanActivity *> * _Nullable activities, NSError * _Nullable error) {
+            if (nil == activities || activities.count < 1) {
+                [self addInitialActivities];
+                return;
+            }
+
+            NSLog(@"Adding fetched activities");
+            [BCMMainTabController addActivities:activities toStore:self.carePlanStore];
+        }];
+
         [BCMFirstStartTracker recordFirstStart];
     }
 
@@ -77,10 +86,16 @@ NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
     return appDirURL;
 }
 
-- (void)addActivities
+- (void)addInitialActivities
 {
-    for (OCKCarePlanActivity *activity in BCMActivities.activities) {
-        [self.carePlanStore addActivity:activity completion:^(BOOL success, NSError * _Nullable error) {
+    NSLog(@"Adding Hardcoded Activities");
+    [BCMMainTabController addActivities:BCMActivities.activities toStore:self.carePlanStore];
+}
+
++ (void)addActivities:(NSArray<OCKCarePlanActivity *> *_Nonnull)activities toStore:(OCKCarePlanStore *_Nonnull)store
+{
+    for (OCKCarePlanActivity *activity in activities) {
+        [store addActivity:activity completion:^(BOOL success, NSError * _Nullable error) {
             if (!success) {
                 NSLog(@"Failed to add activity to store: %@", error.localizedDescription);
                 return;
