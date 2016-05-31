@@ -107,6 +107,7 @@
 		B4F0F5F51CF8D430004E8A1B /* UIColor+BCM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BCM.h"; sourceTree = "<group>"; };
 		B4F0F5F61CF8D430004E8A1B /* UIColor+BCM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BCM.m"; sourceTree = "<group>"; };
 		B4F0F5F81CFD2465004E8A1B /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
+		B4F0F5FB1CFD2A81004E8A1B /* BCMSecrets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMSecrets.h; sourceTree = "<group>"; };
 		B9C8B84302774DFBCFB945B3 /* Pods_BackTrackTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BackTrackTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D16A2C00F8C679B1F25B6B8B /* Pods_BackTrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BackTrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6E4F592477F5445F0000F51 /* Pods-BackTrackTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BackTrackTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BackTrackTests/Pods-BackTrackTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -220,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				B46F1ED31CEE46F200AB1972 /* Info.plist */,
+				B4F0F5FB1CFD2A81004E8A1B /* BCMSecrets.h */,
 				B46F1EC51CEE46F200AB1972 /* BCMAppDelegate.h */,
 				B46F1EC61CEE46F200AB1972 /* BCMAppDelegate.m */,
 				B46F1EC31CEE46F200AB1972 /* main.m */,

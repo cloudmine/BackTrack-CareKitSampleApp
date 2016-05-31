@@ -16,6 +16,10 @@ You can then proceed to clone the app, install dependencies, and build it in Xco
 
 ```
 git clone https://github.com/cloudmine/CareKitSampleApp.git
+cd CareKitSampleApp
+cp CareKitSampleApp/SupportingFiles/BCMSecrets.h-Template CareKitSampleApp/SupportingFiles/BCMSecrets.h
 pod install
 open BackTrack.xcworkspace
 ```
+
+**You will need to edit `BCMSecrets.h` in your project to include a CloudMine App Identifier and App Secret (also referred to as API Key).**

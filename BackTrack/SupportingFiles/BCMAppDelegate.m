@@ -1,4 +1,5 @@
 #import "BCMAppDelegate.h"
+#import "BCMSecrets.h"
 #import <CMHealth/CMHealth.h>
 
 @interface BCMAppDelegate ()
@@ -15,7 +16,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [CMHealth setAppIdentifier:@"" appSecret:@""];
+    [CMHealth setAppIdentifier:BCMAppIdentifier appSecret:BCMAppSecret];
 
     if ([CMHUser currentUser].isLoggedIn) {
         [self loadMainPanel];
