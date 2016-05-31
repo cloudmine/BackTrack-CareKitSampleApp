@@ -41,7 +41,44 @@
 
 - (void)authViewOfType:(CMHAuthType)authType didSubmitWithEmail:(NSString *)email andPassword:(NSString *)password
 {
-    NSLog(@"Auth Complete");
+    switch (authType) {
+        case CMHAuthTypeLogin:
+            [self loginWithEmail:email andPassword:password];
+            break;
+        case CMHAuthTypeSignup:
+            [self signupWithEmail:email andPassword:password];
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma mark Private
+
+- (void)loginWithEmail:(NSString *_Nonnull)email andPassword:(NSString *_Nonnull)password
+{
+    [[CMHUser currentUser] loginWithEmail:email password:password andCompletion:^(NSError * _Nullable error) {
+        if (nil != error) {
+            // TODO: Real error handling
+            NSLog(@"Error Logging In: %@", error.localizedDescription);
+            return;
+        }
+
+        NSLog(@"Logged in successfully");
+    }];
+}
+
+- (void)signupWithEmail:(NSString *_Nonnull)email andPassword:(NSString *_Nonnull)password
+{
+    [[CMHUser currentUser] signUpWithEmail:email password:password andCompletion:^(NSError * _Nullable error) {
+        if (nil != error) {
+            // TODO: Real error handling
+            NSLog(@"Error signing up: %@", error.localizedDescription);
+            return;
+        }
+
+        NSLog(@"Successfully Signed Up");
+    }];
 }
 
 @end
