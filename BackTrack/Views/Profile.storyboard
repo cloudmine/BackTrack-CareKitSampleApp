@@ -12,7 +12,7 @@
         <scene sceneID="nRa-Ll-DhJ">
             <objects>
                 <navigationController id="YnG-Eg-7a5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="ProfileIcon" selectedImage="ProfileIconSelected" id="Ore-ki-7mx"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="ProfileIcon" selectedImage="ProfileIconFilled" id="Ore-ki-7mx"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3BN-5T-bMl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -44,8 +44,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kgp-Hl-R14" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="404"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KoU-7E-DgN" userLabel="Name Label">
-                                                <rect key="frame" x="116" y="36" width="106.5" height="24"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KoU-7E-DgN" userLabel="Name Label">
+                                                <rect key="frame" x="116" y="60" width="0.0" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -63,7 +63,7 @@
                                                     </mask>
                                                 </variation>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="someone@somewhere.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MoI-45-m0k">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="someone@somewhere.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MoI-45-m0k">
                                                 <rect key="frame" x="116" y="62" width="189.5" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -85,7 +85,7 @@
                                                     </mask>
                                                 </variation>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for trying the CloudMine Demo ResearchKit app. To learn more about the CloudMine Connected Health Cloud you can" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="yu1-22-4wE" userLabel="Thanks Label">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for trying the CloudMine Demo CareKit app. To learn more about the CloudMine Connected Health Cloud you can" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="yu1-22-4wE" userLabel="Thanks Label">
                                                 <rect key="frame" x="30" y="237" width="540" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="64.5" id="q29-GP-ygl"/>
@@ -146,7 +146,7 @@
                                                     </mask>
                                                 </variation>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CMHealth.bundle/cloudmine-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Otc-qa-WKH">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloudmine-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Otc-qa-WKH">
                                                 <rect key="frame" x="250" y="394" width="100" height="47"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="47" id="OlJ-2q-ssP"/>
@@ -236,9 +236,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CMHealth.bundle/cloudmine-logo.png" width="24" height="24"/>
         <image name="ProfileIcon" width="24" height="24"/>
-        <image name="ProfileIconSelected" width="24" height="24"/>
-        <image name="ProfilePlaceholder" width="24" height="24"/>
+        <image name="ProfileIconFilled" width="24" height="24"/>
+        <image name="ProfilePlaceholder" width="150" height="150"/>
+        <image name="cloudmine-logo.png" width="300" height="158"/>
     </resources>
 </document>
