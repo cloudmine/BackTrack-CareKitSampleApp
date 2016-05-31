@@ -45,7 +45,7 @@
 
 - (IBAction)didPressLogoutButton:(UIButton *)sender
 {
-    NSLog(@"Did Press Logout");
+    [self confirmAndLogout];
 }
 
 - (IBAction)didPressWebsiteButton:(UIButton *)sender
@@ -82,6 +82,33 @@
 }
 
 #pragma mark Private
+
+- (void)confirmAndLogout
+{
+    UIAlertController *logoutAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Are you sure you want to log out?", nil)
+                                                                         message:nil
+                                                                  preferredStyle:UIAlertControllerStyleActionSheet];
+
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil)
+                                                     style:UIAlertActionStyleCancel
+                                                   handler:^(UIAlertAction * _Nonnull action) { }];
+
+    UIAlertAction *logout = [UIAlertAction actionWithTitle:NSLocalizedString(@"Log Out", nil)
+                                                     style:UIAlertActionStyleDestructive
+                                                   handler:^(UIAlertAction * _Nonnull action) {
+                                                       [self logUserOut];
+                                                   }];
+
+    [logoutAlert addAction:cancel];
+    [logoutAlert addAction:logout];
+
+    [self presentViewController:logoutAlert animated:YES completion:nil];
+}
+
+- (void)logUserOut
+{
+    NSLog(@"Do Logout");
+}
 
 + (MFMailComposeViewController *)mailComposeViewControllerWithDelegate:(id<MFMailComposeViewControllerDelegate>)delegate
 {
