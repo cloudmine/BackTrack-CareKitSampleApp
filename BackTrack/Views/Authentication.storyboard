@@ -21,10 +21,10 @@
             </objects>
             <point key="canvasLocation" x="-387" y="437"/>
         </scene>
-        <!--View Controller-->
+        <!--Auth View Controller-->
         <scene sceneID="pag-IW-wNL">
             <objects>
-                <viewController id="Axh-nS-xFZ" sceneMemberID="viewController">
+                <viewController id="Axh-nS-xFZ" customClass="BCMAuthViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IJJ-Ik-w0A"/>
                         <viewControllerLayoutGuide type="bottom" id="YR2-SE-VvB"/>
@@ -51,6 +51,9 @@
                                 <state key="normal" title="Already Participating?">
                                     <color key="titleColor" red="0.050980392159999999" green="0.58823529409999997" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="didPressLoginButton:" destination="Axh-nS-xFZ" eventType="touchUpInside" id="DVa-9a-awB"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvm-mr-VyG">
                                 <rect key="frame" x="217" y="494" width="166" height="48"/>
@@ -69,6 +72,9 @@
                                         <exclude reference="leI-nN-Jmi"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="didPressJoinButton:" destination="Axh-nS-xFZ" eventType="touchUpInside" id="A0q-TJ-fcz"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
