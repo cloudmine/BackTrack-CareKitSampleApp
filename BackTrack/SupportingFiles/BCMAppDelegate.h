@@ -4,6 +4,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+- (void)loadAuthentication;
+- (void)loadMainPanel;
 
 @end
 

@@ -1,6 +1,5 @@
 #import "BCMAppDelegate.h"
-@import CareKit;
-@import ResearchKit;
+#import <CMHealth/CMHealth.h>
 
 @interface BCMAppDelegate ()
 
@@ -8,9 +7,21 @@
 
 @implementation BCMAppDelegate
 
+- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    return YES;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [CMHealth setAppIdentifier:@"" appSecret:@""];
+
+    if ([CMHUser currentUser].isLoggedIn) {
+        [self loadMainPanel];
+    } else {
+        [self loadAuthentication];
+    }
     return YES;
 }
 
@@ -37,6 +48,20 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     
+}
+
+- (void)loadAuthentication
+{
+    UIViewController *onboardingVC = [UIStoryboard storyboardWithName:@"Authentication" bundle:nil].instantiateInitialViewController;
+    self.window.rootViewController = onboardingVC;
+    [self.window makeKeyAndVisible];
+}
+
+- (void)loadMainPanel
+{
+    UIViewController *mainPanelVC = [UIStoryboard storyboardWithName:@"MainPanel" bundle:nil].instantiateInitialViewController;
+    self.window.rootViewController = mainPanelVC;
+    [self.window makeKeyAndVisible];
 }
 
 @end
