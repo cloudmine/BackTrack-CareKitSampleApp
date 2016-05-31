@@ -2,6 +2,8 @@
 #import "BCMFirstStartTracker.h"
 #import "BCMActivities.h"
 #import "UIColor+BCM.h"
+#import "OCKCarePlanStore+BCM.h"
+#import "CareKit+BCM.h"
 
 NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
 
@@ -35,6 +37,10 @@ NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
 {
     [super viewDidLoad];
     self.tabBar.tintColor = [UIColor bcmBlueColor];
+
+    [self.carePlanStore bcm_saveActivtiesWithCompletion:^(NSError * _Nullable error) {
+        NSLog(@"Did Save Activities");
+    }];
 }
 
 #pragma mark OCKCarePlanStoreDelegate

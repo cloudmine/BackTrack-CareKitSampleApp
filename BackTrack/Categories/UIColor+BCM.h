@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
+#import <CloudMine/CMCoding.h>
 
-@interface UIColor (BCM)
+@interface UIColor (BCM)<CMCoding>
 
 + (UIColor *_Nonnull)bcmBlueColor;
 + (UIColor *_Nonnull)bcmPurpleColor;
