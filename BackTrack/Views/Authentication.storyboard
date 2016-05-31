@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mV6-nr-3U3">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="ocX-Xf-hCf">
+            <objects>
+                <navigationController id="mV6-nr-3U3" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xHl-pO-4ja">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Axh-nS-xFZ" kind="relationship" relationship="rootViewController" id="4qN-B2-17F"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ieM-ch-cGl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-387" y="437"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="pag-IW-wNL">
+            <objects>
+                <viewController id="Axh-nS-xFZ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IJJ-Ik-w0A"/>
+                        <viewControllerLayoutGuide type="bottom" id="YR2-SE-VvB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="K1Y-GW-Xv7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Back Track" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0vp-3r-xNF">
+                                <rect key="frame" x="20" y="96" width="560" height="43"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNt-2T-rkX">
+                                <rect key="frame" x="20" y="155" width="560" height="21"/>
+                                <string key="text">Track, manage, and treat your back pain symptoms. This is a sample CareKit app demonstrating integration with CloudMine's secure, compliant, connected health cloud.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hph-RU-DY2">
+                                <rect key="frame" x="225" y="550" width="150" height="30"/>
+                                <state key="normal" title="Already Participating?">
+                                    <color key="titleColor" red="0.050980392159999999" green="0.58823529409999997" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvm-mr-VyG">
+                                <rect key="frame" x="217" y="494" width="166" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="PId-sp-TIn"/>
+                                    <constraint firstAttribute="height" constant="44" id="ROv-ap-1Qu"/>
+                                    <constraint firstAttribute="width" constant="132" id="leI-nN-Jmi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Join">
+                                    <color key="titleColor" red="0.050980392159999999" green="0.58823529409999997" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="ROv-ap-1Qu"/>
+                                        <exclude reference="leI-nN-Jmi"/>
+                                    </mask>
+                                </variation>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aNt-2T-rkX" firstAttribute="top" secondItem="0vp-3r-xNF" secondAttribute="bottom" constant="16" id="45Y-Pe-49J"/>
+                            <constraint firstItem="aNt-2T-rkX" firstAttribute="leading" secondItem="K1Y-GW-Xv7" secondAttribute="leading" constant="20" symbolic="YES" id="Abg-Y4-k0g"/>
+                            <constraint firstAttribute="trailing" secondItem="aNt-2T-rkX" secondAttribute="trailing" constant="20" symbolic="YES" id="JMl-nQ-jNF"/>
+                            <constraint firstAttribute="trailing" secondItem="0vp-3r-xNF" secondAttribute="trailing" constant="20" symbolic="YES" id="W9v-JW-Fnh"/>
+                            <constraint firstItem="hph-RU-DY2" firstAttribute="top" secondItem="dvm-mr-VyG" secondAttribute="bottom" constant="8" symbolic="YES" id="cY5-o3-LrU"/>
+                            <constraint firstItem="0vp-3r-xNF" firstAttribute="leading" secondItem="K1Y-GW-Xv7" secondAttribute="leading" constant="20" symbolic="YES" id="dDh-tQ-Cyg"/>
+                            <constraint firstItem="dvm-mr-VyG" firstAttribute="width" secondItem="hph-RU-DY2" secondAttribute="width" constant="16" id="iLq-Hk-20b"/>
+                            <constraint firstItem="hph-RU-DY2" firstAttribute="centerX" secondItem="K1Y-GW-Xv7" secondAttribute="centerX" id="ift-tg-0fv"/>
+                            <constraint firstItem="0vp-3r-xNF" firstAttribute="top" secondItem="IJJ-Ik-w0A" secondAttribute="bottom" constant="32" id="iml-VO-NjD"/>
+                            <constraint firstItem="dvm-mr-VyG" firstAttribute="centerX" secondItem="K1Y-GW-Xv7" secondAttribute="centerX" id="mUk-RQ-qym"/>
+                            <constraint firstItem="YR2-SE-VvB" firstAttribute="top" secondItem="hph-RU-DY2" secondAttribute="bottom" constant="20" id="zxx-0r-zeY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="MDW-gI-7Az"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BJK-lS-3Yc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="409" y="437"/>
+        </scene>
+    </scenes>
+</document>
