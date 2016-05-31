@@ -1,4 +1,5 @@
 #import "BCMAuthViewController.h"
+#import "UIViewController+BCM.h"
 #import <CMHealth/CMHealth.h>
 
 @interface BCMAuthViewController ()<CMHAuthViewDelegate>
@@ -59,8 +60,7 @@
 {
     [[CMHUser currentUser] loginWithEmail:email password:password andCompletion:^(NSError * _Nullable error) {
         if (nil != error) {
-            // TODO: Real error handling
-            NSLog(@"Error Logging In: %@", error.localizedDescription);
+            [self.presentedViewController showAlertWithMessage:NSLocalizedString(@"Error Logging In", nil) andError:error];
             return;
         }
 
@@ -72,8 +72,7 @@
 {
     [[CMHUser currentUser] signUpWithEmail:email password:password andCompletion:^(NSError * _Nullable error) {
         if (nil != error) {
-            // TODO: Real error handling
-            NSLog(@"Error signing up: %@", error.localizedDescription);
+            [self.presentedViewController showAlertWithMessage:NSLocalizedString(@"Error Signing Up", nil) andError:error];
             return;
         }
 
