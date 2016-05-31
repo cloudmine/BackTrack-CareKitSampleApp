@@ -29,7 +29,7 @@
         <!--Profile-->
         <scene sceneID="pF9-NJ-aNd">
             <objects>
-                <viewController id="eVz-hK-BK5" sceneMemberID="viewController">
+                <viewController id="eVz-hK-BK5" customClass="BCMProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fkB-lK-Cr5"/>
                         <viewControllerLayoutGuide type="bottom" id="21g-AV-Ktx"/>
@@ -84,6 +84,9 @@
                                                         <exclude reference="D0i-tW-LIG"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <action selector="didPressLogoutButton:" destination="eVz-hK-BK5" eventType="touchUpInside" id="MUG-GA-UQJ"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for trying the CloudMine Demo CareKit app. To learn more about the CloudMine Connected Health Cloud you can" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="yu1-22-4wE" userLabel="Thanks Label">
                                                 <rect key="frame" x="30" y="237" width="540" height="36"/>
@@ -114,6 +117,9 @@
                                                         <exclude reference="Psx-ax-fBs"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <action selector="didPressWebsiteButton:" destination="eVz-hK-BK5" eventType="touchUpInside" id="ebV-kS-CUf"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYa-OO-Cyd">
                                                 <rect key="frame" x="42" y="340" width="516" height="44"/>
@@ -131,6 +137,9 @@
                                                         <exclude reference="R7y-si-ONE"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <action selector="didPressEmailButton:" destination="eVz-hK-BK5" eventType="touchUpInside" id="Gpn-3n-eP7"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="bPv-Ug-qlD" userLabel="or Label">
                                                 <rect key="frame" x="293" y="322" width="14" height="18"/>
