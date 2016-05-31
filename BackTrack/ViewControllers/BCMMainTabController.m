@@ -4,6 +4,7 @@
 #import "UIColor+BCM.h"
 #import "OCKCarePlanStore+BCM.h"
 #import "CareKit+BCM.h"
+#import "BCMWaitUntil.h"
 
 NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
 
@@ -46,10 +47,6 @@ NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
 {
     [super viewDidLoad];
     self.tabBar.tintColor = [UIColor bcmBlueColor];
-
-    [self.carePlanStore bcm_saveActivtiesWithCompletion:^(NSError * _Nullable error) {
-        NSLog(@"Did Save Activities");
-    }];
 }
 
 #pragma mark OCKCarePlanStoreDelegate
@@ -90,19 +87,32 @@ NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
 {
     NSLog(@"Adding Hardcoded Activities");
     [BCMMainTabController addActivities:BCMActivities.activities toStore:self.carePlanStore];
+
+    [self.carePlanStore bcm_saveActivtiesWithCompletion:^(NSError * _Nullable error) {
+        if (nil != error) {
+            NSLog(@"Error saving activities: %@", error.localizedDescription); // TODO: Really error handling
+            return;
+        }
+
+        NSLog(@"Saved Activities");
+    }];
 }
 
 + (void)addActivities:(NSArray<OCKCarePlanActivity *> *_Nonnull)activities toStore:(OCKCarePlanStore *_Nonnull)store
 {
     for (OCKCarePlanActivity *activity in activities) {
-        [store addActivity:activity completion:^(BOOL success, NSError * _Nullable error) {
-            if (!success) {
-                NSLog(@"Failed to add activity to store: %@", error.localizedDescription);
-                return;
-            }
+        bcm_wait_until(^(BCMDoneBlock _Nonnull done) {
+            [store addActivity:activity completion:^(BOOL success, NSError * _Nullable error) {
+                done();
 
-            NSLog(@"Activity added to store");
-        }];
+                if (!success) {
+                    NSLog(@"Failed to add activity to store: %@", error.localizedDescription);
+                    return;
+                }
+
+                NSLog(@"Activity added to store");
+            }];
+        });
     }
 }
 

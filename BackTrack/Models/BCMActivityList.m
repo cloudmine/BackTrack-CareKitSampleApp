@@ -51,7 +51,7 @@
         self.activities = @[];
     }
 
-    return nil;
+    return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
