@@ -1,6 +1,7 @@
 #import "UIViewController+BCM.h"
 #import "BCMMainTabController.h"
 #import "BCMMainThread.h"
+#import "BCMAppDelegate.h"
 
 @implementation UIViewController (BCM)
 
@@ -13,6 +14,13 @@
     }
 
     return nil;
+}
+
+- (BCMAppDelegate *)bcmAppDelegate
+{
+    id<UIApplicationDelegate> delegate = [UIApplication sharedApplication].delegate;
+    NSAssert([delegate isKindOfClass:[BCMAppDelegate class]], @"App Delegate was of class %@ instead of %@", [delegate class], [BCMAppDelegate class]);
+    return (BCMAppDelegate *)delegate;
 }
 
 - (void)showAlertWithMessage:(NSString *_Nonnull)message andError:(NSError *_Nullable)error

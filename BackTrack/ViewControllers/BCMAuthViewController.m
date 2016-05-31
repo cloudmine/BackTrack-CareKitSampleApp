@@ -1,6 +1,7 @@
+#import <CMHealth/CMHealth.h>
 #import "BCMAuthViewController.h"
 #import "UIViewController+BCM.h"
-#import <CMHealth/CMHealth.h>
+#import "BCMAppDelegate.h"
 
 @interface BCMAuthViewController ()<CMHAuthViewDelegate>
 
@@ -64,7 +65,7 @@
             return;
         }
 
-        NSLog(@"Logged in successfully");
+        [self.bcmAppDelegate loadMainPanel];
     }];
 }
 
@@ -76,7 +77,7 @@
             return;
         }
 
-        NSLog(@"Successfully Signed Up");
+        [self.bcmAppDelegate loadMainPanel];
     }];
 }
 

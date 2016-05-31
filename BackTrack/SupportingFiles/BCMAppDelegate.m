@@ -1,6 +1,7 @@
 #import "BCMAppDelegate.h"
 #import "BCMSecrets.h"
 #import <CMHealth/CMHealth.h>
+#import "BCMMainThread.h"
 
 @interface BCMAppDelegate ()
 
@@ -53,16 +54,20 @@
 
 - (void)loadAuthentication
 {
-    UIViewController *onboardingVC = [UIStoryboard storyboardWithName:@"Authentication" bundle:nil].instantiateInitialViewController;
-    self.window.rootViewController = onboardingVC;
-    [self.window makeKeyAndVisible];
+    on_main_thread(^{
+        UIViewController *authVC = [UIStoryboard storyboardWithName:@"Authentication" bundle:nil].instantiateInitialViewController;
+        self.window.rootViewController = authVC;
+        [self.window makeKeyAndVisible];
+    });
 }
 
 - (void)loadMainPanel
 {
-    UIViewController *mainPanelVC = [UIStoryboard storyboardWithName:@"MainPanel" bundle:nil].instantiateInitialViewController;
-    self.window.rootViewController = mainPanelVC;
-    [self.window makeKeyAndVisible];
+    on_main_thread(^{
+        UIViewController *mainPanelVC = [UIStoryboard storyboardWithName:@"MainPanel" bundle:nil].instantiateInitialViewController;
+        self.window.rootViewController = mainPanelVC;
+        [self.window makeKeyAndVisible];
+    });
 }
 
 @end
