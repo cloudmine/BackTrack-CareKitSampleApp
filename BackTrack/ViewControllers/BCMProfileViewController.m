@@ -1,9 +1,12 @@
 #import "BCMProfileViewController.h"
+#import <CMHealth/CMHealth.h>
+#import <MessageUI/MessageUI.h>
 #import "UIViewController+BCM.h"
 #import "UIButton+BCM.h"
-#import <MessageUI/MessageUI.h>
+#import "BCMMainThread.h"
 
 @interface BCMProfileViewController ()<MFMailComposeViewControllerDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *userEmailLabel;
 @property (weak, nonatomic) IBOutlet UIButton *logOutButton;
 @property (nonatomic, nullable) MFMailComposeViewController *mailViewController;
 @end
@@ -16,8 +19,26 @@
 {
     [super viewDidLoad];
 
+    [[CMHUser currentUser] addObserver:self forKeyPath:@"userData" options:(NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew) context:nil];
+
     [self.logOutButton setCornerRadius:4.0f andBorderWidth:1.0f];
     self.mailViewController = [BCMProfileViewController mailComposeViewControllerWithDelegate:self];
+}
+
+- (void)dealloc
+{
+    [[CMHUser currentUser] removeObserver:self forKeyPath:@"userData"];
+}
+
+#pragma mark KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    if (object == [CMHUser currentUser] && [@"userData" isEqualToString:keyPath]) {
+        on_main_thread(^{
+            self.userEmailLabel.text = [CMHUser currentUser].userData.email;
+        });
+    }
 }
 
 #pragma mark Target-Action

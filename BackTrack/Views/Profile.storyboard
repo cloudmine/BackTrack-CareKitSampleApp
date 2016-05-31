@@ -240,6 +240,7 @@
                     <navigationItem key="navigationItem" title="Profile" id="VH5-wk-XhG"/>
                     <connections>
                         <outlet property="logOutButton" destination="HT0-NG-7SV" id="z7J-0R-B5g"/>
+                        <outlet property="userEmailLabel" destination="MoI-45-m0k" id="xvv-GR-4gx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nBh-cv-SJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
