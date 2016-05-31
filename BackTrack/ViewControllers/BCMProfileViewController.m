@@ -2,6 +2,7 @@
 #import <CMHealth/CMHealth.h>
 #import <MessageUI/MessageUI.h>
 #import "UIViewController+BCM.h"
+#import "BCMAppDelegate.h"
 #import "UIButton+BCM.h"
 #import "BCMMainThread.h"
 
@@ -107,7 +108,14 @@
 
 - (void)logUserOut
 {
-    NSLog(@"Do Logout");
+    [[CMHUser currentUser] logoutWithCompletion:^(NSError * _Nullable error) {
+        if (nil != error) {
+            [self showAlertWithMessage:NSLocalizedString(@"Something went wrong logging out", nil) andError:error];
+            return;
+        }
+
+        [self.bcmAppDelegate loadAuthentication];
+    }];
 }
 
 + (MFMailComposeViewController *)mailComposeViewControllerWithDelegate:(id<MFMailComposeViewControllerDelegate>)delegate
