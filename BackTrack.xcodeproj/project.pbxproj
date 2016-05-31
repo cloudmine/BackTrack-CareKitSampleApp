@@ -37,6 +37,7 @@
 		B4F0F6011CFD3576004E8A1B /* BCMMainThread.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0F6001CFD3576004E8A1B /* BCMMainThread.m */; };
 		B4F0F6061CFDD9AC004E8A1B /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4F0F6051CFDD9AC004E8A1B /* Profile.storyboard */; };
 		B4F0F6091CFDDCCD004E8A1B /* BCMProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0F6081CFDDCCD004E8A1B /* BCMProfileViewController.m */; };
+		B4F0F60C1CFDE0C7004E8A1B /* UIButton+BCM.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0F60B1CFDE0C7004E8A1B /* UIButton+BCM.m */; };
 		D23CC92EEA79E27646C7EAEF /* Pods_BackTrackUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11FC8268A05A02C691A0A02B /* Pods_BackTrackUITests.framework */; };
 		DA3B93E99DDEAD62A7EED6EB /* Pods_BackTrack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D16A2C00F8C679B1F25B6B8B /* Pods_BackTrack.framework */; };
 /* End PBXBuildFile section */
@@ -119,6 +120,8 @@
 		B4F0F6051CFDD9AC004E8A1B /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		B4F0F6071CFDDCCD004E8A1B /* BCMProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMProfileViewController.h; sourceTree = "<group>"; };
 		B4F0F6081CFDDCCD004E8A1B /* BCMProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMProfileViewController.m; sourceTree = "<group>"; };
+		B4F0F60A1CFDE0C7004E8A1B /* UIButton+BCM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BCM.h"; sourceTree = "<group>"; };
+		B4F0F60B1CFDE0C7004E8A1B /* UIButton+BCM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BCM.m"; sourceTree = "<group>"; };
 		B9C8B84302774DFBCFB945B3 /* Pods_BackTrackTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BackTrackTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D16A2C00F8C679B1F25B6B8B /* Pods_BackTrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BackTrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6E4F592477F5445F0000F51 /* Pods-BackTrackTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BackTrackTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BackTrackTests/Pods-BackTrackTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -284,6 +287,8 @@
 				B4F0F5EB1CF769F9004E8A1B /* NSDateComponents+BCM.m */,
 				B4F0F5F51CF8D430004E8A1B /* UIColor+BCM.h */,
 				B4F0F5F61CF8D430004E8A1B /* UIColor+BCM.m */,
+				B4F0F60A1CFDE0C7004E8A1B /* UIButton+BCM.h */,
+				B4F0F60B1CFDE0C7004E8A1B /* UIButton+BCM.m */,
 				B46F1F151CF38E6700AB1972 /* UIViewController+BCM.h */,
 				B46F1F161CF38EF800AB1972 /* UIViewController+BCM.m */,
 				B4F0F5DF1CF5529D004E8A1B /* OCKCarePlanEvent+BCM.h */,
@@ -590,6 +595,7 @@
 				B4F0F5F41CF8C3E1004E8A1B /* BCMConnectNavController.m in Sources */,
 				B4F0F5E41CF63F29004E8A1B /* BCMInsightsNavController.m in Sources */,
 				B46F1F221CF397CB00AB1972 /* BCMActivities.m in Sources */,
+				B4F0F60C1CFDE0C7004E8A1B /* UIButton+BCM.m in Sources */,
 				B4F0F5EC1CF769F9004E8A1B /* NSDateComponents+BCM.m in Sources */,
 				B46F1F1E1CF395A200AB1972 /* BCMFirstStartTracker.m in Sources */,
 				B4F0F6011CFD3576004E8A1B /* BCMMainThread.m in Sources */,

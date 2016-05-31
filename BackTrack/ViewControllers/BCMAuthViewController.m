@@ -1,10 +1,11 @@
 #import <CMHealth/CMHealth.h>
 #import "BCMAuthViewController.h"
 #import "UIViewController+BCM.h"
+#import "UIButton+BCM.h"
 #import "BCMAppDelegate.h"
 
 @interface BCMAuthViewController ()<CMHAuthViewDelegate>
-
+@property (weak, nonatomic) IBOutlet UIButton *joinButton;
 @end
 
 @implementation BCMAuthViewController
@@ -14,6 +15,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.joinButton setCornerRadius:4.0f andBorderWidth:1.0f];
 }
 
 #pragma mark Target-Action

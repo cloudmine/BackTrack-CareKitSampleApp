@@ -93,6 +93,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="MDW-gI-7Az"/>
+                    <connections>
+                        <outlet property="joinButton" destination="dvm-mr-VyG" id="waP-Zb-BIZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BJK-lS-3Yc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

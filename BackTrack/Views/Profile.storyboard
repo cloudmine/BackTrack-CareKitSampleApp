@@ -238,6 +238,9 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="VH5-wk-XhG"/>
+                    <connections>
+                        <outlet property="logOutButton" destination="HT0-NG-7SV" id="z7J-0R-B5g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nBh-cv-SJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

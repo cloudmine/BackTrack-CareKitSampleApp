@@ -1,8 +1,10 @@
 #import "BCMProfileViewController.h"
 #import "UIViewController+BCM.h"
+#import "UIButton+BCM.h"
 #import <MessageUI/MessageUI.h>
 
 @interface BCMProfileViewController ()<MFMailComposeViewControllerDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *logOutButton;
 @property (nonatomic, nullable) MFMailComposeViewController *mailViewController;
 @end
 
@@ -13,6 +15,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    [self.logOutButton setCornerRadius:4.0f andBorderWidth:1.0f];
     self.mailViewController = [BCMProfileViewController mailComposeViewControllerWithDelegate:self];
 }
 
