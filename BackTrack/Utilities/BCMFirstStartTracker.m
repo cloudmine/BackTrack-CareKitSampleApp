@@ -14,4 +14,9 @@ static NSString *const HasStartedKey = @"BCMHasStarted";
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:HasStartedKey];
 }
 
++ (void)forgetFirstStart
+{
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:HasStartedKey];
+}
+
 @end

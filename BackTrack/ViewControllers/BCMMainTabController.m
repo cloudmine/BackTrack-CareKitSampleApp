@@ -27,14 +27,19 @@ NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
     self.carePlanStore.delegate = self;
 
     if (BCMFirstStartTracker.isFirstStart) {
-        [self.carePlanStore bcm_fetchActivitiesWithCompletion:^(NSArray<OCKCarePlanActivity *> * _Nullable activities, NSError * _Nullable error) {
-            if (nil == activities || activities.count < 1) {
-                [self addInitialActivities];
-                return;
-            }
+        // Defensively clear the store, in case bad state was somehow left
+        [self.carePlanStore bcm_clearLocalStoreWithCompletion:^(NSArray<NSError *> * _Nonnull errors) {
+            //TODO: real error handling?
+            
+            [self.carePlanStore bcm_fetchActivitiesWithCompletion:^(NSArray<OCKCarePlanActivity *> * _Nullable activities, NSError * _Nullable error) {
+                if (nil == activities || activities.count < 1) {
+                    [self addInitialActivities];
+                    return;
+                }
 
-            NSLog(@"Adding fetched activities");
-            [BCMMainTabController addActivities:activities toStore:self.carePlanStore];
+                NSLog(@"Adding fetched activities");
+                [BCMMainTabController addActivities:activities toStore:self.carePlanStore];
+            }];
         }];
 
         [BCMFirstStartTracker recordFirstStart];

@@ -4,5 +4,6 @@
 
 + (BOOL)isFirstStart;
 + (void)recordFirstStart;
++ (void)forgetFirstStart;
 
 @end
