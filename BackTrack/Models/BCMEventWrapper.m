@@ -1,4 +1,5 @@
 #import "BCMEventWrapper.h"
+#import "BCMEventResultWrapper.h"
 
 @interface BCMEventWrapper ()
 
@@ -7,6 +8,7 @@
 @property (nonatomic, nonnull) NSDateComponents *date;
 @property (nonatomic, nonnull) OCKCarePlanActivity *activity;
 @property (nonatomic, nonnull) NSString *state;
+@property (nonatomic, nullable) BCMEventResultWrapper *resultWrapper;
 
 @end
 
@@ -23,6 +25,10 @@
     self.activity = event.activity;
     self.state = [BCMEventWrapper stateStringFromState:event.state];
 
+    if (nil != event.result) {
+        self.resultWrapper = [[BCMEventResultWrapper alloc] initWithEventResult:event.result];
+    }
+
     return self;
 }
 
@@ -38,6 +44,7 @@
     self.date = [aDecoder decodeObjectForKey:@"date"];
     self.activity = [aDecoder decodeObjectForKey:@"activity"];
     self.state = [aDecoder decodeObjectForKey:@"state"];
+    self.resultWrapper = [aDecoder decodeObjectForKey:@"resultWrapper"];
 
     return self;
 }
@@ -51,6 +58,7 @@
     [aCoder encodeObject:self.date forKey:@"date"];
     [aCoder encodeObject:self.activity forKey:@"activity"];
     [aCoder encodeObject:self.state forKey:@"state"];
+    [aCoder encodeObject:self.resultWrapper forKey:@"resultWrapper"];
 }
 
 #pragma mark Private
@@ -63,7 +71,7 @@
         case OCKCarePlanEventStateNotCompleted:
             return @"OCKCarePlanEventStateNotCompleted";
         case OCKCarePlanEventStateCompleted:
-            return @"OCKCarePlanEventStateNotCompleted";
+            return @"OCKCarePlanEventStateCompleted";
         default:
             return @"";
     }

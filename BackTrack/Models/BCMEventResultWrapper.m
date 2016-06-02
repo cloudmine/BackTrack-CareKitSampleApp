@@ -1,0 +1,52 @@
+#import "BCMEventResultWrapper.h"
+
+@interface BCMEventResultWrapper ()
+
+@property (nonatomic, nonnull) NSDate *creationDate;
+@property (nonatomic, copy, nonnull) NSString *valueString;
+@property (nonatomic, copy, nullable) NSString *unitString;
+@property (nonatomic, nullable) NSDictionary<NSString *, id<NSCoding>> *userInfo;
+
+@end
+
+@implementation BCMEventResultWrapper
+
+- (_Nonnull instancetype)initWithEventResult:(OCKCarePlanEventResult *_Nonnull)result
+{
+    self = [super init];
+    if (nil == self || nil == result) return nil;
+
+    self.creationDate = result.creationDate;
+    self.valueString = result.valueString;
+    self.unitString = result.unitString;
+    self.userInfo = result.userInfo;
+
+    return self;
+}
+
+#pragma mark NSCoding
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (nil == self) return nil;
+
+    self.creationDate = [aDecoder decodeObjectForKey:@"creationDate"];
+    self.valueString = [aDecoder decodeObjectForKey:@"valueString"];
+    self.unitString = [aDecoder decodeObjectForKey:@"unitString"];
+    self.userInfo = [aDecoder decodeObjectForKey:@"userInfo"];
+
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [super encodeWithCoder:aCoder];
+
+    [aCoder encodeObject:self.creationDate forKey:@"creationDate"];
+    [aCoder encodeObject:self.valueString forKey:@"valueString"];
+    [aCoder encodeObject:self.unitString forKey:@"unitString"];
+    [aCoder encodeObject:self.userInfo forKey:@"userInfo"];
+}
+
+@end
