@@ -42,6 +42,7 @@
 		B4F0F6121CFE0F40004E8A1B /* OCKCarePlanStore+BCM.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0F6111CFE0F40004E8A1B /* OCKCarePlanStore+BCM.m */; };
 		B4F0F6151CFE1282004E8A1B /* CareKit+BCM.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0F6141CFE1282004E8A1B /* CareKit+BCM.m */; };
 		B4F0F61B1CFE2D81004E8A1B /* BCMWaitUntil.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0F61A1CFE2D81004E8A1B /* BCMWaitUntil.m */; };
+		B4F0F61E1D00C998004E8A1B /* BCMEventWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0F61D1D00C998004E8A1B /* BCMEventWrapper.m */; };
 		D23CC92EEA79E27646C7EAEF /* Pods_BackTrackUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11FC8268A05A02C691A0A02B /* Pods_BackTrackUITests.framework */; };
 		DA3B93E99DDEAD62A7EED6EB /* Pods_BackTrack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D16A2C00F8C679B1F25B6B8B /* Pods_BackTrack.framework */; };
 /* End PBXBuildFile section */
@@ -134,6 +135,8 @@
 		B4F0F6141CFE1282004E8A1B /* CareKit+BCM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CareKit+BCM.m"; sourceTree = "<group>"; };
 		B4F0F6191CFE2D81004E8A1B /* BCMWaitUntil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMWaitUntil.h; sourceTree = "<group>"; };
 		B4F0F61A1CFE2D81004E8A1B /* BCMWaitUntil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMWaitUntil.m; sourceTree = "<group>"; };
+		B4F0F61C1D00C998004E8A1B /* BCMEventWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMEventWrapper.h; sourceTree = "<group>"; };
+		B4F0F61D1D00C998004E8A1B /* BCMEventWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMEventWrapper.m; sourceTree = "<group>"; };
 		B9C8B84302774DFBCFB945B3 /* Pods_BackTrackTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BackTrackTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D16A2C00F8C679B1F25B6B8B /* Pods_BackTrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BackTrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6E4F592477F5445F0000F51 /* Pods-BackTrackTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BackTrackTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BackTrackTests/Pods-BackTrackTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -338,6 +341,8 @@
 				B46F1F271CF540E800AB1972 /* BCMTasks.m */,
 				B4F0F60D1CFE04BD004E8A1B /* BCMActivityList.h */,
 				B4F0F60E1CFE04BD004E8A1B /* BCMActivityList.m */,
+				B4F0F61C1D00C998004E8A1B /* BCMEventWrapper.h */,
+				B4F0F61D1D00C998004E8A1B /* BCMEventWrapper.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -618,6 +623,7 @@
 				B4F0F6121CFE0F40004E8A1B /* OCKCarePlanStore+BCM.m in Sources */,
 				B4F0F5E41CF63F29004E8A1B /* BCMInsightsNavController.m in Sources */,
 				B46F1F221CF397CB00AB1972 /* BCMActivities.m in Sources */,
+				B4F0F61E1D00C998004E8A1B /* BCMEventWrapper.m in Sources */,
 				B4F0F60C1CFDE0C7004E8A1B /* UIButton+BCM.m in Sources */,
 				B4F0F5EC1CF769F9004E8A1B /* NSDateComponents+BCM.m in Sources */,
 				B46F1F1E1CF395A200AB1972 /* BCMFirstStartTracker.m in Sources */,

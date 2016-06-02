@@ -5,6 +5,7 @@
 #import "OCKCarePlanStore+BCM.h"
 #import "CareKit+BCM.h"
 #import "BCMWaitUntil.h"
+#import "BCMEventWrapper.h"
 
 NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
 
@@ -59,6 +60,17 @@ NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
 - (void)carePlanStore:(OCKCarePlanStore *)store didReceiveUpdateOfEvent:(OCKCarePlanEvent *)event
 {
     [self postStoreUpdateNotification];
+
+    BCMEventWrapper *eventWrapper = [[BCMEventWrapper alloc] initWithEvent:event];
+    [[CMStore defaultStore] saveUserObject:eventWrapper callback:^(CMObjectUploadResponse *response) {
+        if (nil != response.error) {
+            NSLog(@"Error uploading event: %@", response.error.localizedDescription);
+            return;
+        }
+
+        NSString *status = response.uploadStatuses[eventWrapper.objectId];
+        NSLog(@"Uploaded response with status: %@", status);
+    }];
 }
 
 - (void)carePlanStoreActivityListDidChange:(OCKCarePlanStore *)store
