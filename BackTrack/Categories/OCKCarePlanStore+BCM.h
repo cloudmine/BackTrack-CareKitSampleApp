@@ -9,5 +9,6 @@ typedef void(^BCMCarePlanClearCompletion)(NSArray<NSError *> *_Nonnull errors);
 - (void)bcm_saveActivtiesWithCompletion:(_Nullable BCMCarePlanSaveCompletion)block;
 - (void)bcm_fetchActivitiesWithCompletion:(_Nullable BCMCarePlanActivityFetchCompletion)block;
 - (void)bcm_clearLocalStoreWithCompletion:(_Nullable BCMCarePlanClearCompletion)block;
+- (void)bcm_reloadAllRemoteEvents;
 
 @end

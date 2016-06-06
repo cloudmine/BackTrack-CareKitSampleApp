@@ -35,29 +35,11 @@ NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
             [self.carePlanStore bcm_fetchActivitiesWithCompletion:^(NSArray<OCKCarePlanActivity *> * _Nullable activities, NSError * _Nullable error) {
                 if (nil == activities || activities.count < 1) {
                     [self addInitialActivities];
-                    return;
+                } else {
+                    [BCMMainTabController addActivities:activities toStore:self.carePlanStore];
                 }
 
-                NSLog(@"Adding fetched activities");
-                [BCMMainTabController addActivities:activities toStore:self.carePlanStore];
-
-                [[CMStore defaultStore] allUserObjectsOfClass:[BCMEventWrapper class] additionalOptions:nil callback:^(CMObjectFetchResponse *response) {
-                    // TODO: errors
-
-                    NSArray <BCMEventWrapper *> *wrappedEvents = response.objects;
-
-                    for (BCMEventWrapper *wrappedEvent in wrappedEvents) {
-                        [self.carePlanStore eventsForActivity:wrappedEvent.activity date:wrappedEvent.date completion:^(NSArray<OCKCarePlanEvent *> * _Nonnull events, NSError * _Nullable error) {
-                            //TODO: errors
-
-                            OCKCarePlanEvent *event = events.firstObject;
-
-                            [self.carePlanStore updateEvent:event withResult:wrappedEvent.result state:wrappedEvent.state completion:^(BOOL success,    OCKCarePlanEvent * _Nullable event, NSError * _Nullable error) {
-                                NSLog(@"Updated Event");
-                            }];
-                        }];
-                    }
-                }];
+                [self.carePlanStore bcm_reloadAllRemoteEvents];
             }];
         }];
 
@@ -78,6 +60,7 @@ NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
 - (void)carePlanStore:(OCKCarePlanStore *)store didReceiveUpdateOfEvent:(OCKCarePlanEvent *)event
 {
     [self postStoreUpdateNotification];
+    NSLog(@"Received Event Update Notification");
 
 //    BCMEventWrapper *eventWrapper = [[BCMEventWrapper alloc] initWithEvent:event];
 //    [[CMStore defaultStore] saveUserObject:eventWrapper callback:^(CMObjectUploadResponse *response) {

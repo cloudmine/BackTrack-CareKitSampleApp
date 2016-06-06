@@ -2,6 +2,7 @@
 #import <CloudMine/CloudMine.h>
 #import "BCMActivityList.h"
 #import "BCMWaitUntil.h"
+#import "BCMEventWrapper.h"
 
 @implementation OCKCarePlanStore (BCM)
 
@@ -72,6 +73,45 @@
     }
 
     block([mutableErrors copy]);
+}
+
+- (void)bcm_reloadAllRemoteEvents
+{
+    __weak id<OCKCarePlanStoreDelegate> holdDelegate = self.delegate;
+    self.delegate = nil;
+
+    [[CMStore defaultStore] allUserObjectsOfClass:[BCMEventWrapper class] additionalOptions:nil callback:^(CMObjectFetchResponse *response) {
+        // TODO: errors
+
+        NSArray <BCMEventWrapper *> *wrappedEvents = response.objects;
+
+        dispatch_group_t loadGroup = dispatch_group_create();
+
+        for (BCMEventWrapper *wrappedEvent in wrappedEvents) {
+            dispatch_group_enter(loadGroup);
+            [self eventsForActivity:wrappedEvent.activity date:wrappedEvent.date completion:^(NSArray<OCKCarePlanEvent *> * _Nonnull events, NSError * _Nullable error) {
+                //TODO: errors
+
+                for (OCKCarePlanEvent *anEvent in events) {
+                    if (anEvent.occurrenceIndexOfDay == wrappedEvent.occurrenceIndexOfDay) {
+                        dispatch_group_enter(loadGroup);
+                        [self updateEvent:anEvent withResult:wrappedEvent.result state:wrappedEvent.state completion:^(BOOL success, OCKCarePlanEvent * _Nullable event, NSError * _Nullable error) {
+                            NSLog(@"Updated Event");
+
+                            dispatch_group_leave(loadGroup);
+                        }];
+                    }
+                }
+
+                dispatch_group_leave(loadGroup);
+            }];
+        }
+
+        dispatch_group_wait(loadGroup, DISPATCH_TIME_FOREVER);
+
+        self.delegate = holdDelegate;
+    }];
+
 }
 
 @end

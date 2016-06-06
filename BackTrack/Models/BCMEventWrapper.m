@@ -3,8 +3,8 @@
 
 @interface BCMEventWrapper ()
 
-@property (nonatomic) NSUInteger occurrenceIndexOfDay;
-@property (nonatomic) NSUInteger numberOfDaysSinceStart;
+@property (nonatomic, readwrite) NSUInteger occurrenceIndexOfDay;
+@property (nonatomic, readwrite) NSUInteger numberOfDaysSinceStart;
 @property (nonatomic, nonnull, readwrite) NSDateComponents *date;
 @property (nonatomic, nonnull, readwrite) OCKCarePlanActivity *activity;
 @property (nonatomic, nonnull, readwrite) NSString *stateString;
