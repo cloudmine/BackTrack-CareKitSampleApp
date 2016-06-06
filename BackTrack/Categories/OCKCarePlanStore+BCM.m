@@ -3,6 +3,7 @@
 #import "BCMActivityList.h"
 #import "BCMWaitUntil.h"
 #import "BCMEventWrapper.h"
+#import "BCMEventUpdater.h"
 
 @implementation OCKCarePlanStore (BCM)
 
@@ -77,39 +78,54 @@
 
 - (void)bcm_reloadAllRemoteEvents
 {
-    __weak id<OCKCarePlanStoreDelegate> holdDelegate = self.delegate;
-    self.delegate = nil;
-
     [[CMStore defaultStore] allUserObjectsOfClass:[BCMEventWrapper class] additionalOptions:nil callback:^(CMObjectFetchResponse *response) {
         // TODO: errors
 
         NSArray <BCMEventWrapper *> *wrappedEvents = response.objects;
 
-        dispatch_group_t loadGroup = dispatch_group_create();
 
-        for (BCMEventWrapper *wrappedEvent in wrappedEvents) {
-            dispatch_group_enter(loadGroup);
-            [self eventsForActivity:wrappedEvent.activity date:wrappedEvent.date completion:^(NSArray<OCKCarePlanEvent *> * _Nonnull events, NSError * _Nullable error) {
+        dispatch_queue_t updateQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+
+        dispatch_async(updateQueue, ^{
+            for (BCMEventWrapper *wrappedEvent in wrappedEvents) {
+
+                __block NSArray<OCKCarePlanEvent *> *storeEvents = nil;
+                __block NSError *storeError = nil;
+
+                bcm_wait_until(^(BCMDoneBlock  _Nonnull done) {
+                     [self eventsForActivity:wrappedEvent.activity date:wrappedEvent.date completion:^(NSArray<OCKCarePlanEvent *> * _Nonnull events, NSError * _Nullable error) {
+                         storeEvents = events;
+                         storeError = error;
+                         done();
+                     }];
+                });
+
                 //TODO: errors
+                    for (NSInteger i = 0; i < storeEvents.count; i++) {
+                        OCKCarePlanEvent *anEvent =  storeEvents[i];
 
-                for (OCKCarePlanEvent *anEvent in events) {
-                    if (anEvent.occurrenceIndexOfDay == wrappedEvent.occurrenceIndexOfDay) {
-                        dispatch_group_enter(loadGroup);
-                        [self updateEvent:anEvent withResult:wrappedEvent.result state:wrappedEvent.state completion:^(BOOL success, OCKCarePlanEvent * _Nullable event, NSError * _Nullable error) {
-                            NSLog(@"Updated Event");
+                        if (anEvent.occurrenceIndexOfDay == wrappedEvent.occurrenceIndexOfDay) {
 
-                            dispatch_group_leave(loadGroup);
-                        }];
+                            BCMEventUpdater *updater = [[BCMEventUpdater alloc] initWithCarePlanStore:self
+                                                                                                event:anEvent
+                                                                                               result:wrappedEvent.result
+                                                                                                state:wrappedEvent.state];
+                            [updater performUpdate];
+                        }
                     }
-                }
 
-                dispatch_group_leave(loadGroup);
-            }];
-        }
-
-        dispatch_group_wait(loadGroup, DISPATCH_TIME_FOREVER);
-
-        self.delegate = holdDelegate;
+    //                for (OCKCarePlanEvent *anEvent in storeEvents) {
+    //                    if (anEvent.occurrenceIndexOfDay == wrappedEvent.occurrenceIndexOfDay) {
+    //
+    //                        BCMEventUpdater *updater = [[BCMEventUpdater alloc] initWithCarePlanStore:self
+    //                                                                                            event:anEvent
+    //                                                                                           result:wrappedEvent.result
+    //                                                                                            state:wrappedEvent.state];
+    //                        [updater performUpdate];
+    //                    }
+    //                }
+            }
+        });
     }];
 
 }
