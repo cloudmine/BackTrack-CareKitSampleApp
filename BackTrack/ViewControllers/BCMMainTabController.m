@@ -40,6 +40,24 @@ NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
 
                 NSLog(@"Adding fetched activities");
                 [BCMMainTabController addActivities:activities toStore:self.carePlanStore];
+
+                [[CMStore defaultStore] allUserObjectsOfClass:[BCMEventWrapper class] additionalOptions:nil callback:^(CMObjectFetchResponse *response) {
+                    // TODO: errors
+
+                    NSArray <BCMEventWrapper *> *wrappedEvents = response.objects;
+
+                    for (BCMEventWrapper *wrappedEvent in wrappedEvents) {
+                        [self.carePlanStore eventsForActivity:wrappedEvent.activity date:wrappedEvent.date completion:^(NSArray<OCKCarePlanEvent *> * _Nonnull events, NSError * _Nullable error) {
+                            //TODO: errors
+
+                            OCKCarePlanEvent *event = events.firstObject;
+
+                            [self.carePlanStore updateEvent:event withResult:wrappedEvent.result state:wrappedEvent.state completion:^(BOOL success,    OCKCarePlanEvent * _Nullable event, NSError * _Nullable error) {
+                                NSLog(@"Updated Event");
+                            }];
+                        }];
+                    }
+                }];
             }];
         }];
 
@@ -61,16 +79,16 @@ NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
 {
     [self postStoreUpdateNotification];
 
-    BCMEventWrapper *eventWrapper = [[BCMEventWrapper alloc] initWithEvent:event];
-    [[CMStore defaultStore] saveUserObject:eventWrapper callback:^(CMObjectUploadResponse *response) {
-        if (nil != response.error) {
-            NSLog(@"Error uploading event: %@", response.error.localizedDescription);
-            return;
-        }
-
-        NSString *status = response.uploadStatuses[eventWrapper.objectId];
-        NSLog(@"Uploaded response with status: %@", status);
-    }];
+//    BCMEventWrapper *eventWrapper = [[BCMEventWrapper alloc] initWithEvent:event];
+//    [[CMStore defaultStore] saveUserObject:eventWrapper callback:^(CMObjectUploadResponse *response) {
+//        if (nil != response.error) {
+//            NSLog(@"Error uploading event: %@", response.error.localizedDescription);
+//            return;
+//        }
+//
+//        NSString *status = response.uploadStatuses[eventWrapper.objectId];
+//        NSLog(@"Uploaded response with status: %@", status);
+//    }];
 }
 
 - (void)carePlanStoreActivityListDidChange:(OCKCarePlanStore *)store

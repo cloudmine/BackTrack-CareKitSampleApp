@@ -5,14 +5,16 @@
 
 @property (nonatomic) NSUInteger occurrenceIndexOfDay;
 @property (nonatomic) NSUInteger numberOfDaysSinceStart;
-@property (nonatomic, nonnull) NSDateComponents *date;
-@property (nonatomic, nonnull) OCKCarePlanActivity *activity;
-@property (nonatomic, nonnull) NSString *state;
+@property (nonatomic, nonnull, readwrite) NSDateComponents *date;
+@property (nonatomic, nonnull, readwrite) OCKCarePlanActivity *activity;
+@property (nonatomic, nonnull, readwrite) NSString *stateString;
 @property (nonatomic, nullable) BCMEventResultWrapper *resultWrapper;
 
 @end
 
 @implementation BCMEventWrapper
+
+# pragma mark Initializer
 
 - (instancetype)initWithEvent:(OCKCarePlanEvent *_Nonnull)event
 {
@@ -23,7 +25,7 @@
     self.numberOfDaysSinceStart = event.numberOfDaysSinceStart;
     self.date = event.date;
     self.activity = event.activity;
-    self.state = [BCMEventWrapper stateStringFromState:event.state];
+    self.stateString = [BCMEventWrapper stateStringFromState:event.state];
 
     if (nil != event.result) {
         self.resultWrapper = [[BCMEventResultWrapper alloc] initWithEventResult:event.result];
@@ -43,7 +45,7 @@
     self.numberOfDaysSinceStart = [aDecoder decodeIntegerForKey:@"numberOfDaysSinceStart"];
     self.date = [aDecoder decodeObjectForKey:@"date"];
     self.activity = [aDecoder decodeObjectForKey:@"activity"];
-    self.state = [aDecoder decodeObjectForKey:@"state"];
+    self.stateString = [aDecoder decodeObjectForKey:@"state"];
     self.resultWrapper = [aDecoder decodeObjectForKey:@"resultWrapper"];
 
     return self;
@@ -57,8 +59,20 @@
     [aCoder encodeInteger:self.numberOfDaysSinceStart forKey:@"numberOfDaysSinceStart"];
     [aCoder encodeObject:self.date forKey:@"date"];
     [aCoder encodeObject:self.activity forKey:@"activity"];
-    [aCoder encodeObject:self.state forKey:@"state"];
+    [aCoder encodeObject:self.stateString forKey:@"state"];
     [aCoder encodeObject:self.resultWrapper forKey:@"resultWrapper"];
+}
+
+#pragma mark Getters-Setters
+
+- (OCKCarePlanEventResult *)result
+{
+    return self.resultWrapper.result;
+}
+
+- (OCKCarePlanEventState)state
+{
+    return [BCMEventWrapper stateFromString:self.stateString];
 }
 
 #pragma mark Private
@@ -74,6 +88,19 @@
             return @"OCKCarePlanEventStateCompleted";
         default:
             return @"";
+    }
+}
+
++ (OCKCarePlanEventState)stateFromString:(NSString * _Nonnull)stateString
+{
+    if ([@"OCKCarePlanEventStateInitial" isEqualToString:stateString]) {
+        return OCKCarePlanEventStateInitial;
+    } else if ([@"OCKCarePlanEventStateNotCompleted" isEqualToString:stateString]) {
+        return OCKCarePlanEventStateNotCompleted;
+    } else if ([@"OCKCarePlanEventStateCompleted" isEqualToString:stateString]) {
+        return OCKCarePlanEventStateCompleted;
+    } else {
+        return -1;
     }
 }
 

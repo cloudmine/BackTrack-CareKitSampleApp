@@ -24,6 +24,17 @@
     return self;
 }
 
+#pragma mark Getter-Setters
+
+- (OCKCarePlanEventResult *)result
+{
+    // Note: this will change the creation date, which is set internally as the instant the object is initalized
+    // There does not seem to be a way to overload this
+    return [[OCKCarePlanEventResult alloc] initWithValueString:self.valueString
+                                                    unitString:self.unitString
+                                                      userInfo:self.userInfo];
+}
+
 #pragma mark NSCoding
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder

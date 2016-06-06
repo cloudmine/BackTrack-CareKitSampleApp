@@ -5,4 +5,6 @@
 
 - (_Nonnull instancetype)initWithEventResult:(OCKCarePlanEventResult *_Nonnull)result;
 
+@property (nonatomic, nullable, readonly) OCKCarePlanEventResult *result;
+
 @end

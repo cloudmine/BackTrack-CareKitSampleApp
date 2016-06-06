@@ -5,4 +5,9 @@
 
 - (_Nonnull instancetype)initWithEvent:(OCKCarePlanEvent *_Nonnull)event;
 
+@property (nonatomic, nonnull, readonly) NSDateComponents *date;
+@property (nonatomic, nonnull, readonly) OCKCarePlanActivity *activity;
+@property (nonatomic, readonly) OCKCarePlanEventState state;
+@property (nonatomic, nullable, readonly) OCKCarePlanEventResult *result;
+
 @end
