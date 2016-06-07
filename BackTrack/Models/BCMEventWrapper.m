@@ -18,8 +18,13 @@
 
 - (instancetype)initWithEvent:(OCKCarePlanEvent *_Nonnull)event
 {
-    self = [super init];
-    if (nil == self || nil == event) return nil;
+    NSAssert(nil != event, @"%@ cannot be initialized without an event", [BCMEventWrapper class]);
+
+    NSString *objectId = [NSString stringWithFormat:@"%@-%li-%li-%@", event.activity.identifier,
+                          (long)event.occurrenceIndexOfDay, (long)event.numberOfDaysSinceStart, [CMUser currentUser].objectId];
+    
+    self = [super initWithObjectId:objectId];
+    if (nil == self) return nil;
 
     self.occurrenceIndexOfDay = event.occurrenceIndexOfDay;
     self.numberOfDaysSinceStart = event.numberOfDaysSinceStart;
