@@ -78,7 +78,9 @@
 
 - (void)bcm_reloadAllRemoteEventsWithCompletion:(_Nullable BCMCarePlanReloadCompletion)block;
 {
-    [[CMStore defaultStore] allUserObjectsOfClass:[BCMEventWrapper class] additionalOptions:nil callback:^(CMObjectFetchResponse *response) {
+
+    CMStoreOptions *noLimitOption = [[CMStoreOptions alloc] initWithPagingDescriptor:[[CMPagingDescriptor alloc] initWithLimit:-1]];
+    [[CMStore defaultStore] allUserObjectsOfClass:[BCMEventWrapper class] additionalOptions:noLimitOption callback:^(CMObjectFetchResponse *response) {
         // TODO: errors
 
         NSArray <BCMEventWrapper *> *wrappedEvents = response.objects;
