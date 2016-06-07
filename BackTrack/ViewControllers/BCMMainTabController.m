@@ -28,30 +28,6 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
     self.carePlanStore = [[OCKCarePlanStore alloc] initWithPersistenceDirectoryURL:BCMMainTabController.persistenceDirectory];
     self.carePlanStore.delegate = self;
 
-    if (BCMFirstStartTracker.isFirstStart) {
-        // Defensively clear the store, in case bad state was somehow left
-        [self.carePlanStore bcm_clearLocalStoreWithCompletion:^(NSArray<NSError *> * _Nonnull errors) {
-            //TODO: real error handling?
-            
-            [self.carePlanStore bcm_fetchActivitiesWithCompletion:^(NSArray<OCKCarePlanActivity *> * _Nullable activities, NSError * _Nullable error) {
-                if (nil == activities || activities.count < 1) {
-                    [self addInitialActivities];
-                } else {
-                    [BCMMainTabController addActivities:activities toStore:self.carePlanStore];
-                }
-
-                [self.carePlanStore bcm_reloadAllRemoteEventsWithCompletion:^(NSError * _Nullable error) {
-                    // TODO: errors
-
-                    NSLog(@"Reload Completed");
-                    [self postDataDidReloadNotification];
-                }];
-            }];
-        }];
-
-        [BCMFirstStartTracker recordFirstStart];
-    }
-
     return self;
 }
 
@@ -59,6 +35,14 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
 {
     [super viewDidLoad];
     self.tabBar.tintColor = [UIColor bcmBlueColor];
+
+    if (BCMFirstStartTracker.isFirstStart) {
+        [self syncRemoteActivitiesAndEvents];
+        [BCMFirstStartTracker recordFirstStart];
+        return;
+    }
+
+    [self syncRemoteEvents];
 }
 
 #pragma mark OCKCarePlanStoreDelegate
@@ -86,6 +70,34 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
 }
 
 #pragma mark Private
+
+- (void)syncRemoteActivitiesAndEvents
+{
+    // Defensively clear the store, in case bad state was somehow left
+    [self.carePlanStore bcm_clearLocalStoreWithCompletion:^(NSArray<NSError *> * _Nonnull errors) {
+        //TODO: real error handling?
+
+        [self.carePlanStore bcm_fetchActivitiesWithCompletion:^(NSArray<OCKCarePlanActivity *> * _Nullable activities, NSError * _Nullable error) {
+            if (nil == activities || activities.count < 1) {
+                [self addInitialActivities];
+            } else {
+                [BCMMainTabController addActivities:activities toStore:self.carePlanStore];
+            }
+
+            [self syncRemoteEvents];
+        }];
+    }];
+}
+
+- (void)syncRemoteEvents
+{
+    [self.carePlanStore bcm_reloadAllRemoteEventsWithCompletion:^(NSError * _Nullable error) {
+        // TODO: errors
+
+        NSLog(@"Reload Completed");
+        [self postDataDidReloadNotification];
+    }];
+}
 
 - (void)postStoreUpdateNotification
 {
