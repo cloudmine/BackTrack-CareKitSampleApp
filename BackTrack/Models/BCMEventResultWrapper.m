@@ -39,7 +39,7 @@
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithCoder:aDecoder];
+    self = [super init];
     if (nil == self) return nil;
 
     self.creationDate = [aDecoder decodeObjectForKey:@"creationDate"];
@@ -52,9 +52,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [super encodeWithCoder:aCoder];
-
-    [aCoder encodeObject:self.creationDate forKey:@"creationDate"];
+     [aCoder encodeObject:self.creationDate forKey:@"creationDate"];
     [aCoder encodeObject:self.valueString forKey:@"valueString"];
     [aCoder encodeObject:self.unitString forKey:@"unitString"];
     [aCoder encodeObject:self.userInfo forKey:@"userInfo"];

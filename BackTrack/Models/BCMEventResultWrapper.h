@@ -1,7 +1,7 @@
 #import <CloudMine/CloudMine.h>
 #import <CareKit/CareKit.h>
 
-@interface BCMEventResultWrapper : CMObject
+@interface BCMEventResultWrapper : NSObject<CMCoding>
 
 - (_Nonnull instancetype)initWithEventResult:(OCKCarePlanEventResult *_Nonnull)result;
 
