@@ -1,4 +1,5 @@
 #import "BCMEventUpdater.h"
+#import "OCKCarePlanEvent+BCM.h"
 
 @interface BCMEventUpdater ()<OCKCarePlanStoreDelegate>
 @property (nonatomic, weak, nullable) id<OCKCarePlanStoreDelegate> holdDelegate;
@@ -46,14 +47,26 @@
     self.store.delegate = self.holdDelegate;
 }
 
-#pragma mark
+#pragma mark OCKCarePlanStoreDelegate
 
 - (void)carePlanStore:(OCKCarePlanStore *)store didReceiveUpdateOfEvent:(OCKCarePlanEvent *)event
 {
-    //if ([event isEqual:self.event]) {
+    if ([event.bcm_objectId isEqualToString:self.event.bcm_objectId]) {
         dispatch_group_leave(self.updateGroup);
-    //}
+    } else {
+        if (nil != self.holdDelegate && [self.holdDelegate respondsToSelector:@selector(carePlanStore:didReceiveUpdateOfEvent:)]) {
+            [self.holdDelegate carePlanStore:store didReceiveUpdateOfEvent:event];
+        }
+    }
 }
 
+- (void)carePlanStoreActivityListDidChange:(OCKCarePlanStore *)store
+{
+    if (nil == self.holdDelegate || ![self.holdDelegate respondsToSelector:@selector(carePlanStoreActivityListDidChange:)]) {
+        return;
+    }
+
+    [self.holdDelegate carePlanStoreActivityListDidChange:store];
+}
 
 @end
