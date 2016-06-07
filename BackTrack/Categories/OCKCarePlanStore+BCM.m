@@ -76,7 +76,7 @@
     block([mutableErrors copy]);
 }
 
-- (void)bcm_reloadAllRemoteEvents
+- (void)bcm_reloadAllRemoteEventsWithCompletion:(_Nullable BCMCarePlanReloadCompletion)block;
 {
     [[CMStore defaultStore] allUserObjectsOfClass:[BCMEventWrapper class] additionalOptions:nil callback:^(CMObjectFetchResponse *response) {
         // TODO: errors
@@ -101,29 +101,23 @@
                 });
 
                 //TODO: errors
-                    for (NSInteger i = 0; i < storeEvents.count; i++) {
-                        OCKCarePlanEvent *anEvent =  storeEvents[i];
 
-                        if (anEvent.occurrenceIndexOfDay == wrappedEvent.occurrenceIndexOfDay) {
+                for (OCKCarePlanEvent *anEvent in storeEvents) {
+                    if (anEvent.occurrenceIndexOfDay == wrappedEvent.occurrenceIndexOfDay) {
 
-                            BCMEventUpdater *updater = [[BCMEventUpdater alloc] initWithCarePlanStore:self
-                                                                                                event:anEvent
-                                                                                               result:wrappedEvent.result
-                                                                                                state:wrappedEvent.state];
-                            [updater performUpdate];
-                        }
+                        BCMEventUpdater *updater = [[BCMEventUpdater alloc] initWithCarePlanStore:self
+                                                                                            event:anEvent
+                                                                                           result:wrappedEvent.result
+                                                                                            state:wrappedEvent.state];
+                        [updater performUpdate];
                     }
+                }
 
-    //                for (OCKCarePlanEvent *anEvent in storeEvents) {
-    //                    if (anEvent.occurrenceIndexOfDay == wrappedEvent.occurrenceIndexOfDay) {
-    //
-    //                        BCMEventUpdater *updater = [[BCMEventUpdater alloc] initWithCarePlanStore:self
-    //                                                                                            event:anEvent
-    //                                                                                           result:wrappedEvent.result
-    //                                                                                            state:wrappedEvent.state];
-    //                        [updater performUpdate];
-    //                    }
-    //                }
+                if (nil == block) {
+                    return;
+                }
+
+                block(nil);
             }
         });
     }];

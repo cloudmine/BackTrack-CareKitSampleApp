@@ -39,7 +39,11 @@ NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
                     [BCMMainTabController addActivities:activities toStore:self.carePlanStore];
                 }
 
-                [self.carePlanStore bcm_reloadAllRemoteEvents];
+                [self.carePlanStore bcm_reloadAllRemoteEventsWithCompletion:^(NSError * _Nullable error) {
+                    // TODO: errors
+
+                    NSLog(@"Reload Completed");
+                }];
             }];
         }];
 
@@ -62,16 +66,16 @@ NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
     [self postStoreUpdateNotification];
     NSLog(@"Received Event Update Notification");
 
-//    BCMEventWrapper *eventWrapper = [[BCMEventWrapper alloc] initWithEvent:event];
-//    [[CMStore defaultStore] saveUserObject:eventWrapper callback:^(CMObjectUploadResponse *response) {
-//        if (nil != response.error) {
-//            NSLog(@"Error uploading event: %@", response.error.localizedDescription);
-//            return;
-//        }
-//
-//        NSString *status = response.uploadStatuses[eventWrapper.objectId];
-//        NSLog(@"Uploaded response with status: %@", status);
-//    }];
+    BCMEventWrapper *eventWrapper = [[BCMEventWrapper alloc] initWithEvent:event];
+    [[CMStore defaultStore] saveUserObject:eventWrapper callback:^(CMObjectUploadResponse *response) {
+        if (nil != response.error) {
+            NSLog(@"Error uploading event: %@", response.error.localizedDescription);
+            return;
+        }
+
+        NSString *status = response.uploadStatuses[eventWrapper.objectId];
+        NSLog(@"Uploaded response with status: %@", status);
+    }];
 }
 
 - (void)carePlanStoreActivityListDidChange:(OCKCarePlanStore *)store
