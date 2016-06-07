@@ -8,6 +8,7 @@
 #import "BCMEventWrapper.h"
 
 NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
+NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEventData";
 
 @interface BCMMainTabController ()<OCKCarePlanStoreDelegate>
 
@@ -43,6 +44,7 @@ NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
                     // TODO: errors
 
                     NSLog(@"Reload Completed");
+                    [self postDataDidReloadNotification];
                 }];
             }];
         }];
@@ -88,6 +90,11 @@ NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
 - (void)postStoreUpdateNotification
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:BCMStoreDidUpdateNotification object:self];
+}
+
+- (void)postDataDidReloadNotification
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:BCMStoreDidReloadEventData object:self];
 }
 
 + (NSURL *)persistenceDirectory

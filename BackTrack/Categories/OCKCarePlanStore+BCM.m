@@ -116,9 +116,9 @@
                 if (nil == block) {
                     return;
                 }
-
-                block(nil);
             }
+
+            block(nil);
         });
     }];
 
