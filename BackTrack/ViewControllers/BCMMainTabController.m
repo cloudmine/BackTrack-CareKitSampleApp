@@ -1,4 +1,5 @@
 #import "BCMMainTabController.h"
+#import <CMHealth/CMHealth.h>
 #import "BCMFirstStartTracker.h"
 #import "BCMActivities.h"
 #import "UIColor+BCM.h"
@@ -74,18 +75,16 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
 - (void)syncRemoteActivitiesAndEvents
 {
     // Defensively clear the store, in case bad state was somehow left
-    [self.carePlanStore bcm_clearLocalStoreWithCompletion:^(NSArray<NSError *> * _Nonnull errors) {
-        //TODO: real error handling?
+    [self.carePlanStore cmh_clearLocalStoreSynchronously]; //TODO: how to handle errors returned?
 
-        [self.carePlanStore bcm_fetchActivitiesWithCompletion:^(NSArray<OCKCarePlanActivity *> * _Nullable activities, NSError * _Nullable error) {
-            if (nil == activities || activities.count < 1) {
-                [self addInitialActivities];
-            } else {
-                [BCMMainTabController addActivities:activities toStore:self.carePlanStore];
-            }
+    [self.carePlanStore bcm_fetchActivitiesWithCompletion:^(NSArray<OCKCarePlanActivity *> * _Nullable activities, NSError * _Nullable error) {
+        if (nil == activities || activities.count < 1) {
+            [self addInitialActivities];
+        } else {
+            [BCMMainTabController addActivities:activities toStore:self.carePlanStore];
+        }
 
-            [self syncRemoteEvents];
-        }];
+        [self syncRemoteEvents];
     }];
 }
 

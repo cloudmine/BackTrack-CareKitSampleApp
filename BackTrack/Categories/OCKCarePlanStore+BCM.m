@@ -39,43 +39,6 @@
     }];
 }
 
-- (void)bcm_clearLocalStoreWithCompletion:(_Nullable BCMCarePlanClearCompletion)block;
-{
-    __block NSArray *allActivities = nil;
-    __block NSError *fetchError = nil;
-    __block BOOL fetchSuccess = NO;
-
-    bcm_wait_until(^(BCMDoneBlock  _Nonnull done) {
-        [self activitiesWithCompletion:^(BOOL success, NSArray<OCKCarePlanActivity *> * _Nonnull activities, NSError * _Nullable error) {
-            fetchSuccess = success;
-            allActivities = activities;
-            fetchError = error;
-            done();
-        }];
-    });
-
-
-    NSMutableArray *mutableErrors = [NSMutableArray new];
-
-    for (OCKCarePlanActivity *activity in allActivities) {
-        bcm_wait_until(^(BCMDoneBlock _Nonnull done) {
-            [self removeActivity:activity completion:^(BOOL success, NSError * _Nullable error) {
-                if (!success) {
-                    NSLog(@"Failed to remove activity with identifer: %@; %@", activity.identifier, error.localizedDescription);
-                    [mutableErrors addObject:error];
-                    done();
-                    return;
-                }
-
-                NSLog(@"Removed activity with identifier: %@", activity.identifier);
-                done();
-            }];
-        });
-    }
-
-    block([mutableErrors copy]);
-}
-
 - (void)bcm_reloadAllRemoteEventsWithCompletion:(_Nullable BCMCarePlanReloadCompletion)block;
 {
 

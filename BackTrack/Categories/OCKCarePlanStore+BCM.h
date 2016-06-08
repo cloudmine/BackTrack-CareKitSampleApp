@@ -9,7 +9,6 @@ typedef void(^BCMCarePlanReloadCompletion)(NSError *_Nullable error);
 
 - (void)bcm_saveActivtiesWithCompletion:(_Nullable BCMCarePlanSaveCompletion)block;
 - (void)bcm_fetchActivitiesWithCompletion:(_Nullable BCMCarePlanActivityFetchCompletion)block;
-- (void)bcm_clearLocalStoreWithCompletion:(_Nullable BCMCarePlanClearCompletion)block;
 - (void)bcm_reloadAllRemoteEventsWithCompletion:(_Nullable BCMCarePlanReloadCompletion)block;
 
 @end
