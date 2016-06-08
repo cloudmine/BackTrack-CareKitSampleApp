@@ -40,7 +40,6 @@
 		B4F0F6061CFDD9AC004E8A1B /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4F0F6051CFDD9AC004E8A1B /* Profile.storyboard */; };
 		B4F0F6091CFDDCCD004E8A1B /* BCMProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0F6081CFDDCCD004E8A1B /* BCMProfileViewController.m */; };
 		B4F0F60C1CFDE0C7004E8A1B /* UIButton+BCM.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0F60B1CFDE0C7004E8A1B /* UIButton+BCM.m */; };
-		B4F0F60F1CFE04BD004E8A1B /* BCMActivityList.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0F60E1CFE04BD004E8A1B /* BCMActivityList.m */; };
 		B4F0F6121CFE0F40004E8A1B /* OCKCarePlanStore+BCM.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0F6111CFE0F40004E8A1B /* OCKCarePlanStore+BCM.m */; };
 		B4F0F6151CFE1282004E8A1B /* CareKit+BCM.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0F6141CFE1282004E8A1B /* CareKit+BCM.m */; };
 		B4F0F61B1CFE2D81004E8A1B /* BCMWaitUntil.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0F61A1CFE2D81004E8A1B /* BCMWaitUntil.m */; };
@@ -134,8 +133,6 @@
 		B4F0F6081CFDDCCD004E8A1B /* BCMProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMProfileViewController.m; sourceTree = "<group>"; };
 		B4F0F60A1CFDE0C7004E8A1B /* UIButton+BCM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BCM.h"; sourceTree = "<group>"; };
 		B4F0F60B1CFDE0C7004E8A1B /* UIButton+BCM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BCM.m"; sourceTree = "<group>"; };
-		B4F0F60D1CFE04BD004E8A1B /* BCMActivityList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMActivityList.h; sourceTree = "<group>"; };
-		B4F0F60E1CFE04BD004E8A1B /* BCMActivityList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMActivityList.m; sourceTree = "<group>"; };
 		B4F0F6101CFE0F40004E8A1B /* OCKCarePlanStore+BCM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCKCarePlanStore+BCM.h"; sourceTree = "<group>"; };
 		B4F0F6111CFE0F40004E8A1B /* OCKCarePlanStore+BCM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCKCarePlanStore+BCM.m"; sourceTree = "<group>"; };
 		B4F0F6131CFE1282004E8A1B /* CareKit+BCM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CareKit+BCM.h"; sourceTree = "<group>"; };
@@ -352,8 +349,6 @@
 				B46F1F211CF397CB00AB1972 /* BCMActivities.m */,
 				B46F1F261CF540E800AB1972 /* BCMTasks.h */,
 				B46F1F271CF540E800AB1972 /* BCMTasks.m */,
-				B4F0F60D1CFE04BD004E8A1B /* BCMActivityList.h */,
-				B4F0F60E1CFE04BD004E8A1B /* BCMActivityList.m */,
 				B4F0F61C1D00C998004E8A1B /* BCMEventWrapper.h */,
 				B4F0F61D1D00C998004E8A1B /* BCMEventWrapper.m */,
 				B4F0F61F1D00D616004E8A1B /* BCMEventResultWrapper.h */,
@@ -655,7 +650,6 @@
 				B46F1EC41CEE46F200AB1972 /* main.m in Sources */,
 				B46F1F1A1CF3942500AB1972 /* BMCSymptomNavController.m in Sources */,
 				B46F1F131CF38DCA00AB1972 /* BCMCareNavController.m in Sources */,
-				B4F0F60F1CFE04BD004E8A1B /* BCMActivityList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

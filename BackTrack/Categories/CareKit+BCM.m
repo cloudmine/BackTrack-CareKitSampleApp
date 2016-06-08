@@ -18,7 +18,3 @@
 }
 
 @end
-
-@implementation OCKCareSchedule (BCM)
-
-@end

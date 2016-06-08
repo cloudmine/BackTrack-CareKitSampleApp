@@ -1,6 +1,6 @@
-    #import "OCKCarePlanStore+BCM.h"
+#import "OCKCarePlanStore+BCM.h"
 #import <CloudMine/CloudMine.h>
-#import "BCMActivityList.h"
+#import <CMHealth/CMHActivityList.h>
 #import "BCMWaitUntil.h"
 #import "BCMEventWrapper.h"
 #import "BCMEventUpdater.h"
@@ -17,7 +17,7 @@
             return;
         }
 
-        BCMActivityList *activityList = [[BCMActivityList alloc] initWithActivities:activities];
+        CMHActivityList *activityList = [[CMHActivityList alloc] initWithActivities:activities];
 
         [activityList saveWithUser:[CMUser currentUser] callback:^(CMObjectUploadResponse *response) {
             // TODO: Error handling
@@ -32,9 +32,9 @@
 
 - (void)bcm_fetchActivitiesWithCompletion:(_Nullable BCMCarePlanActivityFetchCompletion)block
 {
-    [[CMStore defaultStore] allUserObjectsOfClass:[BCMActivityList class] additionalOptions:nil callback:^(CMObjectFetchResponse *response) {
+    [[CMStore defaultStore] allUserObjectsOfClass:[CMHActivityList class] additionalOptions:nil callback:^(CMObjectFetchResponse *response) {
         // TODO: Error checking/handling
-        BCMActivityList *activityList = response.objects.firstObject;
+        CMHActivityList *activityList = response.objects.firstObject;
         block(activityList.activities, nil);
     }];
 }

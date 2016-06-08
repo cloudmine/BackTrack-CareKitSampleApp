@@ -1,12 +1,8 @@
 #import <CareKit/CareKit.h>
 #import <CloudMine/CMCoding.h>
 
-@interface OCKCarePlanActivity (BCM)<CMCoding>
+@interface OCKCarePlanActivity (BCM)
 
 - (BOOL)isDataEquivalentOf:(OCKCarePlanActivity *_Nullable)other;
-
-@end
-
-@interface OCKCareSchedule (BCM)<CMCoding>
 
 @end
