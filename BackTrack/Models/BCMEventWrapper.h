@@ -4,6 +4,7 @@
 @interface BCMEventWrapper : CMObject
 
 - (_Nonnull instancetype)initWithEvent:(OCKCarePlanEvent *_Nonnull)event;
+- (BOOL)isDataEquivalentOf:(OCKCarePlanEvent *_Nullable)event;
 
 @property (nonatomic, readonly) NSUInteger occurrenceIndexOfDay;
 @property (nonatomic, readonly) NSUInteger numberOfDaysSinceStart;

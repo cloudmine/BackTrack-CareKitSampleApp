@@ -1,6 +1,7 @@
 #import "BCMEventWrapper.h"
 #import "BCMEventResultWrapper.h"
 #import "OCKCarePlanEvent+BCM.h"
+#import "CareKit+BCM.h"
 
 @interface BCMEventWrapper ()
 
@@ -35,6 +36,27 @@
     }
 
     return self;
+}
+
+#pragma mark Public
+
+- (BOOL)isDataEquivalentOf:(OCKCarePlanEvent *_Nullable)event
+{
+    if (nil == event) {
+        return NO;
+    }
+
+    BOOL isEquivalentData = self.occurrenceIndexOfDay == event.occurrenceIndexOfDay &&
+                            self.numberOfDaysSinceStart == event.numberOfDaysSinceStart &&
+                            [self.date isEqual:event.date] &&
+                            [self.activity isDataEquivalentOf:event.activity] &&
+                             self.state == event.state;
+
+    if (nil == self.result && nil == event.result) {
+        return isEquivalentData;
+    }
+
+    return isEquivalentData && [self.resultWrapper isDataEquivalentOf:event.result];
 }
 
 #pragma mark NSCoding

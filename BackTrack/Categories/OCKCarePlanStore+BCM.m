@@ -87,7 +87,6 @@
 
 
         dispatch_queue_t updateQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-
         dispatch_async(updateQueue, ^{
             for (BCMEventWrapper *wrappedEvent in wrappedEvents) {
 
@@ -105,14 +104,16 @@
                 //TODO: errors
 
                 for (OCKCarePlanEvent *anEvent in storeEvents) {
-                    if (anEvent.occurrenceIndexOfDay == wrappedEvent.occurrenceIndexOfDay) {
-
-                        BCMEventUpdater *updater = [[BCMEventUpdater alloc] initWithCarePlanStore:self
-                                                                                            event:anEvent
-                                                                                           result:wrappedEvent.result
-                                                                                            state:wrappedEvent.state];
-                        [updater performUpdate];
+                    if (anEvent.occurrenceIndexOfDay != wrappedEvent.occurrenceIndexOfDay ||
+                        [wrappedEvent isDataEquivalentOf:anEvent]) {
+                        continue;
                     }
+
+                    BCMEventUpdater *updater = [[BCMEventUpdater alloc] initWithCarePlanStore:self
+                                                                                        event:anEvent
+                                                                                       result:wrappedEvent.result
+                                                                                        state:wrappedEvent.state];
+                    [updater performUpdate];
                 }
 
                 if (nil == block) {

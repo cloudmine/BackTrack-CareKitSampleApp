@@ -1,4 +1,5 @@
 #import "BCMEventResultWrapper.h"
+#import "BCMObjectCompare.h"
 
 @interface BCMEventResultWrapper ()
 
@@ -22,6 +23,19 @@
     self.userInfo = result.userInfo;
 
     return self;
+}
+
+#pragma mark Public
+
+- (BOOL)isDataEquivalentOf:(OCKCarePlanEventResult *_Nullable)result
+{
+    if (nil == result) {
+        return NO;
+    }
+
+    return [self.valueString isEqualToString:result.valueString] &&
+            [self.unitString isEqualToString:result.unitString] &&
+            bcmAreEqual(self.userInfo, result.userInfo);
 }
 
 #pragma mark Getter-Setters

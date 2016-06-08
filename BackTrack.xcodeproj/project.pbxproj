@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9E230222AF550F36BD730506 /* Pods_BackTrackTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9C8B84302774DFBCFB945B3 /* Pods_BackTrackTests.framework */; };
 		B4637C2B1D05F72D005F9B4C /* BCMEventUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = B4637C2A1D05F72D005F9B4C /* BCMEventUpdater.m */; };
+		B4637C2E1D0871E7005F9B4C /* BCMObjectCompare.m in Sources */ = {isa = PBXBuildFile; fileRef = B4637C2D1D0871E7005F9B4C /* BCMObjectCompare.m */; };
 		B46F1EC41CEE46F200AB1972 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1EC31CEE46F200AB1972 /* main.m */; };
 		B46F1EC71CEE46F200AB1972 /* BCMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1EC61CEE46F200AB1972 /* BCMAppDelegate.m */; };
 		B46F1ECA1CEE46F200AB1972 /* BCMMainTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1EC91CEE46F200AB1972 /* BCMMainTabController.m */; };
@@ -75,6 +76,8 @@
 		8B9B8235072039F9518B78C3 /* Pods-BackTrackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BackTrackTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BackTrackTests/Pods-BackTrackTests.release.xcconfig"; sourceTree = "<group>"; };
 		B4637C291D05F72D005F9B4C /* BCMEventUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMEventUpdater.h; sourceTree = "<group>"; };
 		B4637C2A1D05F72D005F9B4C /* BCMEventUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMEventUpdater.m; sourceTree = "<group>"; };
+		B4637C2C1D0871E7005F9B4C /* BCMObjectCompare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMObjectCompare.h; sourceTree = "<group>"; };
+		B4637C2D1D0871E7005F9B4C /* BCMObjectCompare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMObjectCompare.m; sourceTree = "<group>"; };
 		B46F1EBF1CEE46F200AB1972 /* BackTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BackTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B46F1EC31CEE46F200AB1972 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B46F1EC51CEE46F200AB1972 /* BCMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BCMAppDelegate.h; sourceTree = "<group>"; };
@@ -335,6 +338,8 @@
 				B4F0F61A1CFE2D81004E8A1B /* BCMWaitUntil.m */,
 				B4637C291D05F72D005F9B4C /* BCMEventUpdater.h */,
 				B4637C2A1D05F72D005F9B4C /* BCMEventUpdater.m */,
+				B4637C2C1D0871E7005F9B4C /* BCMObjectCompare.h */,
+				B4637C2D1D0871E7005F9B4C /* BCMObjectCompare.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -635,6 +640,7 @@
 				B4F0F6121CFE0F40004E8A1B /* OCKCarePlanStore+BCM.m in Sources */,
 				B4F0F5E41CF63F29004E8A1B /* BCMInsightsNavController.m in Sources */,
 				B46F1F221CF397CB00AB1972 /* BCMActivities.m in Sources */,
+				B4637C2E1D0871E7005F9B4C /* BCMObjectCompare.m in Sources */,
 				B4F0F61E1D00C998004E8A1B /* BCMEventWrapper.m in Sources */,
 				B4F0F60C1CFDE0C7004E8A1B /* UIButton+BCM.m in Sources */,
 				B4F0F5EC1CF769F9004E8A1B /* NSDateComponents+BCM.m in Sources */,
