@@ -128,7 +128,7 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
     NSLog(@"Adding Hardcoded Activities");
     [BCMMainTabController addActivities:BCMActivities.activities toStore:self.carePlanStore];
 
-    [self.carePlanStore bcm_saveActivtiesWithCompletion:^(NSError * _Nullable error) {
+    [self.carePlanStore cmh_saveActivtiesWithCompletion:^(NSError * _Nullable error) {
         if (nil != error) {
             NSLog(@"Error saving activities: %@", error.localizedDescription); // TODO: Really error handling
             return;

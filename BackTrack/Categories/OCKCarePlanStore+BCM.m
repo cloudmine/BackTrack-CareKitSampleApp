@@ -7,29 +7,6 @@
 
 @implementation OCKCarePlanStore (BCM)
 
-- (void)bcm_saveActivtiesWithCompletion:(_Nullable BCMCarePlanSaveCompletion)block
-{
-    [self activitiesWithCompletion:^(BOOL success, NSArray<OCKCarePlanActivity *> * _Nonnull activities, NSError * _Nullable error) {
-        if (!success) {
-            if (nil != block) {
-                block(error);
-            }
-            return;
-        }
-
-        CMHActivityList *activityList = [[CMHActivityList alloc] initWithActivities:activities];
-
-        [activityList saveWithUser:[CMUser currentUser] callback:^(CMObjectUploadResponse *response) {
-            // TODO: Error handling
-            NSLog(@"Save Complete");
-
-            if (nil != block) {
-                block(nil);
-            }
-        }];
-    }];
-}
-
 - (void)bcm_fetchActivitiesWithCompletion:(_Nullable BCMCarePlanActivityFetchCompletion)block
 {
     [[CMStore defaultStore] allUserObjectsOfClass:[CMHActivityList class] additionalOptions:nil callback:^(CMObjectFetchResponse *response) {
