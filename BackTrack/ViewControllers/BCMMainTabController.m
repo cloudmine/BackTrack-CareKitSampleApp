@@ -3,7 +3,6 @@
 #import "BCMFirstStartTracker.h"
 #import "BCMActivities.h"
 #import "UIColor+BCM.h"
-#import "OCKCarePlanStore+BCM.h"
 #import "BCMWaitUntil.h"
 
 NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
@@ -89,10 +88,12 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
 
 - (void)syncRemoteEvents
 {
-    [self.carePlanStore bcm_reloadAllRemoteEventsWithCompletion:^(NSError * _Nullable error) {
-        // TODO: errors
+    [self.carePlanStore cmh_fetchAndLoadAllEventsWithCompletion:^(BOOL success, NSArray<NSError *> * _Nonnull errors) {
+        if (!success) {
+            NSLog(@"Errors loading remote events: %@", errors.firstObject.localizedDescription);
+            return;
+        }
 
-        NSLog(@"Reload Completed");
         [self postDataDidReloadNotification];
     }];
 }
