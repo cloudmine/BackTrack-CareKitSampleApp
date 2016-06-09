@@ -7,15 +7,6 @@
 
 @implementation OCKCarePlanStore (BCM)
 
-- (void)bcm_fetchActivitiesWithCompletion:(_Nullable BCMCarePlanActivityFetchCompletion)block
-{
-    [[CMStore defaultStore] allUserObjectsOfClass:[CMHActivityList class] additionalOptions:nil callback:^(CMObjectFetchResponse *response) {
-        // TODO: Error checking/handling
-        CMHActivityList *activityList = response.objects.firstObject;
-        block(activityList.activities, nil);
-    }];
-}
-
 - (void)bcm_reloadAllRemoteEventsWithCompletion:(_Nullable BCMCarePlanReloadCompletion)block;
 {
 

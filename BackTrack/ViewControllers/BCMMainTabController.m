@@ -77,8 +77,10 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
     // Defensively clear the store, in case bad state was somehow left
     [self.carePlanStore cmh_clearLocalStoreSynchronously]; //TODO: how to handle errors returned?
 
-    [self.carePlanStore bcm_fetchActivitiesWithCompletion:^(NSArray<OCKCarePlanActivity *> * _Nullable activities, NSError * _Nullable error) {
-        if (nil == activities || activities.count < 1) {
+    [self.carePlanStore cmh_fetchActivitiesWithCompletion:^(NSArray<OCKCarePlanActivity *> * _Nonnull activities, NSError * _Nullable error) {
+        // TODO: Error checking
+
+        if (activities.count < 1) {
             [self addInitialActivities];
         } else {
             [BCMMainTabController addActivities:activities toStore:self.carePlanStore];
