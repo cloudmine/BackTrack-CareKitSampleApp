@@ -1,5 +1,6 @@
 #import "BCMEventUpdater.h"
 #import "OCKCarePlanEvent+BCM.h"
+#import <CMHealth/CMHealth.h>
 
 @interface BCMEventUpdater ()<OCKCarePlanStoreDelegate>
 @property (nonatomic, weak, nullable) id<OCKCarePlanStoreDelegate> holdDelegate;
@@ -51,7 +52,7 @@
 
 - (void)carePlanStore:(OCKCarePlanStore *)store didReceiveUpdateOfEvent:(OCKCarePlanEvent *)event
 {
-    if ([event.bcm_objectId isEqualToString:self.event.bcm_objectId]) {
+    if ([event.cmh_objectId isEqualToString:self.event.cmh_objectId]) {
         dispatch_group_leave(self.updateGroup);
     } else {
         if (nil != self.holdDelegate && [self.holdDelegate respondsToSelector:@selector(carePlanStore:didReceiveUpdateOfEvent:)]) {

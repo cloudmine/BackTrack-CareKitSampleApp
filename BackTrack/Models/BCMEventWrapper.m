@@ -2,6 +2,7 @@
 #import "BCMEventResultWrapper.h"
 #import "OCKCarePlanEvent+BCM.h"
 #import "CareKit+BCM.h"
+#import <CMHealth/CMHealth.h>
 
 @interface BCMEventWrapper ()
 
@@ -22,7 +23,7 @@
 {
     NSAssert(nil != event, @"%@ cannot be initialized without an event", [BCMEventWrapper class]);
 
-    self = [super initWithObjectId:event.bcm_objectId];
+    self = [super initWithObjectId:event.cmh_objectId];
     if (nil == self) return nil;
 
     self.occurrenceIndexOfDay = event.occurrenceIndexOfDay;
