@@ -1,8 +1,7 @@
 #import "OCKCarePlanStore+BCM.h"
 #import <CloudMine/CloudMine.h>
-#import <CMHealth/CMHActivityList.h>
+#import <CMHealth/CMHCareEvent.h>
 #import "BCMWaitUntil.h"
-#import "BCMEventWrapper.h"
 #import "BCMEventUpdater.h"
 
 @implementation OCKCarePlanStore (BCM)
@@ -11,15 +10,15 @@
 {
 
     CMStoreOptions *noLimitOption = [[CMStoreOptions alloc] initWithPagingDescriptor:[[CMPagingDescriptor alloc] initWithLimit:-1]];
-    [[CMStore defaultStore] allUserObjectsOfClass:[BCMEventWrapper class] additionalOptions:noLimitOption callback:^(CMObjectFetchResponse *response) {
+    [[CMStore defaultStore] allUserObjectsOfClass:[CMHCareEvent class] additionalOptions:noLimitOption callback:^(CMObjectFetchResponse *response) {
         // TODO: errors
 
-        NSArray <BCMEventWrapper *> *wrappedEvents = response.objects;
+        NSArray <CMHCareEvent *> *wrappedEvents = response.objects;
 
 
         dispatch_queue_t updateQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         dispatch_async(updateQueue, ^{
-            for (BCMEventWrapper *wrappedEvent in wrappedEvents) {
+            for (CMHCareEvent *wrappedEvent in wrappedEvents) {
 
                 __block NSArray<OCKCarePlanEvent *> *storeEvents = nil;
                 __block NSError *storeError = nil;

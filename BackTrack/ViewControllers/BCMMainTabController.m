@@ -4,9 +4,7 @@
 #import "BCMActivities.h"
 #import "UIColor+BCM.h"
 #import "OCKCarePlanStore+BCM.h"
-#import "CareKit+BCM.h"
 #import "BCMWaitUntil.h"
-#import "BCMEventWrapper.h"
 
 NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
 NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEventData";
@@ -50,18 +48,17 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
 
 - (void)carePlanStore:(OCKCarePlanStore *)store didReceiveUpdateOfEvent:(OCKCarePlanEvent *)event
 {
-    [self postStoreUpdateNotification];
     NSLog(@"Received Event Update Notification");
 
-    BCMEventWrapper *eventWrapper = [[BCMEventWrapper alloc] initWithEvent:event];
-    [[CMStore defaultStore] saveUserObject:eventWrapper callback:^(CMObjectUploadResponse *response) {
-        if (nil != response.error) {
-            NSLog(@"Error uploading event: %@", response.error.localizedDescription);
+    [self postStoreUpdateNotification];
+
+    [event cmh_saveWithCompletion:^(NSString * _Nullable uploadStatus, NSError * _Nullable error) {
+        if (nil != error) {
+            NSLog(@"Error uploading event: %@", error.localizedDescription);
             return;
         }
 
-        NSString *status = response.uploadStatuses[eventWrapper.objectId];
-        NSLog(@"Uploaded response with status: %@", status);
+        NSLog(@"Uploaded response with status: %@", uploadStatus);
     }];
 }
 
