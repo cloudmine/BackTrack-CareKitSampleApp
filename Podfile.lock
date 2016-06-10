@@ -44,7 +44,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CMHealth:
-    :commit: fd1cb2861f5037415d2899b4dfff0c60fcdb040d
+    :commit: 0af04b7ad4fbdae1ac89bc48647e19034502db0a
     :git: https://github.com/apbendi/CMHealthSDK-iOS.git
 
 SPEC CHECKSUMS:
