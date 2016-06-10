@@ -35,11 +35,17 @@ PODS:
   - TPKeyboardAvoiding (1.3)
 
 DEPENDENCIES:
-  - CMHealth (from `../CMHealthSDK-iOS/`)
+  - CMHealth (from `https://github.com/apbendi/CMHealthSDK-iOS.git`, branch `carekit`)
 
 EXTERNAL SOURCES:
   CMHealth:
-    :path: ../CMHealthSDK-iOS/
+    :branch: carekit
+    :git: https://github.com/apbendi/CMHealthSDK-iOS.git
+
+CHECKOUT OPTIONS:
+  CMHealth:
+    :commit: fd1cb2861f5037415d2899b4dfff0c60fcdb040d
+    :git: https://github.com/apbendi/CMHealthSDK-iOS.git
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -49,6 +55,6 @@ SPEC CHECKSUMS:
   ResearchKit: badba0340dd71d1cbab4789a0bf01b26022b8f94
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
 
-PODFILE CHECKSUM: 2b90b5bc248ad120577ca09f8c8d0c0b5cf2eb90
+PODFILE CHECKSUM: 93b47e8acff2ab56e20070f7c41c58e57e291000
 
 COCOAPODS: 1.0.1
