@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -76,13 +77,22 @@
                                     <action selector="didPressJoinButton:" destination="Axh-nS-xFZ" eventType="touchUpInside" id="A0q-TJ-fcz"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" image="Brandmark.png" translatesAutoresizingMaskIntoConstraints="NO" id="29A-Xs-4jf">
+                                <rect key="frame" x="166" y="201" width="268" height="268"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="29A-Xs-4jf" secondAttribute="height" multiplier="1:1" id="3Yf-JZ-xQh"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="29A-Xs-4jf" firstAttribute="centerX" secondItem="K1Y-GW-Xv7" secondAttribute="centerX" id="0kN-ey-sJT"/>
                             <constraint firstItem="aNt-2T-rkX" firstAttribute="top" secondItem="0vp-3r-xNF" secondAttribute="bottom" constant="16" id="45Y-Pe-49J"/>
                             <constraint firstItem="aNt-2T-rkX" firstAttribute="leading" secondItem="K1Y-GW-Xv7" secondAttribute="leading" constant="20" symbolic="YES" id="Abg-Y4-k0g"/>
+                            <constraint firstItem="29A-Xs-4jf" firstAttribute="top" secondItem="aNt-2T-rkX" secondAttribute="bottom" constant="25" id="DB0-pm-PD1"/>
                             <constraint firstAttribute="trailing" secondItem="aNt-2T-rkX" secondAttribute="trailing" constant="20" symbolic="YES" id="JMl-nQ-jNF"/>
                             <constraint firstAttribute="trailing" secondItem="0vp-3r-xNF" secondAttribute="trailing" constant="20" symbolic="YES" id="W9v-JW-Fnh"/>
+                            <constraint firstItem="dvm-mr-VyG" firstAttribute="top" secondItem="29A-Xs-4jf" secondAttribute="bottom" constant="25" id="ZIb-gw-GZp"/>
                             <constraint firstItem="hph-RU-DY2" firstAttribute="top" secondItem="dvm-mr-VyG" secondAttribute="bottom" constant="8" symbolic="YES" id="cY5-o3-LrU"/>
                             <constraint firstItem="0vp-3r-xNF" firstAttribute="leading" secondItem="K1Y-GW-Xv7" secondAttribute="leading" constant="20" symbolic="YES" id="dDh-tQ-Cyg"/>
                             <constraint firstItem="dvm-mr-VyG" firstAttribute="width" secondItem="hph-RU-DY2" secondAttribute="width" constant="16" id="iLq-Hk-20b"/>
@@ -102,4 +112,7 @@
             <point key="canvasLocation" x="409" y="437"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Brandmark.png" width="2338" height="1913"/>
+    </resources>
 </document>

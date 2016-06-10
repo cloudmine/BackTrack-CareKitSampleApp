@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9E230222AF550F36BD730506 /* Pods_BackTrackTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9C8B84302774DFBCFB945B3 /* Pods_BackTrackTests.framework */; };
+		B44DB55E1D0B407B0014EF4F /* Brandmark.png in Resources */ = {isa = PBXBuildFile; fileRef = B44DB55C1D0B407B0014EF4F /* Brandmark.png */; };
 		B46F1EC41CEE46F200AB1972 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1EC31CEE46F200AB1972 /* main.m */; };
 		B46F1EC71CEE46F200AB1972 /* BCMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1EC61CEE46F200AB1972 /* BCMAppDelegate.m */; };
 		B46F1ECA1CEE46F200AB1972 /* BCMMainTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1EC91CEE46F200AB1972 /* BCMMainTabController.m */; };
@@ -66,6 +67,7 @@
 		585AB602CC3B8D174D4FA47A /* Pods-BackTrackUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BackTrackUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BackTrackUITests/Pods-BackTrackUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7F3937084FE244EDD517B909 /* Pods-BackTrackUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BackTrackUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BackTrackUITests/Pods-BackTrackUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8B9B8235072039F9518B78C3 /* Pods-BackTrackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BackTrackTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BackTrackTests/Pods-BackTrackTests.release.xcconfig"; sourceTree = "<group>"; };
+		B44DB55C1D0B407B0014EF4F /* Brandmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brandmark.png; sourceTree = "<group>"; };
 		B46F1EBF1CEE46F200AB1972 /* BackTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BackTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B46F1EC31CEE46F200AB1972 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B46F1EC51CEE46F200AB1972 /* BCMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BCMAppDelegate.h; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 		B46F1EFC1CF37CCC00AB1972 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B44DB55C1D0B407B0014EF4F /* Brandmark.png */,
 				B46F1ECE1CEE46F200AB1972 /* Assets.xcassets */,
 				B4F0F5F81CFD2465004E8A1B /* Authentication.storyboard */,
 				B46F1F011CF37D1400AB1972 /* MainPanel.storyboard */,
@@ -435,6 +438,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B44DB55E1D0B407B0014EF4F /* Brandmark.png in Resources */,
 				B4F0F5F91CFD2465004E8A1B /* Authentication.storyboard in Resources */,
 				B46F1F0E1CF3838300AB1972 /* Symptoms.storyboard in Resources */,
 				B4F0F5EF1CF8C1BF004E8A1B /* Connect.storyboard in Resources */,

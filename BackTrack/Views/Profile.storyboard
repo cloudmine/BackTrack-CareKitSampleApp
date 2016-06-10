@@ -155,13 +155,6 @@
                                                     </mask>
                                                 </variation>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloudmine-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Otc-qa-WKH">
-                                                <rect key="frame" x="250" y="394" width="100" height="47"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="47" id="OlJ-2q-ssP"/>
-                                                    <constraint firstAttribute="width" constant="100" id="PU5-N1-rkb"/>
-                                                </constraints>
-                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -173,7 +166,6 @@
                                             <constraint firstItem="WKl-UM-au6" firstAttribute="leading" secondItem="kgp-Hl-R14" secondAttribute="leading" constant="20" id="Jed-6I-dud"/>
                                             <constraint firstItem="KoU-7E-DgN" firstAttribute="bottom" secondItem="WKl-UM-au6" secondAttribute="centerY" id="NJX-o9-8Sf"/>
                                             <constraint firstItem="pYa-OO-Cyd" firstAttribute="top" secondItem="kgp-Hl-R14" secondAttribute="top" constant="311" id="NQK-6i-o3n"/>
-                                            <constraint firstItem="Otc-qa-WKH" firstAttribute="top" secondItem="pYa-OO-Cyd" secondAttribute="bottom" constant="10" id="OAz-sJ-55H"/>
                                             <constraint firstItem="MoI-45-m0k" firstAttribute="top" secondItem="KoU-7E-DgN" secondAttribute="bottom" constant="2" id="PKt-iw-D5q"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KoU-7E-DgN" secondAttribute="trailing" constant="20" symbolic="YES" id="QJs-AV-wJ1"/>
                                             <constraint firstItem="pYa-OO-Cyd" firstAttribute="leading" secondItem="9Nb-fX-ufH" secondAttribute="leading" id="Qq5-93-nec"/>
@@ -193,7 +185,6 @@
                                             <constraint firstItem="KoU-7E-DgN" firstAttribute="leading" secondItem="WKl-UM-au6" secondAttribute="trailing" constant="16" id="oke-vu-Jaf"/>
                                             <constraint firstItem="HT0-NG-7SV" firstAttribute="top" secondItem="WKl-UM-au6" secondAttribute="bottom" constant="30" id="p1q-jo-ec7"/>
                                             <constraint firstAttribute="trailing" secondItem="9Nb-fX-ufH" secondAttribute="trailing" constant="42" id="seU-qm-jDL"/>
-                                            <constraint firstItem="Otc-qa-WKH" firstAttribute="centerX" secondItem="pYa-OO-Cyd" secondAttribute="centerX" id="sjw-P3-Anw"/>
                                             <constraint firstItem="9Nb-fX-ufH" firstAttribute="top" secondItem="yu1-22-4wE" secondAttribute="bottom" constant="5" id="svR-zi-N7g"/>
                                             <constraint firstItem="pYa-OO-Cyd" firstAttribute="width" secondItem="9Nb-fX-ufH" secondAttribute="width" id="xI4-tO-zKN"/>
                                         </constraints>
@@ -252,6 +243,5 @@
         <image name="ProfileIcon" width="24" height="24"/>
         <image name="ProfileIconFilled" width="24" height="24"/>
         <image name="ProfilePlaceholder" width="150" height="150"/>
-        <image name="cloudmine-logo.png" width="300" height="158"/>
     </resources>
 </document>
