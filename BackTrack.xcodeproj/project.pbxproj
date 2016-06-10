@@ -15,7 +15,6 @@
 		B46F1EDD1CEE46F200AB1972 /* BackTrackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1EDC1CEE46F200AB1972 /* BackTrackTests.m */; };
 		B46F1EE81CEE46F200AB1972 /* BackTrackUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1EE71CEE46F200AB1972 /* BackTrackUITests.m */; };
 		B46F1EFF1CF37D1400AB1972 /* MainPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B46F1F011CF37D1400AB1972 /* MainPanel.storyboard */; };
-		B46F1F041CF37DD200AB1972 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B46F1F061CF37DD200AB1972 /* LaunchScreen.storyboard */; };
 		B46F1F091CF381FB00AB1972 /* Care.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B46F1F0B1CF381FB00AB1972 /* Care.storyboard */; };
 		B46F1F0E1CF3838300AB1972 /* Symptoms.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B46F1F101CF3838300AB1972 /* Symptoms.storyboard */; };
 		B46F1F131CF38DCA00AB1972 /* BCMCareNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1F121CF38DCA00AB1972 /* BCMCareNavController.m */; };
@@ -82,7 +81,6 @@
 		B46F1EE71CEE46F200AB1972 /* BackTrackUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BackTrackUITests.m; sourceTree = "<group>"; };
 		B46F1EE91CEE46F200AB1972 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B46F1F001CF37D1400AB1972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainPanel.storyboard; sourceTree = "<group>"; };
-		B46F1F051CF37DD200AB1972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B46F1F0A1CF381FB00AB1972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Care.storyboard; sourceTree = "<group>"; };
 		B46F1F0F1CF3838300AB1972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Symptoms.storyboard; sourceTree = "<group>"; };
 		B46F1F111CF38DCA00AB1972 /* BCMCareNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMCareNavController.h; sourceTree = "<group>"; };
@@ -270,7 +268,6 @@
 		B46F1EFC1CF37CCC00AB1972 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B46F1F061CF37DD200AB1972 /* LaunchScreen.storyboard */,
 				B46F1ECE1CEE46F200AB1972 /* Assets.xcassets */,
 				B4F0F5F81CFD2465004E8A1B /* Authentication.storyboard */,
 				B46F1F011CF37D1400AB1972 /* MainPanel.storyboard */,
@@ -442,7 +439,6 @@
 				B46F1F0E1CF3838300AB1972 /* Symptoms.storyboard in Resources */,
 				B4F0F5EF1CF8C1BF004E8A1B /* Connect.storyboard in Resources */,
 				B4F0F5E61CF64016004E8A1B /* Insights.storyboard in Resources */,
-				B46F1F041CF37DD200AB1972 /* LaunchScreen.storyboard in Resources */,
 				B46F1F091CF381FB00AB1972 /* Care.storyboard in Resources */,
 				B4F0F6061CFDD9AC004E8A1B /* Profile.storyboard in Resources */,
 				B46F1ECF1CEE46F200AB1972 /* Assets.xcassets in Resources */,
@@ -657,14 +653,6 @@
 			name = MainPanel.storyboard;
 			sourceTree = "<group>";
 		};
-		B46F1F061CF37DD200AB1972 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B46F1F051CF37DD200AB1972 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 		B46F1F0B1CF381FB00AB1972 /* Care.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -781,6 +769,7 @@
 			baseConfigurationReference = 3B4C2AE072EA26AE7D6423E3 /* Pods-BackTrack.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/BackTrack/SupportingFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -794,6 +783,7 @@
 			baseConfigurationReference = 2B987BB0163E72427D521041 /* Pods-BackTrack.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/BackTrack/SupportingFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
