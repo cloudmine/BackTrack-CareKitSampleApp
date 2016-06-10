@@ -1,11 +1,9 @@
 #import "BCMMainTabController.h"
+#import <CMHealth/CMHealth.h>
 #import "BCMFirstStartTracker.h"
 #import "BCMActivities.h"
 #import "UIColor+BCM.h"
-#import "OCKCarePlanStore+BCM.h"
-#import "CareKit+BCM.h"
 #import "BCMWaitUntil.h"
-#import "BCMEventWrapper.h"
 
 NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
 NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEventData";
@@ -49,18 +47,17 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
 
 - (void)carePlanStore:(OCKCarePlanStore *)store didReceiveUpdateOfEvent:(OCKCarePlanEvent *)event
 {
-    [self postStoreUpdateNotification];
     NSLog(@"Received Event Update Notification");
 
-    BCMEventWrapper *eventWrapper = [[BCMEventWrapper alloc] initWithEvent:event];
-    [[CMStore defaultStore] saveUserObject:eventWrapper callback:^(CMObjectUploadResponse *response) {
-        if (nil != response.error) {
-            NSLog(@"Error uploading event: %@", response.error.localizedDescription);
+    [self postStoreUpdateNotification];
+
+    [event cmh_saveWithCompletion:^(NSString * _Nullable uploadStatus, NSError * _Nullable error) {
+        if (nil != error) {
+            NSLog(@"Error uploading event: %@", error.localizedDescription);
             return;
         }
 
-        NSString *status = response.uploadStatuses[eventWrapper.objectId];
-        NSLog(@"Uploaded response with status: %@", status);
+        NSLog(@"Uploaded response with status: %@", uploadStatus);
     }];
 }
 
@@ -74,27 +71,29 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
 - (void)syncRemoteActivitiesAndEvents
 {
     // Defensively clear the store, in case bad state was somehow left
-    [self.carePlanStore bcm_clearLocalStoreWithCompletion:^(NSArray<NSError *> * _Nonnull errors) {
-        //TODO: real error handling?
+    [self.carePlanStore cmh_clearLocalStoreSynchronously]; //TODO: how to handle errors returned?
 
-        [self.carePlanStore bcm_fetchActivitiesWithCompletion:^(NSArray<OCKCarePlanActivity *> * _Nullable activities, NSError * _Nullable error) {
-            if (nil == activities || activities.count < 1) {
-                [self addInitialActivities];
-            } else {
-                [BCMMainTabController addActivities:activities toStore:self.carePlanStore];
-            }
+    [self.carePlanStore cmh_fetchActivitiesWithCompletion:^(NSArray<OCKCarePlanActivity *> * _Nonnull activities, NSError * _Nullable error) {
+        // TODO: Error checking
 
-            [self syncRemoteEvents];
-        }];
+        if (activities.count < 1) {
+            [self addInitialActivities];
+        } else {
+            [BCMMainTabController addActivities:activities toStore:self.carePlanStore];
+        }
+
+        [self syncRemoteEvents];
     }];
 }
 
 - (void)syncRemoteEvents
 {
-    [self.carePlanStore bcm_reloadAllRemoteEventsWithCompletion:^(NSError * _Nullable error) {
-        // TODO: errors
+    [self.carePlanStore cmh_fetchAndLoadAllEventsWithCompletion:^(BOOL success, NSArray<NSError *> * _Nonnull errors) {
+        if (!success) {
+            NSLog(@"Errors loading remote events: %@", errors.firstObject.localizedDescription);
+            return;
+        }
 
-        NSLog(@"Reload Completed");
         [self postDataDidReloadNotification];
     }];
 }
@@ -129,7 +128,7 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
     NSLog(@"Adding Hardcoded Activities");
     [BCMMainTabController addActivities:BCMActivities.activities toStore:self.carePlanStore];
 
-    [self.carePlanStore bcm_saveActivtiesWithCompletion:^(NSError * _Nullable error) {
+    [self.carePlanStore cmh_saveActivtiesWithCompletion:^(NSError * _Nullable error) {
         if (nil != error) {
             NSLog(@"Error saving activities: %@", error.localizedDescription); // TODO: Really error handling
             return;

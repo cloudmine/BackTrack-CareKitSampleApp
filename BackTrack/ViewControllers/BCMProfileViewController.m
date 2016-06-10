@@ -4,7 +4,6 @@
 #import "UIViewController+BCM.h"
 #import "BCMAppDelegate.h"
 #import "BCMMainTabController.h"
-#import "OCKCarePlanStore+BCM.h"
 #import "UIButton+BCM.h"
 #import "BCMMainThread.h"
 #import "BCMFirstStartTracker.h"
@@ -119,13 +118,12 @@
 
         [BCMFirstStartTracker forgetFirstStart];
 
-        [self.bcmTabBarController.carePlanStore bcm_clearLocalStoreWithCompletion:^(NSArray<NSError *> * _Nonnull errors) {
-            if (errors.count > 0) {
-                NSLog(@"There were %li errors clearing the local store", (long)errors.count);
-            }
+        NSArray *errors = [self.bcmTabBarController.carePlanStore cmh_clearLocalStoreSynchronously];
+        if (errors.count > 0) {
+            NSLog(@"There were %li errors clearing the local store", (long)errors.count);
+        }
 
-            [self.bcmAppDelegate loadAuthentication];
-        }];
+        [self.bcmAppDelegate loadAuthentication];
     }];
 }
 
