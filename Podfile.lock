@@ -26,7 +26,7 @@ PODS:
     - CloudMine/no-arc (= 1.7.11)
   - CloudMine/no-arc (1.7.11):
     - AFNetworking (~> 2.6.3)
-  - CMHealth (0.3.1):
+  - CMHealth (0.4.0):
     - CareKit (~> 1.0)
     - CloudMine (~> 1.7)
     - ResearchKit (~> 1.3.1)
@@ -44,14 +44,14 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CMHealth:
-    :commit: 0af04b7ad4fbdae1ac89bc48647e19034502db0a
+    :commit: d9b6aebf7ed3a6e5fff23c95725898878a6846c8
     :git: https://github.com/apbendi/CMHealthSDK-iOS.git
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   CareKit: 08e840f45807c7771708b731649e082bdb6eea2d
   CloudMine: ee5b3643fb1a2f4603de6428aea1252ac928d98d
-  CMHealth: a9701778d0a2d12396e5470682359edf8cb7bf15
+  CMHealth: 32f66ba859e303e26e77a251b6017644665615e2
   ResearchKit: badba0340dd71d1cbab4789a0bf01b26022b8f94
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
 
