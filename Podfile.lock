@@ -27,7 +27,7 @@ PODS:
   - CloudMine/no-arc (1.7.11):
     - AFNetworking (~> 2.6.3)
   - CMHealth (0.4.0):
-    - CareKit (~> 1.0)
+    - CareKit (~> 1.0.1)
     - CloudMine (~> 1.7)
     - ResearchKit (~> 1.3.1)
     - TPKeyboardAvoiding (~> 1.2)
@@ -35,26 +35,16 @@ PODS:
   - TPKeyboardAvoiding (1.3)
 
 DEPENDENCIES:
-  - CMHealth (from `https://github.com/apbendi/CMHealthSDK-iOS.git`, branch `carekit`)
-
-EXTERNAL SOURCES:
-  CMHealth:
-    :branch: carekit
-    :git: https://github.com/apbendi/CMHealthSDK-iOS.git
-
-CHECKOUT OPTIONS:
-  CMHealth:
-    :commit: d9b6aebf7ed3a6e5fff23c95725898878a6846c8
-    :git: https://github.com/apbendi/CMHealthSDK-iOS.git
+  - CMHealth (~> 0.4.0)
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   CareKit: 08e840f45807c7771708b731649e082bdb6eea2d
   CloudMine: ee5b3643fb1a2f4603de6428aea1252ac928d98d
-  CMHealth: 32f66ba859e303e26e77a251b6017644665615e2
+  CMHealth: 25f4f54c5de5c335b09b90f1f5b600c223a7da25
   ResearchKit: badba0340dd71d1cbab4789a0bf01b26022b8f94
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
 
-PODFILE CHECKSUM: 93b47e8acff2ab56e20070f7c41c58e57e291000
+PODFILE CHECKSUM: e928eeaa7701026d70109629a44b83692a1e9570
 
 COCOAPODS: 1.0.1

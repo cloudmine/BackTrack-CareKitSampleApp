@@ -3,8 +3,7 @@ platform :ios, '9.0'
 target 'BackTrack' do
   use_frameworks!
 
-  pod 'CMHealth', :git => 'https://github.com/apbendi/CMHealthSDK-iOS.git', :branch => 'carekit'
-  #pod "CMHealth", :path => "../CMHealthSDK-iOS/"
+  pod 'CMHealth', '~> 0.4.0'
 
   target 'BackTrackTests' do
     inherit! :search_paths
