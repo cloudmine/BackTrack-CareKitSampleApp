@@ -22,11 +22,20 @@
 
 - (IBAction)didPressJoinButton:(UIButton *)sender
 {
+    ORKRegistrationStep *registrationStep = [[ORKRegistrationStep alloc] initWithIdentifier:@"BCMRegistrationStep"
+                                                                                     title:NSLocalizedString(@"Registration", nil)
+                                                                                      text:NSLocalizedString(@"Create an account", nil)
+                                                                                   options:ORKRegistrationStepDefault];
+
+    ORKOrderedTask *registrationTask = [[ORKOrderedTask alloc] initWithIdentifier:@"BMCRegistrationTask" steps:@[registrationStep]];
+
+    ORKTaskViewController *registrationVC = [[ORKTaskViewController alloc] initWithTask:registrationTask taskRunUUID:nil];
+
+    [self presentViewController:registrationVC animated:YES completion:nil];
 //    CMHAuthViewController* signupViewController = [CMHAuthViewController signupViewController];
 //    signupViewController.delegate = self;
 //
 //    [self presentViewController:signupViewController animated:YES completion:nil];
-
 }
 
 - (IBAction)didPressLoginButton:(UIButton *)sender
