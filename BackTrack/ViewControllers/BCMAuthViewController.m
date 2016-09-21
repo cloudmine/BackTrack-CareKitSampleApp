@@ -4,7 +4,7 @@
 #import "UIButton+BCM.h"
 #import "BCMAppDelegate.h"
 
-@interface BCMAuthViewController ()<CMHLoginViewControllerDelegate>
+@interface BCMAuthViewController ()<CMHLoginViewControllerDelegate, ORKTaskViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *joinButton;
 @end
 
@@ -30,6 +30,7 @@
     ORKOrderedTask *registrationTask = [[ORKOrderedTask alloc] initWithIdentifier:@"BMCRegistrationTask" steps:@[registrationStep]];
 
     ORKTaskViewController *registrationVC = [[ORKTaskViewController alloc] initWithTask:registrationTask taskRunUUID:nil];
+    registrationVC.delegate = self;
 
     [self presentViewController:registrationVC animated:YES completion:nil];
 //    CMHAuthViewController* signupViewController = [CMHAuthViewController signupViewController];
@@ -50,6 +51,27 @@
                                                                            delegate:self];
 
     [self presentViewController:loginVC animated:YES completion:nil];
+}
+
+#pragma mark ORKTaskViewControllerDelegate
+
+- (void)taskViewController:(ORKTaskViewController *)taskViewController didFinishWithReason:(ORKTaskViewControllerFinishReason)reason error:(NSError *)error
+{
+    if (nil != error) {
+        [self dismissViewControllerAnimated:YES completion:^{
+            [self.presentedViewController showAlertWithMessage:NSLocalizedString(@"Error During Registration", nil) andError:error];
+        }];
+        return;
+    }
+
+    switch (reason) {
+    case ORKTaskViewControllerFinishReasonCompleted:
+        break;
+    default:
+        break;
+    }
+
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark CMHLoginViewControllerDelegate
