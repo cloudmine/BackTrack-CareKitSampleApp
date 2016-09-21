@@ -4,7 +4,7 @@
 #import "UIButton+BCM.h"
 #import "BCMAppDelegate.h"
 
-@interface BCMAuthViewController ()<CMHAuthViewDelegate>
+@interface BCMAuthViewController ()<CMHLoginViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *joinButton;
 @end
 
@@ -22,40 +22,62 @@
 
 - (IBAction)didPressJoinButton:(UIButton *)sender
 {
-    CMHAuthViewController* signupViewController = [CMHAuthViewController signupViewController];
-    signupViewController.delegate = self;
+//    CMHAuthViewController* signupViewController = [CMHAuthViewController signupViewController];
+//    signupViewController.delegate = self;
+//
+//    [self presentViewController:signupViewController animated:YES completion:nil];
 
-    [self presentViewController:signupViewController animated:YES completion:nil];
 }
 
 - (IBAction)didPressLoginButton:(UIButton *)sender
 {
-    CMHAuthViewController *loginViewController = [CMHAuthViewController loginViewController];
-    loginViewController.delegate = self;
+//    CMHAuthViewController *loginViewController = [CMHAuthViewController loginViewController];
+//    loginViewController.delegate = self;
+//
+//    [self presentViewController:loginViewController animated:YES completion:nil];
 
-    [self presentViewController:loginViewController animated:YES completion:nil];
+    CMHLoginViewController *loginVC = [[CMHLoginViewController alloc] initWithTitle:NSLocalizedString(@"Log In", nil)
+                                                                               text:NSLocalizedString(@"Please log in to you account to store and access your personal health data.", nil)
+                                                                           delegate:self];
+
+    [self presentViewController:loginVC animated:YES completion:nil];
 }
 
-#pragma mark CMHAuthViewDelegate
+#pragma mark CMHLoginViewControllerDelegate
 
-- (void)authViewCancelledType:(CMHAuthType)authType
+- (void)loginViewControllerCancelled:(CMHLoginViewController *)viewController
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)authViewOfType:(CMHAuthType)authType didSubmitWithEmail:(NSString *)email andPassword:(NSString *)password
+- (void)loginViewController:(CMHLoginViewController *)viewController didLogin:(BOOL)success error:(NSError *)error
 {
-    switch (authType) {
-        case CMHAuthTypeLogin:
-            [self loginWithEmail:email andPassword:password];
-            break;
-        case CMHAuthTypeSignup:
-            [self signupWithEmail:email andPassword:password];
-            break;
-        default:
-            break;
+    if (!success) {
+        [self.presentedViewController showAlertWithMessage:NSLocalizedString(@"Error Logging In", nil) andError:error];
+        return;
     }
+
+    [self.bcmAppDelegate loadMainPanel];
 }
+
+//- (void)authViewCancelledType:(CMHAuthType)authType
+//{
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//}
+//
+//- (void)authViewOfType:(CMHAuthType)authType didSubmitWithEmail:(NSString *)email andPassword:(NSString *)password
+//{
+//    switch (authType) {
+//        case CMHAuthTypeLogin:
+//            [self loginWithEmail:email andPassword:password];
+//            break;
+//        case CMHAuthTypeSignup:
+//            [self signupWithEmail:email andPassword:password];
+//            break;
+//        default:
+//            break;
+//    }
+//}
 
 #pragma mark Private
 
