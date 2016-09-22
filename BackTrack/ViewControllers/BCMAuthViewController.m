@@ -33,19 +33,10 @@
     registrationVC.delegate = self;
 
     [self presentViewController:registrationVC animated:YES completion:nil];
-//    CMHAuthViewController* signupViewController = [CMHAuthViewController signupViewController];
-//    signupViewController.delegate = self;
-//
-//    [self presentViewController:signupViewController animated:YES completion:nil];
 }
 
 - (IBAction)didPressLoginButton:(UIButton *)sender
 {
-//    CMHAuthViewController *loginViewController = [CMHAuthViewController loginViewController];
-//    loginViewController.delegate = self;
-//
-//    [self presentViewController:loginViewController animated:YES completion:nil];
-
     CMHLoginViewController *loginVC = [[CMHLoginViewController alloc] initWithTitle:NSLocalizedString(@"Log In", nil)
                                                                                text:NSLocalizedString(@"Please log in to you account to store and access your personal health data.", nil)
                                                                            delegate:self];
@@ -64,14 +55,20 @@
         return;
     }
 
-    switch (reason) {
-    case ORKTaskViewControllerFinishReasonCompleted:
-        break;
-    default:
-        break;
+    if (reason != ORKTaskViewControllerFinishReasonCompleted) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        return;
     }
 
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [[CMHUser currentUser] signUpWithRegistration:taskViewController.result andCompletion:^(NSError * _Nullable error) {
+        if (nil != error) {
+            [self.presentedViewController showAlertWithMessage:NSLocalizedString(@"Something went wrong signing up", nil)
+                                                      andError:error];
+            return;
+        }
+
+        [self.bcmAppDelegate loadMainPanel];
+    }];
 }
 
 #pragma mark CMHLoginViewControllerDelegate
@@ -89,51 +86,6 @@
     }
 
     [self.bcmAppDelegate loadMainPanel];
-}
-
-//- (void)authViewCancelledType:(CMHAuthType)authType
-//{
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//}
-//
-//- (void)authViewOfType:(CMHAuthType)authType didSubmitWithEmail:(NSString *)email andPassword:(NSString *)password
-//{
-//    switch (authType) {
-//        case CMHAuthTypeLogin:
-//            [self loginWithEmail:email andPassword:password];
-//            break;
-//        case CMHAuthTypeSignup:
-//            [self signupWithEmail:email andPassword:password];
-//            break;
-//        default:
-//            break;
-//    }
-//}
-
-#pragma mark Private
-
-- (void)loginWithEmail:(NSString *_Nonnull)email andPassword:(NSString *_Nonnull)password
-{
-    [[CMHUser currentUser] loginWithEmail:email password:password andCompletion:^(NSError * _Nullable error) {
-        if (nil != error) {
-            [self.presentedViewController showAlertWithMessage:NSLocalizedString(@"Error Logging In", nil) andError:error];
-            return;
-        }
-
-        [self.bcmAppDelegate loadMainPanel];
-    }];
-}
-
-- (void)signupWithEmail:(NSString *_Nonnull)email andPassword:(NSString *_Nonnull)password
-{
-    [[CMHUser currentUser] signUpWithEmail:email password:password andCompletion:^(NSError * _Nullable error) {
-        if (nil != error) {
-            [self.presentedViewController showAlertWithMessage:NSLocalizedString(@"Error Signing Up", nil) andError:error];
-            return;
-        }
-
-        [self.bcmAppDelegate loadMainPanel];
-    }];
 }
 
 @end
