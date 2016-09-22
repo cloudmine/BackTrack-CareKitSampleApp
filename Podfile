@@ -3,7 +3,7 @@ platform :ios, '9.0'
 target 'BackTrack' do
   use_frameworks!
 
-  pod 'CMHealth', '~> 0.4.0'
+  pod 'CMHealth', '~> 0.5.0'
 
   target 'BackTrackTests' do
     inherit! :search_paths

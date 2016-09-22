@@ -30,17 +30,17 @@
     if (nil != error && nil != error.localizedDescription) {
         composedMessage = [NSString stringWithFormat:@"%@; %@", composedMessage, error.localizedDescription];
     }
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
-                                                                   message:composedMessage
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil)
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction * _Nonnull action) { }];
-    [alert addAction:okAction];
 
     on_main_thread(^{
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                       message:composedMessage
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil)
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * _Nonnull action) { }];
+        [alert addAction:okAction];
+
         [self presentViewController:alert animated:YES completion:nil];
     });
 }
