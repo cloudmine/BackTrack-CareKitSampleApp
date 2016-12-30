@@ -3,7 +3,9 @@ platform :ios, '9.0'
 target 'BackTrack' do
   use_frameworks!
 
-  pod 'CMHealth', '~> 0.5.0'
+  pod 'CMHealth', :path => '../cmhealth-beta-private'
+  pod 'CareKit', :path => '../carekit-beta-private'
+  pod 'ResearchKit', :git => 'https://github.com/ResearchKit/ResearchKit'
 
   target 'BackTrackTests' do
     inherit! :search_paths
