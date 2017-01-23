@@ -4,7 +4,8 @@ target 'BackTrack' do
   use_frameworks!
 
   pod 'CMHealth', :path => '../cmhealth-beta-private'
-  pod 'CareKit', :path => '../carekit-beta-private'
+  #pod 'CareKit', :path => '../carekit-beta-private'
+  pod 'CareKit', :path => '../carekit-internal-20'
   pod 'ResearchKit', :git => 'https://github.com/ResearchKit/ResearchKit'
 
   target 'BackTrackTests' do

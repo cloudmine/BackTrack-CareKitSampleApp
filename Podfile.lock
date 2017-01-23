@@ -33,13 +33,13 @@ PODS:
   - ResearchKit (1.4.1)
 
 DEPENDENCIES:
-  - CareKit (from `../carekit-beta-private`)
+  - CareKit (from `../carekit-internal-20`)
   - CMHealth (from `../cmhealth-beta-private`)
   - ResearchKit (from `https://github.com/ResearchKit/ResearchKit`)
 
 EXTERNAL SOURCES:
   CareKit:
-    :path: ../carekit-beta-private
+    :path: ../carekit-internal-20
   CMHealth:
     :path: ../cmhealth-beta-private
   ResearchKit:
@@ -52,11 +52,11 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  CareKit: befdf2c240b4d709829910f0fa9ce57b31fb8067
+  CareKit: 1b284582029627f8370a40cf405d58c352457199
   CloudMine: e0337360f4fad74c91ea35d483137d46b5d266f0
   CMHealth: 4a16fa6b5f5d72af3587c96d822578333656e5fb
   ResearchKit: e308eb4b980784bd2bda6f3716325fa929c000c0
 
-PODFILE CHECKSUM: d1cd06803e709073965f3716047681ff4a47c4ef
+PODFILE CHECKSUM: c1efd74833ccd09416810481db5918083ac73877
 
 COCOAPODS: 1.1.1
