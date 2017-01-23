@@ -23,7 +23,7 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
     self = [super initWithCoder:aDecoder];
     if (nil ==  self) return nil;
 
-    self.carePlanStore = [[OCKCarePlanStore alloc] initWithPersistenceDirectoryURL:BCMMainTabController.persistenceDirectory];
+    self.carePlanStore = [CMHCarePlanStore storeWithPersistenceDirectoryURL:BCMMainTabController.persistenceDirectory];
     self.carePlanStore.delegate = self;
 
     return self;
@@ -50,15 +50,6 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
     NSLog(@"Received Event Update Notification");
 
     [self postStoreUpdateNotification];
-
-    [event cmh_saveWithCompletion:^(NSString * _Nullable uploadStatus, NSError * _Nullable error) {
-        if (nil != error) {
-            NSLog(@"Error uploading event: %@", error.localizedDescription);
-            return;
-        }
-
-        NSLog(@"Uploaded response with status: %@", uploadStatus);
-    }];
 }
 
 - (void)carePlanStoreActivityListDidChange:(OCKCarePlanStore *)store
