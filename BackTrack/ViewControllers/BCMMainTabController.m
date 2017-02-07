@@ -47,12 +47,12 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
 - (void)carePlanStore:(OCKCarePlanStore *)store didReceiveUpdateOfEvent:(OCKCarePlanEvent *)event
 {
     NSLog(@"[CMHealth] Received Event Update Notification");
-
     [self postStoreUpdateNotification];
 }
 
 - (void)carePlanStoreActivityListDidChange:(OCKCarePlanStore *)store
 {
+    NSLog(@"[CMHealth] Received Activity Update Notification");
     [self postStoreUpdateNotification];
 }
 
@@ -62,18 +62,37 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
 {
     // Defensively clear the store, in case bad state was somehow left
     [self.carePlanStore cmh_clearLocalStoreSynchronously]; //TODO: how to handle errors returned?
-
-    [self.carePlanStore cmh_fetchActivitiesWithCompletion:^(NSArray<OCKCarePlanActivity *> * _Nonnull activities, NSError * _Nullable error) {
-        // TODO: Error checking
-
-        if (activities.count < 1) {
-            [self addInitialActivities];
-        } else {
-            [BCMMainTabController addActivities:activities toStore:self.carePlanStore];
+    
+    [self.carePlanStore syncRemoteActivitiesWithCompletion:^(BOOL success, NSArray<NSError *> * _Nonnull errors) {
+        if (!success) {
+            NSLog(@"[CMHEALTH] Error syncing activities: %@", errors);
+            return;
         }
-
-        [self syncRemoteEvents];
+        
+        
+        NSLog(@"[CMHEALTH] Successful sync of activities");
+        
+        [self.carePlanStore syncRemoteEventsWithCompletion:^(BOOL success, NSArray<NSError *> * _Nonnull errors) {
+            if (!success) {
+                NSLog(@"[CMHEALTH] Error syncing events: %@", errors);
+                return;
+            }
+            
+            NSLog(@"[CMHEALTH] Successful sync of events");
+        }];
     }];
+
+//    [self.carePlanStore cmh_fetchActivitiesWithCompletion:^(NSArray<OCKCarePlanActivity *> * _Nonnull activities, NSError * _Nullable error) {
+//        // TODO: Error checking
+//
+//        if (activities.count < 1) {
+//            [self addInitialActivities];
+//        } else {
+//            [BCMMainTabController addActivities:activities toStore:self.carePlanStore];
+//        }
+//
+//        [self syncRemoteEvents];
+//    }];
 }
 
 - (void)syncRemoteEvents
