@@ -32,14 +32,24 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
 {
     [super viewDidLoad];
     self.tabBar.tintColor = [UIColor bcmBlueColor];
+    
+    [self.carePlanStore syncFromRemoteWithCompletion:^(BOOL success, NSArray<NSError *> * _Nonnull errors) {
+        if (!success) {
+            NSLog(@"[CMHEALTH] Error syncing remote data %@", errors);
+            return;
+        }
+        
+        NSLog(@"[CMHEALTH] Successful sync of remote data");
+        [self postStoreUpdateNotification];
+    }];
 
-    if (BCMFirstStartTracker.isFirstStart) {
-        [self syncRemoteActivitiesAndEvents];
-        [BCMFirstStartTracker recordFirstStart];
-        return;
-    }
-
-    [self syncRemoteEvents];
+//    if (BCMFirstStartTracker.isFirstStart) {
+//        [self syncRemoteActivitiesAndEvents];
+//        [BCMFirstStartTracker recordFirstStart];
+//        return;
+//    }
+//
+//    [self syncRemoteEvents];
 }
 
 #pragma mark OCKCarePlanStoreDelegate
@@ -63,24 +73,7 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
     // Defensively clear the store, in case bad state was somehow left
     [self.carePlanStore cmh_clearLocalStoreSynchronously]; //TODO: how to handle errors returned?
     
-    [self.carePlanStore syncRemoteActivitiesWithCompletion:^(BOOL success, NSArray<NSError *> * _Nonnull errors) {
-        if (!success) {
-            NSLog(@"[CMHEALTH] Error syncing activities: %@", errors);
-            return;
-        }
-        
-        
-        NSLog(@"[CMHEALTH] Successful sync of activities");
-        
-        [self.carePlanStore syncRemoteEventsWithCompletion:^(BOOL success, NSArray<NSError *> * _Nonnull errors) {
-            if (!success) {
-                NSLog(@"[CMHEALTH] Error syncing events: %@", errors);
-                return;
-            }
-            
-            NSLog(@"[CMHEALTH] Successful sync of events");
-        }];
-    }];
+    
 
 //    [self.carePlanStore cmh_fetchActivitiesWithCompletion:^(NSArray<OCKCarePlanActivity *> * _Nonnull activities, NSError * _Nullable error) {
 //        // TODO: Error checking
@@ -95,18 +88,18 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
 //    }];
 }
 
-- (void)syncRemoteEvents
-{
-    [self.carePlanStore syncRemoteEventsWithCompletion:^(BOOL success, NSArray<NSError *> * _Nonnull errors) {
-        if (!success) {
-            NSLog(@"[CMHealth] Errors syncing remote events: %@", errors);
-            return;
-        }
-        
-        
-        NSLog(@"[CMHealth] Successfully synced remote events");
-    }];
-}
+//- (void)syncRemoteEvents
+//{
+//    [self.carePlanStore syncRemoteEventsWithCompletion:^(BOOL success, NSArray<NSError *> * _Nonnull errors) {
+//        if (!success) {
+//            NSLog(@"[CMHealth] Errors syncing remote events: %@", errors);
+//            return;
+//        }
+//        
+//        
+//        NSLog(@"[CMHealth] Successfully synced remote events");
+//    }];
+//}
 
 - (void)postStoreUpdateNotification
 {
