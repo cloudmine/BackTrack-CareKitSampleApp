@@ -1,5 +1,4 @@
 #import "BCMMainTabController.h"
-#import <CMHealth/CMHealth.h>
 #import "BCMFirstStartTracker.h"
 #import "BCMActivities.h"
 #import "UIColor+BCM.h"
@@ -10,7 +9,7 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
 
 @interface BCMMainTabController ()<OCKCarePlanStoreDelegate>
 
-@property (nonatomic, readwrite, nonnull) OCKCarePlanStore *carePlanStore;
+@property (nonatomic, readwrite, nonnull) CMHCarePlanStore *carePlanStore;
 
 @end
 
@@ -47,7 +46,7 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
 
 - (void)carePlanStore:(OCKCarePlanStore *)store didReceiveUpdateOfEvent:(OCKCarePlanEvent *)event
 {
-    NSLog(@"Received Event Update Notification");
+    NSLog(@"[CMHealth] Received Event Update Notification");
 
     [self postStoreUpdateNotification];
 }
@@ -79,13 +78,14 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
 
 - (void)syncRemoteEvents
 {
-    [self.carePlanStore cmh_fetchAndLoadAllEventsWithCompletion:^(BOOL success, NSArray<NSError *> * _Nonnull errors) {
+    [self.carePlanStore syncRemoteEventsWithCompletion:^(BOOL success, NSArray<NSError *> * _Nonnull errors) {
         if (!success) {
-            NSLog(@"Errors loading remote events: %@", errors.firstObject.localizedDescription);
+            NSLog(@"[CMHealth] Errors syncing remote events: %@", errors);
             return;
         }
-
-        [self postDataDidReloadNotification];
+        
+        
+        NSLog(@"[CMHealth] Successfully synced remote events");
     }];
 }
 
