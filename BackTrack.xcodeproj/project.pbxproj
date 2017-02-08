@@ -24,6 +24,7 @@
 		B46F1F1E1CF395A200AB1972 /* BCMFirstStartTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1F1D1CF395A200AB1972 /* BCMFirstStartTracker.m */; };
 		B46F1F221CF397CB00AB1972 /* BCMActivities.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1F211CF397CB00AB1972 /* BCMActivities.m */; };
 		B46F1F281CF540E800AB1972 /* BCMTasks.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1F271CF540E800AB1972 /* BCMTasks.m */; };
+		B493E4751E4BB12E002CD083 /* BCMStoreUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B493E4741E4BB12E002CD083 /* BCMStoreUtils.m */; };
 		B4F0F5E11CF552F3004E8A1B /* OCKCarePlanEvent+BCM.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0F5E01CF552F3004E8A1B /* OCKCarePlanEvent+BCM.m */; };
 		B4F0F5E41CF63F29004E8A1B /* BCMInsightsNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F0F5E31CF63F29004E8A1B /* BCMInsightsNavController.m */; };
 		B4F0F5E61CF64016004E8A1B /* Insights.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4F0F5E51CF64016004E8A1B /* Insights.storyboard */; };
@@ -98,6 +99,8 @@
 		B46F1F261CF540E800AB1972 /* BCMTasks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMTasks.h; sourceTree = "<group>"; };
 		B46F1F271CF540E800AB1972 /* BCMTasks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMTasks.m; sourceTree = "<group>"; };
 		B46F1F291CF5435700AB1972 /* BCMIdentifiers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BCMIdentifiers.h; sourceTree = "<group>"; };
+		B493E4731E4BB12E002CD083 /* BCMStoreUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMStoreUtils.h; sourceTree = "<group>"; };
+		B493E4741E4BB12E002CD083 /* BCMStoreUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMStoreUtils.m; sourceTree = "<group>"; };
 		B4F0F5DF1CF5529D004E8A1B /* OCKCarePlanEvent+BCM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OCKCarePlanEvent+BCM.h"; sourceTree = "<group>"; };
 		B4F0F5E01CF552F3004E8A1B /* OCKCarePlanEvent+BCM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCKCarePlanEvent+BCM.m"; sourceTree = "<group>"; };
 		B4F0F5E21CF63F29004E8A1B /* BCMInsightsNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMInsightsNavController.h; sourceTree = "<group>"; };
@@ -311,6 +314,8 @@
 				B4F0F6001CFD3576004E8A1B /* BCMMainThread.m */,
 				B4F0F6191CFE2D81004E8A1B /* BCMWaitUntil.h */,
 				B4F0F61A1CFE2D81004E8A1B /* BCMWaitUntil.m */,
+				B493E4731E4BB12E002CD083 /* BCMStoreUtils.h */,
+				B493E4741E4BB12E002CD083 /* BCMStoreUtils.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -403,6 +408,7 @@
 				TargetAttributes = {
 					B46F1EBE1CEE46F200AB1972 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = U7754Q32LF;
 						LastSwiftMigration = 0810;
 					};
 					B46F1ED71CEE46F200AB1972 = {
@@ -617,6 +623,7 @@
 				B4F0F61B1CFE2D81004E8A1B /* BCMWaitUntil.m in Sources */,
 				B4F0F5F41CF8C3E1004E8A1B /* BCMConnectNavController.m in Sources */,
 				B4F0F5E41CF63F29004E8A1B /* BCMInsightsNavController.m in Sources */,
+				B493E4751E4BB12E002CD083 /* BCMStoreUtils.m in Sources */,
 				B46F1F221CF397CB00AB1972 /* BCMActivities.m in Sources */,
 				B4F0F60C1CFDE0C7004E8A1B /* UIButton+BCM.m in Sources */,
 				B4F0F5EC1CF769F9004E8A1B /* NSDateComponents+BCM.m in Sources */,
@@ -791,6 +798,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = U7754Q32LF;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/BackTrack/SupportingFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -806,6 +814,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = U7754Q32LF;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/BackTrack/SupportingFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

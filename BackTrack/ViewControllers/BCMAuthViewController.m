@@ -3,6 +3,8 @@
 #import "UIViewController+BCM.h"
 #import "UIButton+BCM.h"
 #import "BCMAppDelegate.h"
+#import "BCMStoreUtils.h"
+#import "BCMActivities.h"
 
 @interface BCMAuthViewController ()<CMHLoginViewControllerDelegate, ORKTaskViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *joinButton;
@@ -66,7 +68,10 @@
                                                       andError:error];
             return;
         }
-
+        
+        CMHCarePlanStore *store = [CMHCarePlanStore storeWithPersistenceDirectoryURL:BCMStoreUtils.persistenceDirectory];
+        [BCMStoreUtils addActivities:BCMActivities.activities toStore:store];
+        
         [self.bcmAppDelegate loadMainPanel];
     }];
 }

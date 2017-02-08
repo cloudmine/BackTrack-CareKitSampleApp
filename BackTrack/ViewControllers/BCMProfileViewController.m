@@ -117,12 +117,8 @@
         }
 
         [BCMFirstStartTracker forgetFirstStart];
-
-        NSArray *errors = [self.bcmTabBarController.carePlanStore cmh_clearLocalStoreSynchronously];
-        if (errors.count > 0) {
-            NSLog(@"There were %li errors clearing the local store", (long)errors.count);
-        }
-
+        [self.bcmTabBarController.carePlanStore clearLocalStore];
+        
         [self.bcmAppDelegate loadAuthentication];
     }];
 }
