@@ -24,10 +24,11 @@
 
 - (IBAction)didPressJoinButton:(UIButton *)sender
 {
+    ORKRegistrationStepOption registrationOptions = (ORKRegistrationStepDefault|ORKRegistrationStepIncludeGivenName|ORKRegistrationStepIncludeFamilyName);
     ORKRegistrationStep *registrationStep = [[ORKRegistrationStep alloc] initWithIdentifier:@"BCMRegistrationStep"
                                                                                      title:NSLocalizedString(@"Registration", nil)
                                                                                       text:NSLocalizedString(@"Create an account", nil)
-                                                                                   options:ORKRegistrationStepDefault];
+                                                                                   options:registrationOptions];
 
     ORKOrderedTask *registrationTask = [[ORKOrderedTask alloc] initWithIdentifier:@"BMCRegistrationTask" steps:@[registrationStep]];
 
