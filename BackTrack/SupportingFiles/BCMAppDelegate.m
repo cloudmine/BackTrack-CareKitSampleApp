@@ -17,7 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [CMHealth setAppIdentifier:BCMAppIdentifier appSecret:BCMAppSecret];
+    [CMHealth setAppIdentifier:BCMAppIdentifier appSecret:BCMAppSecret sharedACLId:BCMSharedACLId];
 
     if ([CMHUser currentUser].isLoggedIn) {
         [self loadMainPanel];
