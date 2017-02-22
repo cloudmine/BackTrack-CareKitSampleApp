@@ -5,7 +5,8 @@ target 'BackTrack' do
 
   pod 'CMHealth', :path => '../cmhealth-beta-private'
   #pod 'CareKit', :path => '../carekit-beta-private'
-  pod 'CareKit', :path => '../carekit-internal-20'
+  pod 'CareKit', :path => '../carekit-internal-beta-3'
+  #pod 'CareKit', :path => '../carekit-internal-20'
   pod 'ResearchKit', :git => 'https://github.com/ResearchKit/ResearchKit'
 
   target 'BackTrackTests' do

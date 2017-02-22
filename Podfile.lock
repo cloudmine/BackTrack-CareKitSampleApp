@@ -20,7 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - CareKit (2.0.0)
+  - CareKit (2.0.1)
   - CloudMine (1.7.14):
     - AFNetworking (~> 2.6.3)
     - CloudMine/no-arc (= 1.7.14)
@@ -33,13 +33,13 @@ PODS:
   - ResearchKit (1.4.1)
 
 DEPENDENCIES:
-  - CareKit (from `../carekit-internal-20`)
+  - CareKit (from `../carekit-internal-beta-3`)
   - CMHealth (from `../cmhealth-beta-private`)
   - ResearchKit (from `https://github.com/ResearchKit/ResearchKit`)
 
 EXTERNAL SOURCES:
   CareKit:
-    :path: ../carekit-internal-20
+    :path: ../carekit-internal-beta-3
   CMHealth:
     :path: ../cmhealth-beta-private
   ResearchKit:
@@ -52,11 +52,11 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  CareKit: 1b284582029627f8370a40cf405d58c352457199
+  CareKit: 247f6216a90c87a5396c7c222eefa0378667a5c7
   CloudMine: e0337360f4fad74c91ea35d483137d46b5d266f0
   CMHealth: 4a16fa6b5f5d72af3587c96d822578333656e5fb
   ResearchKit: e308eb4b980784bd2bda6f3716325fa929c000c0
 
-PODFILE CHECKSUM: c1efd74833ccd09416810481db5918083ac73877
+PODFILE CHECKSUM: f38cd245ff94cfeb360a93d97e1f38f31122affd
 
 COCOAPODS: 1.1.1
