@@ -35,9 +35,9 @@
 -  (OCKInsightsViewController *)insightsViewController
 {
     if (nil == _insightsViewController) {
-        _insightsViewController = [[OCKInsightsViewController alloc] initWithInsightItems:@[]
-                                                                  headerTitle:NSLocalizedString(@"Treatment Insights", nil)
-                                                               headerSubtitle:NSLocalizedString(@"Data from your treatment over the last week", nil)];
+        _insightsViewController = [[OCKInsightsViewController alloc] initWithInsightItems:@[]];
+//                                                                  headerTitle:NSLocalizedString(@"Treatment Insights", nil)
+//                                                               headerSubtitle:NSLocalizedString(@"Data from your treatment over the last week", nil)];
     }
 
     return _insightsViewController;
