@@ -9,6 +9,7 @@
 #import "BCMFirstStartTracker.h"
 
 @interface BCMProfileViewController ()<MFMailComposeViewControllerDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userEmailLabel;
 @property (weak, nonatomic) IBOutlet UIButton *logOutButton;
 @property (nonatomic, nullable) MFMailComposeViewController *mailViewController;
@@ -40,6 +41,7 @@
     if (object == [CMHUser currentUser] && [@"userData" isEqualToString:keyPath]) {
         on_main_thread(^{
             self.userEmailLabel.text = [CMHUser currentUser].userData.email;
+            self.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", [CMHUser currentUser].userData.givenName, [CMHUser currentUser].userData.familyName];
         });
     }
 }
