@@ -10,7 +10,7 @@
 #import "UIImage+BCM.h"
 #import "UIColor+BCM.h"
 
-@interface BCMProfileViewController ()<MFMailComposeViewControllerDelegate, UIImagePickerControllerDelegate>
+@interface BCMProfileViewController ()<MFMailComposeViewControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userEmailLabel;
 @property (weak, nonatomic) IBOutlet UIButton *logOutButton;
@@ -170,7 +170,7 @@
     dispatch_async(backgroundQueue, ^{
         UIImage *croppedImage = [UIImage imageSquareCroppingImage:image toSideLength:200.0f];
         if (nil == croppedImage) {
-            NSLog(@"[CMHealth] Failed to crop image");
+            [self showAlertWithMessage:NSLocalizedString(@"Failed to crop the selected image", nil) andError:nil];
             on_main_thread(^{
                 [self.profileImageActivityIndicator stopAnimating];
             });
@@ -179,7 +179,7 @@
         
         [[CMHUser currentUser] uploadProfileImage:croppedImage withCompletion:^(BOOL success, NSError * _Nullable error) {
             if (!success) {
-                NSLog(@"Error uploading profile image: %@", error.localizedDescription);
+                [self showAlertWithMessage:NSLocalizedString(@"Failed to upload profile image", nil) andError:error];
                 on_main_thread(^{
                     [self.profileImageActivityIndicator stopAnimating];
                 });
