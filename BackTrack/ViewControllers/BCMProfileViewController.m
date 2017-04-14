@@ -51,7 +51,7 @@
 #pragma mark Target-Action
 - (IBAction)didPressUpdateProfilePhotoButton:(UIButton *)sender
 {
-    NSLog(@"[CMHealth] Profile photo button pressed");
+    [self requestProfilePhoto];
 }
 
 - (IBAction)didPressLogoutButton:(UIButton *)sender
@@ -93,6 +93,37 @@
 }
 
 #pragma mark Private
+
+- (void)requestProfilePhoto
+{
+    UIAlertController *photoTypeAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Update Profile Photo", nil)
+                                                                            message:nil
+                                                                     preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel
+                                                   handler:^(UIAlertAction * _Nonnull action) {}];
+    [photoTypeAlert addAction:cancelAction];
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Camera", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        
+        [photoTypeAlert addAction:cameraAction];
+    }
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        UIAlertAction *libraryAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Photo Library", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        
+        [photoTypeAlert addAction:libraryAction];
+    }
+    
+    if (photoTypeAlert.actions.count > 1) {
+        [self presentViewController:photoTypeAlert animated:YES completion:nil];
+    }
+}
 
 - (void)confirmAndLogout
 {
