@@ -12,6 +12,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userEmailLabel;
 @property (weak, nonatomic) IBOutlet UIButton *logOutButton;
+@property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
+@property (strong, nonatomic) IBOutlet UIButton *updateProfileButton;
 @property (nonatomic, nullable) MFMailComposeViewController *mailViewController;
 @end
 
@@ -47,6 +49,10 @@
 }
 
 #pragma mark Target-Action
+- (IBAction)didPressUpdateProfilePhotoButton:(UIButton *)sender
+{
+    NSLog(@"[CMHealth] Profile photo button pressed");
+}
 
 - (IBAction)didPressLogoutButton:(UIButton *)sender
 {

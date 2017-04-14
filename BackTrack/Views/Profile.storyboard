@@ -67,6 +67,12 @@
                                                     </mask>
                                                 </variation>
                                             </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wx-kq-Bky">
+                                                <rect key="frame" x="20" y="20" width="80" height="80"/>
+                                                <connections>
+                                                    <action selector="didPressUpdateProfilePhotoButton:" destination="eVz-hK-BK5" eventType="touchUpInside" id="GBJ-gs-sLu"/>
+                                                </connections>
+                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="someone@somewhere.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MoI-45-m0k">
                                                 <rect key="frame" x="116" y="62" width="189.5" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -174,6 +180,7 @@
                                             <constraint firstItem="MoI-45-m0k" firstAttribute="leading" secondItem="KoU-7E-DgN" secondAttribute="leading" id="8Hh-lz-dFj"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9EM-e4-XY8" secondAttribute="trailing" constant="20" symbolic="YES" id="9aS-Cc-4ZR"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MoI-45-m0k" secondAttribute="trailing" constant="20" symbolic="YES" id="DW5-OZ-5uc"/>
+                                            <constraint firstItem="4wx-kq-Bky" firstAttribute="leading" secondItem="WKl-UM-au6" secondAttribute="leading" id="GRi-he-HPL"/>
                                             <constraint firstAttribute="bottom" secondItem="pYa-OO-Cyd" secondAttribute="bottom" constant="20" id="IYi-d6-L4b"/>
                                             <constraint firstItem="WKl-UM-au6" firstAttribute="leading" secondItem="kgp-Hl-R14" secondAttribute="leading" constant="20" id="Jed-6I-dud"/>
                                             <constraint firstItem="KoU-7E-DgN" firstAttribute="bottom" secondItem="WKl-UM-au6" secondAttribute="centerY" id="NJX-o9-8Sf"/>
@@ -182,8 +189,11 @@
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KoU-7E-DgN" secondAttribute="trailing" constant="20" symbolic="YES" id="QJs-AV-wJ1"/>
                                             <constraint firstItem="pYa-OO-Cyd" firstAttribute="leading" secondItem="9Nb-fX-ufH" secondAttribute="leading" id="Qq5-93-nec"/>
                                             <constraint firstItem="pYa-OO-Cyd" firstAttribute="top" secondItem="bPv-Ug-qlD" secondAttribute="bottom" id="TBh-Pg-OGD"/>
+                                            <constraint firstItem="4wx-kq-Bky" firstAttribute="top" secondItem="WKl-UM-au6" secondAttribute="top" id="Uv6-eb-RYE"/>
                                             <constraint firstItem="pYa-OO-Cyd" firstAttribute="height" secondItem="9Nb-fX-ufH" secondAttribute="height" id="VIj-JT-Psy"/>
+                                            <constraint firstItem="4wx-kq-Bky" firstAttribute="bottom" secondItem="WKl-UM-au6" secondAttribute="bottom" id="WzG-yh-DL7"/>
                                             <constraint firstItem="9Nb-fX-ufH" firstAttribute="width" secondItem="kgp-Hl-R14" secondAttribute="width" multiplier="4/5" id="Y1U-7w-bHc"/>
+                                            <constraint firstItem="4wx-kq-Bky" firstAttribute="trailing" secondItem="WKl-UM-au6" secondAttribute="trailing" id="ZUG-Ge-PUp"/>
                                             <constraint firstAttribute="trailing" secondItem="yu1-22-4wE" secondAttribute="trailing" constant="30" id="ZmF-IK-mm5"/>
                                             <constraint firstItem="yu1-22-4wE" firstAttribute="leading" secondItem="kgp-Hl-R14" secondAttribute="leading" constant="30" id="dyR-km-rYV"/>
                                             <constraint firstItem="HT0-NG-7SV" firstAttribute="centerX" secondItem="kgp-Hl-R14" secondAttribute="centerX" id="eHh-22-jqp"/>
@@ -244,6 +254,8 @@
                     <navigationItem key="navigationItem" title="Profile" id="VH5-wk-XhG"/>
                     <connections>
                         <outlet property="logOutButton" destination="HT0-NG-7SV" id="z7J-0R-B5g"/>
+                        <outlet property="profileImageView" destination="WKl-UM-au6" id="ThB-rV-pZ5"/>
+                        <outlet property="updateProfileButton" destination="4wx-kq-Bky" id="VTr-PE-GtJ"/>
                         <outlet property="userEmailLabel" destination="MoI-45-m0k" id="xvv-GR-4gx"/>
                         <outlet property="userNameLabel" destination="9EM-e4-XY8" id="Vv3-OA-L8M"/>
                     </connections>
