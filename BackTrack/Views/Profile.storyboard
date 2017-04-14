@@ -54,7 +54,7 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfilePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="WKl-UM-au6">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WKl-UM-au6">
                                                 <rect key="frame" x="20" y="20" width="80" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="WKl-UM-au6" secondAttribute="height" multiplier="1:1" id="SMN-C6-qVn"/>
@@ -67,6 +67,9 @@
                                                     </mask>
                                                 </variation>
                                             </imageView>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vIg-WG-pTa">
+                                                <rect key="frame" x="50" y="50" width="20" height="20"/>
+                                            </activityIndicatorView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wx-kq-Bky">
                                                 <rect key="frame" x="20" y="20" width="80" height="80"/>
                                                 <connections>
@@ -185,6 +188,7 @@
                                             <constraint firstItem="WKl-UM-au6" firstAttribute="leading" secondItem="kgp-Hl-R14" secondAttribute="leading" constant="20" id="Jed-6I-dud"/>
                                             <constraint firstItem="KoU-7E-DgN" firstAttribute="bottom" secondItem="WKl-UM-au6" secondAttribute="centerY" id="NJX-o9-8Sf"/>
                                             <constraint firstItem="pYa-OO-Cyd" firstAttribute="top" secondItem="kgp-Hl-R14" secondAttribute="top" constant="311" id="NQK-6i-o3n"/>
+                                            <constraint firstItem="vIg-WG-pTa" firstAttribute="centerY" secondItem="WKl-UM-au6" secondAttribute="centerY" id="OYb-Gj-GAs"/>
                                             <constraint firstItem="MoI-45-m0k" firstAttribute="top" secondItem="KoU-7E-DgN" secondAttribute="bottom" constant="2" id="PKt-iw-D5q"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KoU-7E-DgN" secondAttribute="trailing" constant="20" symbolic="YES" id="QJs-AV-wJ1"/>
                                             <constraint firstItem="pYa-OO-Cyd" firstAttribute="leading" secondItem="9Nb-fX-ufH" secondAttribute="leading" id="Qq5-93-nec"/>
@@ -209,6 +213,7 @@
                                             <constraint firstAttribute="trailing" secondItem="9Nb-fX-ufH" secondAttribute="trailing" constant="42" id="seU-qm-jDL"/>
                                             <constraint firstItem="9Nb-fX-ufH" firstAttribute="top" secondItem="yu1-22-4wE" secondAttribute="bottom" constant="5" id="svR-zi-N7g"/>
                                             <constraint firstItem="9EM-e4-XY8" firstAttribute="leading" secondItem="MoI-45-m0k" secondAttribute="leading" id="u3y-Jh-2DX"/>
+                                            <constraint firstItem="vIg-WG-pTa" firstAttribute="centerX" secondItem="WKl-UM-au6" secondAttribute="centerX" id="uJJ-TL-296"/>
                                             <constraint firstItem="pYa-OO-Cyd" firstAttribute="width" secondItem="9Nb-fX-ufH" secondAttribute="width" id="xI4-tO-zKN"/>
                                         </constraints>
                                         <variation key="default">
@@ -254,6 +259,7 @@
                     <navigationItem key="navigationItem" title="Profile" id="VH5-wk-XhG"/>
                     <connections>
                         <outlet property="logOutButton" destination="HT0-NG-7SV" id="z7J-0R-B5g"/>
+                        <outlet property="profileImageActivityIndicator" destination="vIg-WG-pTa" id="m8U-Nj-nTu"/>
                         <outlet property="profileImageView" destination="WKl-UM-au6" id="ThB-rV-pZ5"/>
                         <outlet property="updateProfileButton" destination="4wx-kq-Bky" id="VTr-PE-GtJ"/>
                         <outlet property="userEmailLabel" destination="MoI-45-m0k" id="xvv-GR-4gx"/>
@@ -268,6 +274,5 @@
     <resources>
         <image name="ProfileIcon" width="24" height="24"/>
         <image name="ProfileIconFilled" width="24" height="24"/>
-        <image name="ProfilePlaceholder" width="150" height="150"/>
     </resources>
 </document>
