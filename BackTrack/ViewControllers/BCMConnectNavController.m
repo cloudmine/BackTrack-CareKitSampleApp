@@ -1,8 +1,14 @@
 #import "BCMConnectNavController.h"
+#import <CMHealth/CMHealth.h>
 #import "UIColor+BCM.h"
-#import <CareKit/CareKit.h>
+#import "UIViewController+BCM.h"
+#import "BCMMainTabController.h"
+#import "BCMMainThread.h"
 
 @interface BCMConnectNavController ()
+
+@property (nonatomic) OCKPatient *patient;
+@property (nonatomic) OCKConnectViewController *connectVC;
 
 @end
 
@@ -15,10 +21,61 @@
     [super viewDidLoad];
 
     self.navigationBar.tintColor = [UIColor bcmBlueColor];
+    
+    NSString *fullName = [NSString stringWithFormat:@"%@ %@", CMHUser.currentUser.userData.givenName, CMHUser.currentUser.userData.familyName];
+    self.patient = [[OCKPatient alloc] initWithIdentifier:[CMHUser currentUser].userData.userId
+                                            carePlanStore:self.bcmTabBarController.carePlanStore
+                                                     name:fullName
+                                               detailInfo:nil
+                                         careTeamContacts:nil
+                                                tintColor:nil
+                                                 monogram:nil
+                                                    image:nil
+                                               categories:nil];
 
-    OCKConnectViewController *connectViewController = [[OCKConnectViewController alloc] initWithContacts:BCMConnectNavController.contacts];
-    connectViewController.navigationItem.title = NSLocalizedString(@"Connect", nil);
-    [self showViewController:connectViewController sender:nil];
+    self.connectVC = [[OCKConnectViewController alloc] initWithContacts:BCMConnectNavController.contacts
+                                                                patient:self.patient];
+    [self fetchProfileImage];
+    
+    self.connectVC.navigationItem.title = NSLocalizedString(@"Connect", nil);
+    [self showViewController:self.connectVC sender:nil];
+}
+
+- (void)fetchProfileImage
+{
+    [[CMHUser currentUser] fetchProfileImageWithCompletion:^(BOOL success, UIImage *image, NSError *error) {
+        if (!success) {
+            NSLog(@"[CMHealth] Error fetching profile image: %@", error.localizedDescription);
+            return;
+        }
+        
+        if (nil == image) {
+            return;
+        }
+        
+        on_main_thread(^{
+            NSLog(@"[CMHealth] Successfully fetched profile image");
+            self.patient.image = image;
+            
+            // TODO: Mention this to Umer
+            // Yikes! The only way to force the header view to consider the image now set to the patient
+            // is to call viewDidLoad:, i.e. re-initialize it. To do this, I'm creating a new instance
+            // and swapping it out for the existing one in the nav controllers VC stack. Probably
+            // not a great idea!
+            if (self.viewControllers.count >= 1) {
+                NSMutableArray *newVCs = [NSMutableArray new];
+                self.connectVC = [[OCKConnectViewController alloc] initWithContacts:BCMConnectNavController.contacts
+                                                                            patient:self.patient];
+                [newVCs addObject:self.connectVC];
+                
+                for (int i = 1; i < self.viewControllers.count; i++) {
+                    [newVCs addObject:self.viewControllers[i]];
+                }
+                
+                self.viewControllers = [newVCs copy];
+            }
+        });
+    }];
 }
 
 # pragma mark Generators
@@ -81,4 +138,5 @@
                                           monogram:@"JD"
                                              image:nil];
 }
+
 @end
