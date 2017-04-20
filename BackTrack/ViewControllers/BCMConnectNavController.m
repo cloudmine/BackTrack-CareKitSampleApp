@@ -30,15 +30,17 @@
 
 + (OCKContact *_Nonnull)cloudMineContact
 {
-    CNPhoneNumber *phone = [CNPhoneNumber phoneNumberWithStringValue:@"(855) 662-7722"];
-
+    NSString *cloudMinePhone = @"(855) 662-7722";
+    NSString *cloudMineEmail = @"support@cloudmineinc.com";
+    
+    OCKContactInfo *phoneInfo = [[OCKContactInfo alloc] initWithType:OCKContactInfoTypePhone displayString:cloudMinePhone actionURL:nil label:cloudMinePhone];
+    OCKContactInfo *emailInfo = [[OCKContactInfo alloc] initWithType:OCKContactInfoTypeEmail displayString:cloudMineEmail actionURL:nil label:cloudMineEmail];
+    
     return [[OCKContact alloc] initWithContactType:OCKContactTypePersonal
                                               name:@"CloudMine"
-                                          relation:@"Connected Care Partner"
+                                          relation:NSLocalizedString(@"Connected Care Partner", nil)
+                                  contactInfoItems:@[phoneInfo, emailInfo]
                                          tintColor:[UIColor bcmBlueColor]
-                                       phoneNumber:phone
-                                     messageNumber:phone
-                                      emailAddress:@"support@cloudmineinc.com"
                                           monogram:@"CM"
                                              image:nil];
 
@@ -46,30 +48,36 @@
 
 + (OCKContact *_Nonnull)doctorContact
 {
-    CNPhoneNumber *phone = [CNPhoneNumber phoneNumberWithStringValue:@"(555) 555-5555"];
-
+    NSString *doctorPhone = @"(555) 555-5555";
+    NSString *doctorEmail = @"jane@fakebackdoctor.com";
+    
+    OCKContactInfo *phoneInfo   = [[OCKContactInfo alloc] initWithType:OCKContactInfoTypePhone displayString:doctorPhone actionURL:nil label:doctorPhone];
+    OCKContactInfo *messageInfo = [[OCKContactInfo alloc] initWithType:OCKContactInfoTypeMessage displayString:doctorPhone actionURL:nil label:doctorPhone];
+    OCKContactInfo *emailInfo   = [[OCKContactInfo alloc] initWithType:OCKContactInfoTypeEmail displayString:doctorEmail actionURL:nil label:doctorEmail];
+    
     return [[OCKContact alloc] initWithContactType:OCKContactTypeCareTeam
                                               name:@"Dr. Jane Smith"
                                           relation:@"Orthopedist"
+                                  contactInfoItems:@[phoneInfo, messageInfo, emailInfo]
                                          tintColor:[UIColor bcmGreenColor]
-                                       phoneNumber:phone
-                                     messageNumber:phone
-                                      emailAddress:@"jane@fakebackdoctor.com"
                                           monogram:@"JS"
                                              image:nil];
 }
 
 + (OCKContact *_Nonnull)physicalTherapistContact
 {
-    CNPhoneNumber *phone = [CNPhoneNumber phoneNumberWithStringValue:@"(555) 555-1234"];
-
+    NSString *therapistPhone = @"(555) 555-1234";
+    NSString *therapistEmail = @"John@notreallyapt.com";
+    
+    OCKContactInfo *phoneInfo   = [[OCKContactInfo alloc] initWithType:OCKContactInfoTypePhone displayString:therapistPhone actionURL:nil label:therapistPhone];
+    OCKContactInfo *messageInfo = [[OCKContactInfo alloc] initWithType:OCKContactInfoTypeMessage displayString:therapistPhone actionURL:nil label:therapistPhone];
+    OCKContactInfo *emailInfo   = [[OCKContactInfo alloc] initWithType:OCKContactInfoTypeEmail displayString:therapistEmail actionURL:nil label:therapistEmail];
+    
     return [[OCKContact alloc] initWithContactType:OCKContactTypeCareTeam
                                               name:@"John Doe"
                                           relation:@"Physical Therapist"
+                                  contactInfoItems:@[phoneInfo, messageInfo, emailInfo]
                                          tintColor:[UIColor bcmPurpleColor]
-                                       phoneNumber:phone
-                                     messageNumber:phone
-                                      emailAddress:@"John@notreallyapt.com"
                                           monogram:@"JD"
                                              image:nil];
 }
