@@ -23,6 +23,7 @@
     self.navigationBar.tintColor = [UIColor bcmBlueColor];
     
     NSString *fullName = [NSString stringWithFormat:@"%@ %@", CMHUser.currentUser.userData.givenName, CMHUser.currentUser.userData.familyName];
+
     self.patient = [[OCKPatient alloc] initWithIdentifier:[CMHUser currentUser].userData.userId
                                             carePlanStore:self.bcmTabBarController.carePlanStore
                                                      name:fullName
@@ -31,7 +32,8 @@
                                                 tintColor:nil
                                                  monogram:nil
                                                     image:nil
-                                               categories:nil];
+                                               categories:nil
+                                                 userInfo:nil];
 
     self.connectVC = [[OCKConnectViewController alloc] initWithContacts:BCMConnectNavController.contacts
                                                                 patient:self.patient];
