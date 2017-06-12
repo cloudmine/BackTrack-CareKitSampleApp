@@ -20,43 +20,44 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - CareKit (2.0.3)
-  - CloudMine (1.7.14):
+  - CareKit (1.2.0)
+  - CloudMine (1.7.15):
     - AFNetworking (~> 2.6.3)
-    - CloudMine/no-arc (= 1.7.14)
-  - CloudMine/no-arc (1.7.14):
+    - CloudMine/no-arc (= 1.7.15)
+  - CloudMine/no-arc (1.7.15):
     - AFNetworking (~> 2.6.3)
-  - CMHealth (0.5.0):
-    - CareKit (~> 2.0.0)
+  - CMHealth (0.6.0):
+    - CareKit (~> 1.2)
     - CloudMine (~> 1.7)
     - ResearchKit (~> 1.3)
   - ResearchKit (1.4.1)
 
 DEPENDENCIES:
-  - CareKit (from `../carekit-20-beta-4.5`)
-  - CMHealth (from `../cmhealth-beta-private`)
-  - ResearchKit (from `https://github.com/ResearchKit/ResearchKit`)
+  - CareKit (from `git@github.com:cloudmine/CareKit.git`, branch `cm-patched`)
+  - CMHealth (from `git@github.com:cloudmine/CMHealthSDK-iOS.git`)
 
 EXTERNAL SOURCES:
   CareKit:
-    :path: ../carekit-20-beta-4.5
+    :branch: cm-patched
+    :git: git@github.com:cloudmine/CareKit.git
   CMHealth:
-    :path: ../cmhealth-beta-private
-  ResearchKit:
-    :git: https://github.com/ResearchKit/ResearchKit
+    :git: git@github.com:cloudmine/CMHealthSDK-iOS.git
 
 CHECKOUT OPTIONS:
-  ResearchKit:
-    :commit: 02828eff5a59e7831ff794e32a4c63ae8dfc765b
-    :git: https://github.com/ResearchKit/ResearchKit
+  CareKit:
+    :commit: 65e9d2c9489f0f7cdf415e906b844dc355b2a160
+    :git: git@github.com:cloudmine/CareKit.git
+  CMHealth:
+    :commit: 3ea2fd5136322ff37d1e3462bddd6df77336a4a0
+    :git: git@github.com:cloudmine/CMHealthSDK-iOS.git
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  CareKit: 74bdf6857719ddc4ccef3b0c9e53b5b94d0a67a7
-  CloudMine: e0337360f4fad74c91ea35d483137d46b5d266f0
-  CMHealth: 4a16fa6b5f5d72af3587c96d822578333656e5fb
-  ResearchKit: e308eb4b980784bd2bda6f3716325fa929c000c0
+  CareKit: 94c2322c43a138c5334bd41853d009cf1b8fefb5
+  CloudMine: a465ed5e1d37385bd076aad15407afef3c686041
+  CMHealth: c7a513beb7af2befab8e0cc1be2accad1fabcdd8
+  ResearchKit: 3533ea3a2270e4ed7ff830e19755dc959fdfd430
 
-PODFILE CHECKSUM: b62a7d5d8660c74e148d7a2db3bcccde51291085
+PODFILE CHECKSUM: 1259cfd8bfe5a45e4450c10db93a4d0fff2bf98d
 
 COCOAPODS: 1.2.1
