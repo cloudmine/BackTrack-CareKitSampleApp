@@ -6,7 +6,6 @@
 #import "BCMStoreUtils.h"
 
 NSString * const _Nonnull BCMStoreDidUpdateNotification = @"BCMStoreDidUpdate";
-NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEventData";
 
 @interface BCMMainTabController ()<OCKCarePlanStoreDelegate>
 
@@ -79,11 +78,6 @@ NSString * const _Nonnull BCMStoreDidReloadEventData    = @"BCMStoreDidReloadEve
 - (void)postStoreUpdateNotification
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:BCMStoreDidUpdateNotification object:self];
-}
-
-- (void)postDataDidReloadNotification
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:BCMStoreDidReloadEventData object:self];
 }
 
 @end

@@ -7,6 +7,8 @@
 
 @interface BCMCareNavController ()
 
+@property (nonatomic) OCKCareContentsViewController *careContentsViewController;
+
 @end
 
 @implementation BCMCareNavController
@@ -17,21 +19,14 @@
 
     self.navigationBar.tintColor = [UIColor bcmBlueColor];
     [self reloadCareViewController];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCareViewController) name:BCMStoreDidReloadEventData object:nil];
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:BCMStoreDidReloadEventData object:nil];
 }
 
 - (void)reloadCareViewController
 {
     on_main_thread(^{
-        OCKCareCardViewController *careViewController = [[OCKCareCardViewController alloc] initWithCarePlanStore:self.bcmTabBarController.carePlanStore];
-        careViewController.navigationItem.title = NSLocalizedString(@"Care Plan", nil);
-        self.viewControllers = @[careViewController];
+        self.careContentsViewController = [[OCKCareContentsViewController alloc] initWithCarePlanStore:self.bcmTabBarController.carePlanStore];
+        self.careContentsViewController.navigationItem.title = NSLocalizedString(@"Care Plan", nil);
+        self.viewControllers = @[self.careContentsViewController];
     });
 }
 
