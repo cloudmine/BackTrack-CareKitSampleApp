@@ -1,5 +1,7 @@
 #import "BCMInsightBuilder.h"
 #import "BCMActivities.h"
+#import "BCMInsightItem.h"
+#import "BCMInsightCollection.h"
 #import "UIColor+BCM.h"
 #import "NSDateComponents+BCM.h"
 
@@ -97,52 +99,24 @@ typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArra
                           tintColor:(UIColor *_Nullable)color
                       andCompletion:(_Nonnull BCMInsightValuesCompletion)block
 {
-    NSMutableArray <NSNumber *>*values = [NSMutableArray new];
-    NSMutableArray <NSString *>*labels = [NSMutableArray new];
-    NSMutableArray <NSString *>*axisLabels = [NSMutableArray new];
-    NSMutableArray <NSString *>*axisSubs = [NSMutableArray new];
-
-    NSDateFormatter *dayFormatter = [NSDateFormatter new];
-    dayFormatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"Md" options:0 locale:dayFormatter.locale];
-    NSDateFormatter *nameFormatter = [NSDateFormatter new];
-    nameFormatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"E" options:0 locale:dayFormatter.locale];
-
+    NSMutableArray<BCMInsightItem *> *insightItems = [NSMutableArray new];
 
     [store enumerateEventsOfActivity:activity
                            startDate:[NSDateComponents weekAgoComponents]
                              endDate:[NSDateComponents tomorrowComponents]
                              handler:^(OCKCarePlanEvent * _Nullable event, BOOL * _Nonnull stop)
      {
-
-         NSString *dayString = [dayFormatter stringFromDate:[[NSCalendar currentCalendar] dateFromComponents:event.date]];
-         [axisLabels addObject:dayString];
-         NSString *nameString = [nameFormatter stringFromDate:[[NSCalendar currentCalendar] dateFromComponents:event.date]];
-         [axisSubs addObject:nameString];
-
-         if (event.state != OCKCarePlanEventStateCompleted) {
-             [values addObject:@0];
-             [labels addObject:@"N/A"];
-             return;
-         }
-
-         NSNumberFormatter *numForatter = [NSNumberFormatter new];
-         numForatter.numberStyle = NSNumberFormatterDecimalStyle;
-         NSNumber *aValue = [numForatter numberFromString:event.result.valueString];
-
-         [values addObject:aValue];
-         [labels addObject:event.result.valueString];
-
+         BCMInsightItem *item = [[BCMInsightItem alloc] initWithEvent:event];
+         [insightItems addObject:item];
+         
      } completion:^(BOOL completed, NSError * _Nullable error) {
          if (!completed) {
              block(nil, nil, nil, error);
              return;
          }
 
-         OCKBarSeries *series = [[OCKBarSeries alloc] initWithTitle:title
-                                                                 values:[values copy]
-                                                            valueLabels:[labels copy]
-                                                              tintColor:color];
-         block(series, [axisLabels copy], [axisSubs copy], nil);
+         BCMInsightCollection *collection = [[BCMInsightCollection alloc] initWithItems:[insightItems copy]];
+         block(collection.series, collection.axisLabels, collection.axisSubLabels, nil);
      }];
 }
 

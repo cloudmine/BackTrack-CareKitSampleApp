@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9E230222AF550F36BD730506 /* Pods_BackTrackTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9C8B84302774DFBCFB945B3 /* Pods_BackTrackTests.framework */; };
+		B4102C281EF072180000F9B6 /* BCMInsightItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B4102C271EF072180000F9B6 /* BCMInsightItem.m */; };
+		B4102C2B1EF079740000F9B6 /* BCMInsightCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = B4102C2A1EF079740000F9B6 /* BCMInsightCollection.m */; };
 		B4172C331EA159DC00E627FA /* UIImage+BCM.m in Sources */ = {isa = PBXBuildFile; fileRef = B4172C321EA159DC00E627FA /* UIImage+BCM.m */; };
 		B44DB55E1D0B407B0014EF4F /* Brandmark.png in Resources */ = {isa = PBXBuildFile; fileRef = B44DB55C1D0B407B0014EF4F /* Brandmark.png */; };
 		B46F1EC41CEE46F200AB1972 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1EC31CEE46F200AB1972 /* main.m */; };
@@ -67,6 +69,10 @@
 		585AB602CC3B8D174D4FA47A /* Pods-BackTrackUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BackTrackUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BackTrackUITests/Pods-BackTrackUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7F3937084FE244EDD517B909 /* Pods-BackTrackUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BackTrackUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BackTrackUITests/Pods-BackTrackUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8B9B8235072039F9518B78C3 /* Pods-BackTrackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BackTrackTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BackTrackTests/Pods-BackTrackTests.release.xcconfig"; sourceTree = "<group>"; };
+		B4102C261EF072180000F9B6 /* BCMInsightItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMInsightItem.h; sourceTree = "<group>"; };
+		B4102C271EF072180000F9B6 /* BCMInsightItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMInsightItem.m; sourceTree = "<group>"; };
+		B4102C291EF079740000F9B6 /* BCMInsightCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMInsightCollection.h; sourceTree = "<group>"; };
+		B4102C2A1EF079740000F9B6 /* BCMInsightCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMInsightCollection.m; sourceTree = "<group>"; };
 		B4172C311EA159DC00E627FA /* UIImage+BCM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BCM.h"; sourceTree = "<group>"; };
 		B4172C321EA159DC00E627FA /* UIImage+BCM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BCM.m"; sourceTree = "<group>"; };
 		B44DB55C1D0B407B0014EF4F /* Brandmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brandmark.png; sourceTree = "<group>"; };
@@ -325,6 +331,10 @@
 				B46F1F211CF397CB00AB1972 /* BCMActivities.m */,
 				B46F1F261CF540E800AB1972 /* BCMTasks.h */,
 				B46F1F271CF540E800AB1972 /* BCMTasks.m */,
+				B4102C261EF072180000F9B6 /* BCMInsightItem.h */,
+				B4102C271EF072180000F9B6 /* BCMInsightItem.m */,
+				B4102C291EF079740000F9B6 /* BCMInsightCollection.h */,
+				B4102C2A1EF079740000F9B6 /* BCMInsightCollection.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -613,6 +623,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4102C281EF072180000F9B6 /* BCMInsightItem.m in Sources */,
 				B4F0F5FE1CFD2E2A004E8A1B /* BCMAuthViewController.m in Sources */,
 				B46F1F171CF38EF800AB1972 /* UIViewController+BCM.m in Sources */,
 				B4172C331EA159DC00E627FA /* UIImage+BCM.m in Sources */,
@@ -621,6 +632,7 @@
 				B4F0F5F41CF8C3E1004E8A1B /* BCMConnectNavController.m in Sources */,
 				B4F0F5E41CF63F29004E8A1B /* BCMInsightsNavController.m in Sources */,
 				B493E4751E4BB12E002CD083 /* BCMStoreUtils.m in Sources */,
+				B4102C2B1EF079740000F9B6 /* BCMInsightCollection.m in Sources */,
 				B46F1F221CF397CB00AB1972 /* BCMActivities.m in Sources */,
 				B4F0F60C1CFDE0C7004E8A1B /* UIButton+BCM.m in Sources */,
 				B4F0F5EC1CF769F9004E8A1B /* NSDateComponents+BCM.m in Sources */,
