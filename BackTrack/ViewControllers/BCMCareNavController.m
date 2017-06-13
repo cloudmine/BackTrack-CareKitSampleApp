@@ -62,6 +62,39 @@
 - (void)taskViewController:(ORKTaskViewController *)taskViewController didFinishWithReason:(ORKTaskViewControllerFinishReason)reason error:(NSError *)error
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    if (reason != ORKTaskViewControllerFinishReasonCompleted) {
+        return;
+    }
+    
+    OCKCarePlanEvent *event = self.careContentsViewController.lastSelectedEvent;
+    ORKTaskResult *taskResult = taskViewController.result;
+    
+    NSAssert(nil != event &&
+             nil != taskResult &&
+             [event.activity.identifier isEqualToString:taskResult.identifier],
+             @"Expected care plan event and task result identifier to match. Got %@ and %@", event.activity.identifier, taskResult.identifier);
+    
+    [self completeEvent:event
+             withResult:[BCMTasks carePlanResultForTaskResult:taskResult]];
+    
+    
+}
+
+#pragma mark Helpers
+
+- (void)completeEvent:(OCKCarePlanEvent *_Nonnull)event withResult:(OCKCarePlanEventResult *_Nullable)result
+{
+    if (nil == result) {
+        return;
+    }
+    
+    [self.bcmTabBarController.carePlanStore updateEvent:event withResult:result state:OCKCarePlanEventStateCompleted completion:^(BOOL success, OCKCarePlanEvent * _Nullable event, NSError * _Nullable error) {
+        if (!success) {
+            NSLog(@"Failed to update event store: %@", error.localizedDescription);
+            return;
+        }
+    }];
 }
 
 @end
