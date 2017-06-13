@@ -30,6 +30,6 @@ The project should now open and build.
 
 ## Your CloudMine Application
 
-You will want to edit `areKitSampleApp/SupportingFiles/BCMSecrets.h` and add your CloudMine [App ID](https://cloudmine.io/docs/#/getting_started#welcome-to-cloudmine) and [API Key](https://cloudmine.io/docs/#/data_security).
+Edit the `CareKitSampleApp/SupportingFiles/BCMSecrets.h` file and add your CloudMine [App ID](https://cloudmine.io/docs/#/getting_started#welcome-to-cloudmine) and [API Key](https://cloudmine.io/docs/#/data_security), as well as the shared snippet name used for persisting shared CareKit objects. For help with this one time configuration process, please see the [CMHealth documentation](https://github.com/cloudmine/CMHealthSDK-iOS#configuration).
 
-Need a [CloudMine](https://cloudmineinc.com) account?  Email our [Sales team](mailto:sales@cloudmineinc.com).
+Need an account [CloudMine](https://cloudmineinc.com) account?  Email our [sales@cloudmineinc.com](mailto:sales@cloudmineinc.com). Trouble getting set up? Email [support@cloudmineinc.com](mailto:support@cloudmineinc.com).

@@ -20,31 +20,44 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - CareKit (1.0.1)
-  - CloudMine (1.7.11):
+  - CareKit (1.2.0)
+  - CloudMine (1.7.15):
     - AFNetworking (~> 2.6.3)
-    - CloudMine/no-arc (= 1.7.11)
-  - CloudMine/no-arc (1.7.11):
+    - CloudMine/no-arc (= 1.7.15)
+  - CloudMine/no-arc (1.7.15):
     - AFNetworking (~> 2.6.3)
-  - CMHealth (0.4.0):
-    - CareKit (~> 1.0.1)
+  - CMHealth (0.6.0):
+    - CareKit (~> 1.2)
     - CloudMine (~> 1.7)
-    - ResearchKit (~> 1.3.1)
-    - TPKeyboardAvoiding (~> 1.2)
-  - ResearchKit (1.3.1)
-  - TPKeyboardAvoiding (1.3)
+    - ResearchKit (~> 1.3)
+  - ResearchKit (1.4.1)
 
 DEPENDENCIES:
-  - CMHealth (~> 0.4.0)
+  - CareKit (from `git@github.com:cloudmine/CareKit.git`, branch `cm-patched`)
+  - CMHealth (from `git@github.com:cloudmine/CMHealthSDK-iOS.git`)
+
+EXTERNAL SOURCES:
+  CareKit:
+    :branch: cm-patched
+    :git: git@github.com:cloudmine/CareKit.git
+  CMHealth:
+    :git: git@github.com:cloudmine/CMHealthSDK-iOS.git
+
+CHECKOUT OPTIONS:
+  CareKit:
+    :commit: 65e9d2c9489f0f7cdf415e906b844dc355b2a160
+    :git: git@github.com:cloudmine/CareKit.git
+  CMHealth:
+    :commit: 3ea2fd5136322ff37d1e3462bddd6df77336a4a0
+    :git: git@github.com:cloudmine/CMHealthSDK-iOS.git
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  CareKit: 08e840f45807c7771708b731649e082bdb6eea2d
-  CloudMine: ee5b3643fb1a2f4603de6428aea1252ac928d98d
-  CMHealth: 25f4f54c5de5c335b09b90f1f5b600c223a7da25
-  ResearchKit: badba0340dd71d1cbab4789a0bf01b26022b8f94
-  TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
+  CareKit: 94c2322c43a138c5334bd41853d009cf1b8fefb5
+  CloudMine: a465ed5e1d37385bd076aad15407afef3c686041
+  CMHealth: c7a513beb7af2befab8e0cc1be2accad1fabcdd8
+  ResearchKit: 3533ea3a2270e4ed7ff830e19755dc959fdfd430
 
-PODFILE CHECKSUM: e928eeaa7701026d70109629a44b83692a1e9570
+PODFILE CHECKSUM: 1259cfd8bfe5a45e4450c10db93a4d0fff2bf98d
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.1

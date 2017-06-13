@@ -7,10 +7,16 @@
 #import "UIButton+BCM.h"
 #import "BCMMainThread.h"
 #import "BCMFirstStartTracker.h"
+#import "UIImage+BCM.h"
+#import "UIColor+BCM.h"
 
-@interface BCMProfileViewController ()<MFMailComposeViewControllerDelegate>
+@interface BCMProfileViewController ()<MFMailComposeViewControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userEmailLabel;
 @property (weak, nonatomic) IBOutlet UIButton *logOutButton;
+@property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *profileImageActivityIndicator;
+@property (strong, nonatomic) IBOutlet UIButton *updateProfileButton;
 @property (nonatomic, nullable) MFMailComposeViewController *mailViewController;
 @end
 
@@ -25,7 +31,15 @@
     [[CMHUser currentUser] addObserver:self forKeyPath:@"userData" options:(NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew) context:nil];
 
     [self.logOutButton setCornerRadius:4.0f andBorderWidth:1.0f];
+    
+    self.profileImageView.clipsToBounds = YES;
+    self.profileImageView.layer.borderWidth = 1.5f;
+    self.profileImageView.layer.borderColor = [UIColor bcmBlueColor].CGColor;
+    self.profileImageView.layer.cornerRadius = self.profileImageView.bounds.size.width / 2.0f;
+    
     self.mailViewController = [BCMProfileViewController mailComposeViewControllerWithDelegate:self];
+    
+    [self fetchAndShowProfilePhoto];
 }
 
 - (void)dealloc
@@ -40,11 +54,16 @@
     if (object == [CMHUser currentUser] && [@"userData" isEqualToString:keyPath]) {
         on_main_thread(^{
             self.userEmailLabel.text = [CMHUser currentUser].userData.email;
+            self.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", [CMHUser currentUser].userData.givenName, [CMHUser currentUser].userData.familyName];
         });
     }
 }
 
 #pragma mark Target-Action
+- (IBAction)didPressUpdateProfilePhotoButton:(UIButton *)sender
+{
+    [self requestProfilePhoto];
+}
 
 - (IBAction)didPressLogoutButton:(UIButton *)sender
 {
@@ -84,7 +103,115 @@
     [self showAlertWithMessage:NSLocalizedString(@"Thanks for reaching out! Someone will get back to your shortly.", nil) andError:error];
 }
 
+#pragma mark UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    UIImage *pickedImage = info[UIImagePickerControllerOriginalImage];
+    if (nil == pickedImage) {
+        return;
+    }
+    
+    [self cropAndUploadProfileImage:pickedImage];
+}
+
 #pragma mark Private
+
+- (void)requestProfilePhoto
+{
+    UIAlertController *photoTypeAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Update Profile Photo", nil)
+                                                                            message:nil
+                                                                     preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel
+                                                   handler:^(UIAlertAction * _Nonnull action) {}];
+    [photoTypeAlert addAction:cancelAction];
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Camera", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self showImagePickerForType:UIImagePickerControllerSourceTypeCamera];
+        }];
+        
+        [photoTypeAlert addAction:cameraAction];
+    }
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        UIAlertAction *libraryAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Photo Library", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self showImagePickerForType:UIImagePickerControllerSourceTypePhotoLibrary];
+        }];
+        
+        [photoTypeAlert addAction:libraryAction];
+    }
+    
+    if (photoTypeAlert.actions.count > 1) {
+        [self presentViewController:photoTypeAlert animated:YES completion:nil];
+    }
+}
+
+- (void)showImagePickerForType:(UIImagePickerControllerSourceType)sourceType
+{
+    UIImagePickerController *picker = [UIImagePickerController new];
+    picker.sourceType = sourceType;
+    picker.delegate = self;
+    
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
+- (void)cropAndUploadProfileImage:(UIImage *)image
+{
+    on_main_thread(^{
+        [self.profileImageActivityIndicator startAnimating];
+    });
+    
+    dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    dispatch_async(backgroundQueue, ^{
+        UIImage *croppedImage = [UIImage imageSquareCroppingImage:image toSideLength:200.0f];
+        if (nil == croppedImage) {
+            [self showAlertWithMessage:NSLocalizedString(@"Failed to crop the selected image", nil) andError:nil];
+            on_main_thread(^{
+                [self.profileImageActivityIndicator stopAnimating];
+            });
+            return;
+        }
+        
+        [[CMHUser currentUser] uploadProfileImage:croppedImage withCompletion:^(BOOL success, NSError * _Nullable error) {
+            if (!success) {
+                [self showAlertWithMessage:NSLocalizedString(@"Failed to upload profile image", nil) andError:error];
+                on_main_thread(^{
+                    [self.profileImageActivityIndicator stopAnimating];
+                });
+                return;
+            }
+            
+            [self fetchAndShowProfilePhoto];
+        }];
+    });
+}
+
+- (void)fetchAndShowProfilePhoto
+{
+    on_main_thread(^{
+        [self.profileImageActivityIndicator startAnimating];
+    });
+    
+    [[CMHUser currentUser] fetchProfileImageWithCompletion:^(BOOL success, UIImage *image, NSError *error) {
+        if (!success) {
+            NSLog(@"[CMHealth] Error fetching profile image: %@", error.localizedDescription);
+        }
+        
+        if (nil == image) {
+            image = [UIImage imageNamed:@"ProfilePlaceholder"];
+        }
+        
+        on_main_thread(^{
+            [self.profileImageActivityIndicator stopAnimating];
+            self.profileImageView.image = image;
+        });
+    }];
+}
 
 - (void)confirmAndLogout
 {
@@ -117,12 +244,8 @@
         }
 
         [BCMFirstStartTracker forgetFirstStart];
-
-        NSArray *errors = [self.bcmTabBarController.carePlanStore cmh_clearLocalStoreSynchronously];
-        if (errors.count > 0) {
-            NSLog(@"There were %li errors clearing the local store", (long)errors.count);
-        }
-
+        [self.bcmTabBarController.carePlanStore clearLocalStore];
+        
         [self.bcmAppDelegate loadAuthentication];
     }];
 }
