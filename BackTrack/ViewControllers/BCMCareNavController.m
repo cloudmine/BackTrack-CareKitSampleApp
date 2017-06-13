@@ -76,9 +76,7 @@
              @"Expected care plan event and task result identifier to match. Got %@ and %@", event.activity.identifier, taskResult.identifier);
     
     [self completeEvent:event
-             withResult:[BCMTasks carePlanResultForTaskResult:taskResult]];
-    
-    
+             withResult:[BCMTasks carePlanResultForTaskResult:taskResult]];   
 }
 
 #pragma mark Helpers
