@@ -142,7 +142,7 @@ typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArra
              return;
          }
 
-         BCMInsightCollection *collection = [[BCMInsightCollection alloc] initWithItems:[insightItems copy]];
+         BCMInsightCollection *collection = [[BCMInsightCollection alloc] initWithItems:[insightItems copy] title:title tintColor:color];
          block(collection.series, collection.axisLabels, collection.axisSubLabels, nil);
      }];
 }

@@ -11,9 +11,10 @@
 
 @implementation BCMInsightCollection
 
-- (nonnull instancetype)initWithItems:(nonnull NSArray<BCMInsightItem *> *)items
+-(instancetype)initWithItems:(NSArray<BCMInsightItem *> *)items title:(NSString *)title tintColor:(UIColor *)color
 {
     NSAssert(nil != items, @"Must provide items parameter to %s", __PRETTY_FUNCTION__);
+    NSAssert(nil != title, @"Must provide title parameter to %s", __PRETTY_FUNCTION__);
     
     self = [super init];
     if (nil == self) { return nil; }
@@ -40,7 +41,7 @@
         [sortedAxisSubLabels addObject:[item.axisSubLabel copy]];
     }
     
-    _series = [[OCKBarSeries alloc] initWithTitle:@"Series Title" values:[sortedValues copy] valueLabels:[sortedLabels copy] tintColor:nil];
+    _series = [[OCKBarSeries alloc] initWithTitle:title values:[sortedValues copy] valueLabels:[sortedLabels copy] tintColor:color];
     _axisLabels = [sortedAxisLabels copy];
     _axisSubLabels = [sortedAxisSubLabels copy];
     
