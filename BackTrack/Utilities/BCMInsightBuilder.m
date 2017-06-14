@@ -131,7 +131,7 @@ typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArra
 
     [store enumerateEventsOfActivity:activity
                            startDate:[NSDateComponents weekAgoComponents]
-                             endDate:[NSDateComponents tomorrowComponents]
+                             endDate:[NSDateComponents todayComponents]
                              handler:^(OCKCarePlanEvent * _Nullable event, BOOL * _Nonnull stop)
      {
          BCMInsightItem *item = [[BCMInsightItem alloc] initWithEvent:event];

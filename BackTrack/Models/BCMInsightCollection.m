@@ -22,9 +22,9 @@
     NSArray *sortedItems =
     [items sortedArrayUsingComparator:^NSComparisonResult(BCMInsightItem *item1, BCMInsightItem * item2) {
         if (item1.numberOfDaysSinceStart > item2.numberOfDaysSinceStart) {
-            return NSOrderedAscending;
-        } else {
             return NSOrderedDescending;
+        } else {
+            return NSOrderedAscending;
         }
     }];
     
