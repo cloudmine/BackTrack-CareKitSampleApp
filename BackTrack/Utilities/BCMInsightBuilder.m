@@ -1,7 +1,10 @@
 #import "BCMInsightBuilder.h"
 #import "BCMActivities.h"
+#import "BCMInsightItem.h"
+#import "BCMInsightCollection.h"
 #import "UIColor+BCM.h"
 #import "NSDateComponents+BCM.h"
+#import "BCMWaitUntil.h"
 
 typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArray <NSString *> *_Nullable axisLabels,
                                           NSArray <NSString *> *_Nullable axisSubs, NSError *_Nullable error);
@@ -48,15 +51,40 @@ typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArra
                                                                             text:message
                                                                        tintColor:[UIColor bcmBlueColor]
                                                                      messageType:OCKMessageItemTypeAlert];
-        block(@[hamstringMessage]);
+        
+        // Move off the OCKCarePlanStore serial queue
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            block(@[hamstringMessage]);
+        });
     }];
 }
 
-// This assumes that data comes out in order, consistently. Neither of these assumptions is documented as guarenteed
-// so this isn't really safe.
 + (void)fetchChartInsightsFromStore:(OCKCarePlanStore *_Nonnull)store withCompletion:(_Nonnull BCMBuildInsightsCompletion)block
 {
-    [self fetchDailySeriesForActivity:BCMActivities.painTrackAssessment
+    __block OCKCarePlanActivity *painActivity = nil;
+    __block OCKCarePlanActivity *moodActivity = nil;
+    
+    bcm_wait_until(^(BCMDoneBlock  _Nonnull done) {
+        [store activityForIdentifier:BCMActivities.painTrackAssessment.identifier completion:^(BOOL success, OCKCarePlanActivity * _Nullable activity, NSError * _Nullable error) {
+            painActivity = activity;
+            done();
+        }];
+    });
+    
+    bcm_wait_until(^(BCMDoneBlock  _Nonnull done) {
+        [store activityForIdentifier:BCMActivities.moodTrackAssessment.identifier completion:^(BOOL success, OCKCarePlanActivity * _Nullable activity, NSError * _Nullable error) {
+            moodActivity = activity;
+            done();
+        }];
+    });
+    
+    if (nil == painActivity || nil == moodActivity) {
+        NSLog(@"[BCM] Failed to fetch pain or mood activity");
+        block(@[]);
+        return;
+    }
+    
+    [self fetchDailySeriesForActivity:painActivity
                             fromStore:store
                             withTitle:NSLocalizedString(@"Pain", nil)
                             tintColor:[UIColor bcmPainColor]
@@ -65,10 +93,11 @@ typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArra
     {
         if (nil != painError) {
             NSLog(@"Error fetching pain insight data: %@", painError.localizedDescription);
+            block(@[]);
             return;
         }
 
-        [self fetchDailySeriesForActivity:BCMActivities.moodTrackAssessment
+        [self fetchDailySeriesForActivity:moodActivity
                                 fromStore:store
                                 withTitle:NSLocalizedString(@"Mood", nil)
                                 tintColor:[UIColor bcmMoodColor]
@@ -77,6 +106,7 @@ typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArra
         {
             if (nil != moodError) {
                 NSLog(@"Error fetching weight insight data: %@", moodError.localizedDescription);
+                block(@[]);
                 return;
             }
 
@@ -97,52 +127,23 @@ typedef void(^BCMInsightValuesCompletion)(OCKBarSeries *_Nullable series, NSArra
                           tintColor:(UIColor *_Nullable)color
                       andCompletion:(_Nonnull BCMInsightValuesCompletion)block
 {
-    NSMutableArray <NSNumber *>*values = [NSMutableArray new];
-    NSMutableArray <NSString *>*labels = [NSMutableArray new];
-    NSMutableArray <NSString *>*axisLabels = [NSMutableArray new];
-    NSMutableArray <NSString *>*axisSubs = [NSMutableArray new];
-
-    NSDateFormatter *dayFormatter = [NSDateFormatter new];
-    dayFormatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"Md" options:0 locale:dayFormatter.locale];
-    NSDateFormatter *nameFormatter = [NSDateFormatter new];
-    nameFormatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"E" options:0 locale:dayFormatter.locale];
-
+    NSMutableArray<BCMInsightItem *> *insightItems = [NSMutableArray new];
 
     [store enumerateEventsOfActivity:activity
                            startDate:[NSDateComponents weekAgoComponents]
-                             endDate:[NSDateComponents tomorrowComponents]
+                             endDate:[NSDateComponents todayComponents]
                              handler:^(OCKCarePlanEvent * _Nullable event, BOOL * _Nonnull stop)
      {
-
-         NSString *dayString = [dayFormatter stringFromDate:[[NSCalendar currentCalendar] dateFromComponents:event.date]];
-         [axisLabels addObject:dayString];
-         NSString *nameString = [nameFormatter stringFromDate:[[NSCalendar currentCalendar] dateFromComponents:event.date]];
-         [axisSubs addObject:nameString];
-
-         if (event.state != OCKCarePlanEventStateCompleted) {
-             [values addObject:@0];
-             [labels addObject:@"N/A"];
-             return;
-         }
-
-         NSNumberFormatter *numForatter = [NSNumberFormatter new];
-         numForatter.numberStyle = NSNumberFormatterDecimalStyle;
-         NSNumber *aValue = [numForatter numberFromString:event.result.valueString];
-
-         [values addObject:aValue];
-         [labels addObject:event.result.valueString];
-
+         BCMInsightItem *item = [[BCMInsightItem alloc] initWithEvent:event];
+         [insightItems addObject:item];
      } completion:^(BOOL completed, NSError * _Nullable error) {
          if (!completed) {
              block(nil, nil, nil, error);
              return;
          }
 
-         OCKBarSeries *series = [[OCKBarSeries alloc] initWithTitle:title
-                                                                 values:[values copy]
-                                                            valueLabels:[labels copy]
-                                                              tintColor:color];
-         block(series, [axisLabels copy], [axisSubs copy], nil);
+         BCMInsightCollection *collection = [[BCMInsightCollection alloc] initWithItems:[insightItems copy] title:title tintColor:color];
+         block(collection.series, collection.axisLabels, collection.axisSubLabels, nil);
      }];
 }
 

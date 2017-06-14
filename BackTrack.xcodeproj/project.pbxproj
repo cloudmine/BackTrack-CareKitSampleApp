@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9E230222AF550F36BD730506 /* Pods_BackTrackTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9C8B84302774DFBCFB945B3 /* Pods_BackTrackTests.framework */; };
+		B4102C281EF072180000F9B6 /* BCMInsightItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B4102C271EF072180000F9B6 /* BCMInsightItem.m */; };
+		B4102C2B1EF079740000F9B6 /* BCMInsightCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = B4102C2A1EF079740000F9B6 /* BCMInsightCollection.m */; };
 		B4172C331EA159DC00E627FA /* UIImage+BCM.m in Sources */ = {isa = PBXBuildFile; fileRef = B4172C321EA159DC00E627FA /* UIImage+BCM.m */; };
 		B44DB55E1D0B407B0014EF4F /* Brandmark.png in Resources */ = {isa = PBXBuildFile; fileRef = B44DB55C1D0B407B0014EF4F /* Brandmark.png */; };
 		B46F1EC41CEE46F200AB1972 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1EC31CEE46F200AB1972 /* main.m */; };
@@ -18,10 +20,8 @@
 		B46F1EE81CEE46F200AB1972 /* BackTrackUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1EE71CEE46F200AB1972 /* BackTrackUITests.m */; };
 		B46F1EFF1CF37D1400AB1972 /* MainPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B46F1F011CF37D1400AB1972 /* MainPanel.storyboard */; };
 		B46F1F091CF381FB00AB1972 /* Care.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B46F1F0B1CF381FB00AB1972 /* Care.storyboard */; };
-		B46F1F0E1CF3838300AB1972 /* Symptoms.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B46F1F101CF3838300AB1972 /* Symptoms.storyboard */; };
 		B46F1F131CF38DCA00AB1972 /* BCMCareNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1F121CF38DCA00AB1972 /* BCMCareNavController.m */; };
 		B46F1F171CF38EF800AB1972 /* UIViewController+BCM.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1F161CF38EF800AB1972 /* UIViewController+BCM.m */; };
-		B46F1F1A1CF3942500AB1972 /* BMCSymptomNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1F191CF3942500AB1972 /* BMCSymptomNavController.m */; };
 		B46F1F1E1CF395A200AB1972 /* BCMFirstStartTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1F1D1CF395A200AB1972 /* BCMFirstStartTracker.m */; };
 		B46F1F221CF397CB00AB1972 /* BCMActivities.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1F211CF397CB00AB1972 /* BCMActivities.m */; };
 		B46F1F281CF540E800AB1972 /* BCMTasks.m in Sources */ = {isa = PBXBuildFile; fileRef = B46F1F271CF540E800AB1972 /* BCMTasks.m */; };
@@ -69,6 +69,10 @@
 		585AB602CC3B8D174D4FA47A /* Pods-BackTrackUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BackTrackUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BackTrackUITests/Pods-BackTrackUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7F3937084FE244EDD517B909 /* Pods-BackTrackUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BackTrackUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BackTrackUITests/Pods-BackTrackUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8B9B8235072039F9518B78C3 /* Pods-BackTrackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BackTrackTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BackTrackTests/Pods-BackTrackTests.release.xcconfig"; sourceTree = "<group>"; };
+		B4102C261EF072180000F9B6 /* BCMInsightItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMInsightItem.h; sourceTree = "<group>"; };
+		B4102C271EF072180000F9B6 /* BCMInsightItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMInsightItem.m; sourceTree = "<group>"; };
+		B4102C291EF079740000F9B6 /* BCMInsightCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMInsightCollection.h; sourceTree = "<group>"; };
+		B4102C2A1EF079740000F9B6 /* BCMInsightCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMInsightCollection.m; sourceTree = "<group>"; };
 		B4172C311EA159DC00E627FA /* UIImage+BCM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BCM.h"; sourceTree = "<group>"; };
 		B4172C321EA159DC00E627FA /* UIImage+BCM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BCM.m"; sourceTree = "<group>"; };
 		B44DB55C1D0B407B0014EF4F /* Brandmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brandmark.png; sourceTree = "<group>"; };
@@ -88,13 +92,10 @@
 		B46F1EE91CEE46F200AB1972 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B46F1F001CF37D1400AB1972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainPanel.storyboard; sourceTree = "<group>"; };
 		B46F1F0A1CF381FB00AB1972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Care.storyboard; sourceTree = "<group>"; };
-		B46F1F0F1CF3838300AB1972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Symptoms.storyboard; sourceTree = "<group>"; };
 		B46F1F111CF38DCA00AB1972 /* BCMCareNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMCareNavController.h; sourceTree = "<group>"; };
 		B46F1F121CF38DCA00AB1972 /* BCMCareNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMCareNavController.m; sourceTree = "<group>"; };
 		B46F1F151CF38E6700AB1972 /* UIViewController+BCM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BCM.h"; sourceTree = "<group>"; };
 		B46F1F161CF38EF800AB1972 /* UIViewController+BCM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BCM.m"; sourceTree = "<group>"; };
-		B46F1F181CF3942500AB1972 /* BMCSymptomNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCSymptomNavController.h; sourceTree = "<group>"; };
-		B46F1F191CF3942500AB1972 /* BMCSymptomNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCSymptomNavController.m; sourceTree = "<group>"; };
 		B46F1F1C1CF395A200AB1972 /* BCMFirstStartTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMFirstStartTracker.h; sourceTree = "<group>"; };
 		B46F1F1D1CF395A200AB1972 /* BCMFirstStartTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMFirstStartTracker.m; sourceTree = "<group>"; };
 		B46F1F201CF397CB00AB1972 /* BCMActivities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMActivities.h; sourceTree = "<group>"; };
@@ -261,8 +262,6 @@
 				B46F1EC91CEE46F200AB1972 /* BCMMainTabController.m */,
 				B46F1F111CF38DCA00AB1972 /* BCMCareNavController.h */,
 				B46F1F121CF38DCA00AB1972 /* BCMCareNavController.m */,
-				B46F1F181CF3942500AB1972 /* BMCSymptomNavController.h */,
-				B46F1F191CF3942500AB1972 /* BMCSymptomNavController.m */,
 				B4F0F5E21CF63F29004E8A1B /* BCMInsightsNavController.h */,
 				B4F0F5E31CF63F29004E8A1B /* BCMInsightsNavController.m */,
 				B4F0F5F21CF8C3E1004E8A1B /* BCMConnectNavController.h */,
@@ -281,7 +280,6 @@
 				B4F0F5F81CFD2465004E8A1B /* Authentication.storyboard */,
 				B46F1F011CF37D1400AB1972 /* MainPanel.storyboard */,
 				B46F1F0B1CF381FB00AB1972 /* Care.storyboard */,
-				B46F1F101CF3838300AB1972 /* Symptoms.storyboard */,
 				B4F0F5E51CF64016004E8A1B /* Insights.storyboard */,
 				B4F0F5F11CF8C1BF004E8A1B /* Connect.storyboard */,
 				B4F0F6051CFDD9AC004E8A1B /* Profile.storyboard */,
@@ -333,6 +331,10 @@
 				B46F1F211CF397CB00AB1972 /* BCMActivities.m */,
 				B46F1F261CF540E800AB1972 /* BCMTasks.h */,
 				B46F1F271CF540E800AB1972 /* BCMTasks.m */,
+				B4102C261EF072180000F9B6 /* BCMInsightItem.h */,
+				B4102C271EF072180000F9B6 /* BCMInsightItem.m */,
+				B4102C291EF079740000F9B6 /* BCMInsightCollection.h */,
+				B4102C2A1EF079740000F9B6 /* BCMInsightCollection.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -453,7 +455,6 @@
 			files = (
 				B44DB55E1D0B407B0014EF4F /* Brandmark.png in Resources */,
 				B4F0F5F91CFD2465004E8A1B /* Authentication.storyboard in Resources */,
-				B46F1F0E1CF3838300AB1972 /* Symptoms.storyboard in Resources */,
 				B4F0F5EF1CF8C1BF004E8A1B /* Connect.storyboard in Resources */,
 				B4F0F5E61CF64016004E8A1B /* Insights.storyboard in Resources */,
 				B46F1F091CF381FB00AB1972 /* Care.storyboard in Resources */,
@@ -622,6 +623,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4102C281EF072180000F9B6 /* BCMInsightItem.m in Sources */,
 				B4F0F5FE1CFD2E2A004E8A1B /* BCMAuthViewController.m in Sources */,
 				B46F1F171CF38EF800AB1972 /* UIViewController+BCM.m in Sources */,
 				B4172C331EA159DC00E627FA /* UIImage+BCM.m in Sources */,
@@ -630,6 +632,7 @@
 				B4F0F5F41CF8C3E1004E8A1B /* BCMConnectNavController.m in Sources */,
 				B4F0F5E41CF63F29004E8A1B /* BCMInsightsNavController.m in Sources */,
 				B493E4751E4BB12E002CD083 /* BCMStoreUtils.m in Sources */,
+				B4102C2B1EF079740000F9B6 /* BCMInsightCollection.m in Sources */,
 				B46F1F221CF397CB00AB1972 /* BCMActivities.m in Sources */,
 				B4F0F60C1CFDE0C7004E8A1B /* UIButton+BCM.m in Sources */,
 				B4F0F5EC1CF769F9004E8A1B /* NSDateComponents+BCM.m in Sources */,
@@ -642,7 +645,6 @@
 				B4F0F6091CFDDCCD004E8A1B /* BCMProfileViewController.m in Sources */,
 				B46F1F281CF540E800AB1972 /* BCMTasks.m in Sources */,
 				B46F1EC41CEE46F200AB1972 /* main.m in Sources */,
-				B46F1F1A1CF3942500AB1972 /* BMCSymptomNavController.m in Sources */,
 				B46F1F131CF38DCA00AB1972 /* BCMCareNavController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -693,14 +695,6 @@
 				B46F1F0A1CF381FB00AB1972 /* Base */,
 			);
 			name = Care.storyboard;
-			sourceTree = "<group>";
-		};
-		B46F1F101CF3838300AB1972 /* Symptoms.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B46F1F0F1CF3838300AB1972 /* Base */,
-			);
-			name = Symptoms.storyboard;
 			sourceTree = "<group>";
 		};
 		B4F0F5F11CF8C1BF004E8A1B /* Connect.storyboard */ = {

@@ -14,5 +14,9 @@
     return [[NSDateComponents alloc] initWithDate:tomorrow calendar:[NSCalendar currentCalendar]];
 }
 
++ (NSDateComponents *_Nonnull)todayComponents
+{
+    return [[NSDateComponents alloc] initWithDate:[NSDate new] calendar:[NSCalendar currentCalendar]];
+}
 
 @end
