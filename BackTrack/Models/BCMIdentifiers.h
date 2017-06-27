@@ -4,8 +4,8 @@
 #define BCMIdentifiers_h
 
 /* Intervention Groups */
-static NSString *const _Nonnull BCMIdentifierExerciseInterventionsGroup   = @"BCMExerciseInterventions";
-static NSString *const _Nonnull BCMIdentifierMedicationInterventionsGroup = @"BCMMedicationInterventions";
+static NSString *const _Nonnull BCMIdentifierExerciseInterventionsGroup   = @"Exercises";
+static NSString *const _Nonnull BCMIdentifierMedicationInterventionsGroup = @"Medications";
 
 /* Intervention Activities */
 static NSString *const _Nonnull BCMIdentifierInterventionHamstringStretch = @"BCMHamstringStretch";
@@ -14,8 +14,8 @@ static NSString *const _Nonnull BCMIdentifierInterventionWarmCompress     = @"BM
 static NSString *const _Nonnull BCMIdentifierInterventionPainKiller       = @"BCMPainKiller";
 
 /* Assessment Groups */
-static NSString *const _Nonnull BCMIdentifierSubjectiveAssessmentsGroup = @"BCMSubjectiveAssessments";
-static NSString *const _Nonnull BCMIdentifierObjectiveAssessmentsGroup  = @"BCMObjectiveAssessments";
+static NSString *const _Nonnull BCMIdentifierSubjectiveAssessmentsGroup = @"Ratings";
+static NSString *const _Nonnull BCMIdentifierObjectiveAssessmentsGroup  = @"Measurements";
 
 /* Assessment Activities */
 static NSString *const _Nonnull BCMIdentifierAssessmentPainTrack   = @"BCMPainTrack";
