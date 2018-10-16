@@ -1,4 +1,7 @@
-platform :ios, '9.0'
+platform :ios, '10.0'
+
+# ignore all warnings from all pods
+inhibit_all_warnings!
 
 target 'BackTrack' do
   use_frameworks!

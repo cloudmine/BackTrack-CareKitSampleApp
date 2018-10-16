@@ -72,7 +72,7 @@
 
 - (IBAction)didPressWebsiteButton:(UIButton *)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://cloudmineinc.com"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://cloudmineinc.com"] options:@{} completionHandler:nil];
 }
 
 - (IBAction)didPressEmailButton:(UIButton *)sender
